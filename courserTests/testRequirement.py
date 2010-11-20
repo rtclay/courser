@@ -15,6 +15,7 @@ import unittest
 
 
 
+
 class Test(unittest.TestCase):
 
 
@@ -135,6 +136,9 @@ class Test(unittest.TestCase):
         print len(b.getSubjects())
         print len(b.squish().getSubjects())
         print len(b.squish().squish().getSubjects())
+        
+    
+    
         
 
         
