@@ -36,46 +36,6 @@ def binom(n, m):
             j -= 1
     return b[m]
 
-def getBetterSolution(req, catalog, term):
-        '''Returns a Requirement that represents one possible, complete solution of self, based on the subject requirements in catalog
-        
-        Repeated calls of this function result in pseudorandom requirements that satisfy self
-        This function scores the subject sets by how long it would take to take all of them
-        '''
-
-
-
-        req = req.expand(term)
-        best_solution= req
-        scores_dict = dict() #Key:Value :: req: score of req
-        
-        
-
-        #print "Finding a good solution... "
-        minimum = catalog.getTerms()[-1] # the worst possible plan would take until the end of the catalog
-        
-        for x in xrange(10):
-            a = req.getSolution(term)
-            
-            if a in scores_dict:
-                continue
-            else:
-                cplan = CoursePlan(a.getSubjects(), catalog)
-                cplan.plotRemainingSemesters(term, 16)                    
-                scores_dict[a] = cplan.getTermOfSatisfaction()
-                
-                if scores_dict[a] and scores_dict[a] < minimum:
-                    minimum = scores_dict[a]
-                    best_solution = a
-            
-
-
-        #print "Solution found:"
-        #print "Fewest classes to satisfy: ", str(minimum)
-        #print "Most classes to satisfy: ", str(maximum)
-        print scores_dict
-        
-        return best_solution
 
 
 

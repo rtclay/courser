@@ -32,7 +32,8 @@ class Test(unittest.TestCase):
         pass
     
     def testSolveReq(self):
-        cplan = CoursePlan(self.dset.reqs63.getSolution(self.dset.terms[0]).getSubjects(), self.catalog)
+        cplan = CoursePlan([], self.catalog)
+        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
         a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
         b =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
         print sorted(a.getSubjects())
@@ -42,15 +43,10 @@ class Test(unittest.TestCase):
         self.assertTrue(a.getSubjects() == b.getSubjects(),  "Assert: %s equals %s" % (a.getSubjects(), b.getSubjects()))
     
     def testSolveReq2(self):
-        cplan = CoursePlan(self.dset.reqs63.getSolution(self.dset.terms[0]).getSubjects(), self.catalog)
-        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
-        self.assertTrue(self.dset.reqs63.isSatisfied(a.getSubjects()),  "Assert: %s satifies %s" % (a.getSubjects(), self.dset.reqs63))
+        cplan = CoursePlan([], self.catalog)
+        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
+        self.assertTrue(self.dset.reqs63.isSatisfied(cplan.getDesired()),  "Assert: %s satifies %s" % (cplan.getDesired(), self.dset.reqs63))
         
-    def testSolveReq3(self):
-        cplan = CoursePlan(self.dset.reqs63.getSolution(self.dset.terms[0]).getSubjects(), self.catalog)
-        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
-        self.assertTrue(self.dset.reqs63.isValid(),  "Assert: %s is valid" % self.dset.reqs63)
-        self.assertTrue(a.isValid(),  "Assert: %s is valid" % self.dset.reqs63)
         
     def testgetSolChoice(self):
         cplan = CoursePlan(None, self.catalog)
@@ -60,14 +56,12 @@ class Test(unittest.TestCase):
         
     
     def testPlotRemainingSemesters(self):
-        cplan = CoursePlan(self.dset.reqs63.getSolution(self.dset.terms[0]).getSubjects(), self.catalog)
+        cplan = CoursePlan([], self.catalog)
+        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
         cplan.plotRemainingSemesters(self.dset.terms[0], 16) #Parameters: starting term, maximum number of semesters
         self.assertTrue(cplan.getSubjectsRemaining(cplan.getTermOfSatisfaction()) ==[], "Assert: no subjects remaining")
         
-    def testGetGoodSolution(self):
-        cplan = CoursePlan(self.dset.reqs63.getSolution(self.dset.terms[0]).getSubjects(), self.catalog)
-        cplan.plotRemainingSemesters(self.dset.terms[0], 16) #Parameters: starting term, maximum number of semesters
-        self.assertTrue(cplan.getSubjectsRemaining(cplan.getTermOfSatisfaction()) ==[], "Assert: no subjects remaining")
+
     
 
 

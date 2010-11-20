@@ -161,34 +161,6 @@ class Requirement(object):
         #in this case, the req has multiple subreqs
         return Requirement([req.expand(term) for req in self.reqs], self.numNeeded) 
         
-             
-    #returns one possible solution to the requirement, choosing randomly in instances where a choice (eg 3 out of 4) is available
-    def subsolve(self):
-        '''Returns a random Requirement that represents one possible, complete solution of self, based on the subject requirements in term
-        '''
-        newFlatReq = Requirement(self.reqs, self.numNeeded, self.singleSubject)
-        if newFlatReq.isLeaf():
-            return newFlatReq
-        if newFlatReq.isTotal():
-            return Requirement([req.subsolve() for req in newFlatReq.reqs], newFlatReq.numNeeded)
-            
-        if newFlatReq.isValid() and not newFlatReq.isTotal():
-            return Requirement(list(set([req.subsolve() for req in sample(newFlatReq.reqs, newFlatReq.numNeeded)])), newFlatReq.numNeeded)
-
-        else:
-            raise SatisfactionError(newFlatReq)
-    
-
-    def getSolution(self, term):
-        '''Returns a Requirement that represents one possible, complete solution of self, based on the subject requirements in term
-        
-        Repeated calls of this function result in pseudorandom requirements that satisfy self
-        '''
-        a = self.expand(term).subsolve()
-        while a != a.squish():
-            a = a.squish()
-        
-        return a
 
              
     def getSubjects(self):

@@ -27,6 +27,13 @@ class ReqPartial(Requirement):
     
     def __ne__(self, other):
         return not self.__eq__(other)
+    
+    def getSubjects(self):
+        subjects = []
+        for req in self.reqs:
+            subjects.extend(req.getSubjects())
+        
+        return set(subjects)
 
     def isSatisfied(self, classesTaken):
         '''Takes a list of classes taken and returns whether enough component requirements have been satisfied

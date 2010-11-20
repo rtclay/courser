@@ -61,6 +61,8 @@ class CoursePlan(object):
     
     def getDesired(self):
         return list(self.desired)[:]
+    def setDesired(self, newDesired):
+        self.desired = newDesired
     
     def getSubjectsRemaining(self, term):
         '''Returns a list of Subjects that are desired but not yet taken at the time of term

@@ -89,53 +89,17 @@ class Test(unittest.TestCase):
                 print "expanded is same\n"
                 self.assertTrue(len(req_to_check.reqs) ==0 and (req_to_check.singleSubject is None or self.dset.terms[0].getReq(req_to_check.singleSubject) ==Requirement()), "Assert empty req: %s reqs and  %s singlesubject" % (req_to_check.reqs, req_to_check.singleSubject))
     
-    def testSubsolve(self):
-        a = self.dset.reqs63.expand(self.dset.terms[0]).squish().subsolve()        
-         
-        expanded = self.dset.reqs63.expand(self.dset.terms[0]) 
-        
-        self.assertTrue(self.dset.reqs63.isSatisfied(a.getSubjects())), "Assert: %s is satisfied with %s" % (set(self.dset.reqs63.getSubjects()), set(a.getSubjects()))
-        
-        
-        
-        for x in xrange(5):
-            b = expanded.squish().subsolve()
-            #===================================================================
-            # print b
-            # print b.subsolve()
-            # print b == b.subsolve()
-            # print set(b.reqs) == set(b.subsolve().reqs)
-            # for reqPair in zip(b.reqs, b.subsolve().reqs):
-            #    print str(reqPair) + " "+ str(reqPair[0] == reqPair[1])
-            #    print "  "+ str(reqPair[0].reqs == reqPair[1].reqs)
-            #    print "  "+ str(set(reqPair[0].reqs) == set(reqPair[1].reqs))
-            #===================================================================
-                
-            
-            self.assertEqual(b, b.subsolve(), "Assert: %s equals %s" % (b, b.subsolve()))
-            self.assertEqual(b, b.subsolve().subsolve(), "Assert: %s equals %s" % (b, b.subsolve().subsolve()))
-            self.assertTrue(len(b.getSubjects()) <= len(expanded.getSubjects()), "Assert: %s <= %s" % (len(b.getSubjects()), len(expanded.getSubjects())))
-            self.assertTrue(self.dset.reqs63.isSatisfied(b.getSubjects()), "Assert: %s is satisfied with %s" % (self.dset.reqs63, b.getSubjects()))
+
         
             
     def testSquish(self):
         a = self.dset.reqs63.expand(self.dset.terms[0]).squish()
-        b = self.dset.reqs63.getSolution(self.dset.terms[0])
+        
         self.assertTrue(set(a.getSubjects()) == set(a.squish().getSubjects()), "Assert: %s == %s" % (set(a.getSubjects()), set(a.squish().getSubjects())))
         self.assertTrue(set(a.getSubjects()) == set(a.squish().squish().getSubjects()), "Assert: %s == %s" % (set(a.getSubjects()), set(a.squish().squish().getSubjects())))
         self.assertTrue(Requirement().squish() == Requirement(), "Assert: %s == %s" % (Requirement().squish(), Requirement()))
         
         
-        print len(self.dset.reqs63.expand(self.dset.terms[0]).getSubjects())
-        print len(self.dset.reqs63.expand(self.dset.terms[0]).squish().getSubjects())
-        print len(self.dset.reqs63.expand(self.dset.terms[0]).squish().squish().getSubjects())
-        
-        print len(a.subsolve().getSubjects())
-        print len(a.squish().subsolve().getSubjects())
-        print len(a.squish().squish().subsolve().getSubjects())
-        print len(b.getSubjects())
-        print len(b.squish().getSubjects())
-        print len(b.squish().squish().getSubjects())
         
     
     
