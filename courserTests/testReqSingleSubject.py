@@ -3,11 +3,10 @@ Created on Nov 19, 2010
 
 @author: richard
 '''
-from courser.ReqNot import ReqNot
-from courser.Subject import Subject
+
+from courser.ReqSingleSubject import ReqSingleSubject
 from courserTests.Dataset import Dataset
 import unittest
-from courser.Requirement import Requirement
 
 
 class Test(unittest.TestCase):
@@ -24,8 +23,8 @@ class Test(unittest.TestCase):
 
 
     def testIsSatisfied(self):
-        self.assertTrue(ReqNot(Requirement([], 1, self.dset.subjects[0])).isSatisfied([]))
-        self.assertFalse(ReqNot(Requirement([], 1, self.dset.subjects[0])).isSatisfied([self.dset.subjects[0]]))
+        self.assertFalse(ReqSingleSubject(self.dset.subjects[0]).isSatisfied([]))
+        self.assertTrue(ReqSingleSubject(self.dset.subjects[0]).isSatisfied([self.dset.subjects[0]]))
         
 
 

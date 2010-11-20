@@ -10,17 +10,27 @@ class ReqNot(Requirement):
     classdocs
     '''
     
-    def __init__(self, reqList, name="unnamed requirement"):
+    def __init__(self, reqForNegation, name="unnamed requirement"):
         '''
         Constructor
         '''
-        self.reqs = reqList
-        self.numNeeded = 1
+        self.reqForNegation = reqForNegation        
         self.name = name
 
+    def __eq__(self, other):
+        try:
+            return self.reqForNegation == other.reqForNegation
+        except:
+            return False
+    
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     def isSatisfied(self, classesTaken):
         '''Takes a list of classes taken and returns the opposite truth value to whether self is satisfied by the classesTaken
         '''
-        return not super(ReqNot, self).isSatisfied(classesTaken)
+        return not self.reqForNegation.isSatisfied(classesTaken)
+    
+    def __repr__(self):
+        return "<ReqNot: " + str(self.reqForNegation)+ ">"
     
