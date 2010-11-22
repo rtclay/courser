@@ -1,27 +1,32 @@
 '''
-Created on Nov 20, 2010
+Created on Nov 22, 2010
 
 @author: richard
 '''
-from courser.Requirement import Requirement
+from courser.ReqPartial import ReqPartial
 
-class ReqPartial(Requirement):
+class ReqTotal(ReqPartial):
     '''
     classdocs
     '''
 
 
-    def __init__(self, reqList=[], numNeeded=0, name="unnamed requirement"):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(self, reqList=[], name="unnamed requirement"):
         '''
         Constructor
         '''
         self.reqs = reqList
-        self.numNeeded = numNeeded
+        self.numNeeded = len(self.reqs)
         self.name = name
 
     def __eq__(self, other):
         try:
-            return self.reqs == other.reqs and self.numNeeded == other.numNeeded
+            return self.reqs == other.reqs
         except:
             return False
     
@@ -35,12 +40,12 @@ class ReqPartial(Requirement):
         
         return set(subjects)
     
-    def getNumChoices(self):
-        return len(self.reqs)
-    
     def getProgress(self, classesTaken):    
         #return the progress of its constituent requirements
         return reduce(lambda x, y: x+y.getProgress(classesTaken), self.reqs, 0)
+    
+    def getNumChoices(self):
+        return len(self.reqs)
 
     def isSatisfied(self, classesTaken):
         '''Takes a list of classes taken and returns whether enough component requirements have been satisfied
@@ -53,14 +58,13 @@ class ReqPartial(Requirement):
         Returns a Requirement that includes the prerequisite subjects of every subject in self's reqs.  Almost certain to include duplicate subjects and reqs.
         '''
         #the req has multiple subreqs
-        return ReqPartial([req.expand(term) for req in self.reqs], self.numNeeded)
+        return ReqTotal([req.expand(term) for req in self.reqs])
     
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements
         '''         
-        return False
-    
-    
+        return False 
     
     def __repr__(self):
         return "<Req: " + str(self.numNeeded)+ " of " + str(self.getNumChoices())+":"+ str(sorted(self.reqs, key = lambda x : x.getSingleSubj)) +">"
+        

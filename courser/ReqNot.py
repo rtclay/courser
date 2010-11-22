@@ -31,6 +31,28 @@ class ReqNot(Requirement):
         '''
         return not self.reqForNegation.isSatisfied(classesTaken)
     
+    def expand(self,term):
+        '''Returns a req with each subject traced out to subjects with no req 
+        
+        Returns a Requirement that includes the prerequisite subjects of every subject in self's reqs.  Almost certain to include duplicate subjects and reqs.
+        '''
+        
+        #the req has multiple subreqs
+        return ReqNot([req.expand(term) for req in self.reqs])
+    
+    def getProgress(self, classesTaken):
+        if self.isSatisfied(classesTaken):
+            return 1
+        else:
+            return 0
+    def getNumChoices(self):
+        return 1
+    
+         
+    def isLeaf(self):
+        '''Tests whether self has any subordinate requirements
+        '''         
+        return False
     def __repr__(self):
         return "<ReqNot: " + str(self.reqForNegation)+ ">"
     

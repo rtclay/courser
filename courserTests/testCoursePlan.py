@@ -16,7 +16,6 @@ class Test(unittest.TestCase):
 
 
     def setUp(self):
-        
         self.dset= Dataset()
         self.dset.dataSetup()
         self.catalog= Catalog(dict(zip([str(x) for x in self.dset.terms], self.dset.terms)))
