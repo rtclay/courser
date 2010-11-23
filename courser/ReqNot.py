@@ -38,7 +38,7 @@ class ReqNot(Requirement):
         '''
         
         #the req has multiple subreqs
-        return ReqNot([req.expand(term) for req in self.reqs])
+        return ReqNot(self.reqForNegation.expand(term))
     
     def getProgress(self, classesTaken):
         if self.isSatisfied(classesTaken):
@@ -48,6 +48,8 @@ class ReqNot(Requirement):
     def getNumChoices(self):
         return 1
     
+    def getSubjects(self):
+        return None
          
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements

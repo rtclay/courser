@@ -66,5 +66,5 @@ class ReqTotal(ReqPartial):
         return False 
     
     def __repr__(self):
-        return "<Req: " + str(self.numNeeded)+ " of " + str(self.getNumChoices())+":"+ str(sorted(self.reqs, key = lambda x : x.getSingleSubj)) +">"
+        return "<Req: all of " + str(self.getNumChoices())+":"+ str(sorted(self.reqs, key = lambda x : x.getSingleSubj)) +">"
         
