@@ -6,9 +6,9 @@ Created on Aug 17, 2010
 from courser.Catalog import Catalog, TermMissingError
 from courser.SemesterPlan import SemesterPlan
 from itertools import izip, combinations, chain, imap
-from courser.Requirement import Requirement, RequirementError, SatisfactionError
+from courser.Requirement import Requirement,  SatisfactionError
 from random import sample
-from test.test_codecs import all_string_encodings
+
 
 
 

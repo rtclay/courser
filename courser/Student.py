@@ -72,32 +72,7 @@ class Student(object):
     def setSubjects_taken(self, value):
         self.subjectsTaken = value
 
-
-    def delDset(self):
-        del self.dset
-
-
-    def delName(self):
-        del self.name
-
-
-    def delStudent_id(self):
-        del self.student_id
-
-
-    def delGoals(self):
-        del self.goals
-
-
-    def delCoursePlan(self):
-        del self.course_plan
-
-
-    def delSubjectsTaken(self):
-        del self.subjectsTaken
-
-        
-        
+   
         
         
     def getProgress(self, req):

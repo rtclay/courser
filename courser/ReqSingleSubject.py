@@ -12,7 +12,6 @@ class ReqSingleSubject(Requirement):
     classdocs
     '''
 
-
     
     def __init__(self, subj=None, name="unnamed requirement"):
         '''
