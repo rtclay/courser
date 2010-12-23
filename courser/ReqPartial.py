@@ -55,6 +55,9 @@ class ReqPartial(Requirement):
         #the req has multiple subreqs
         return ReqPartial([req.expand(term) for req in self.reqs], self.numNeeded)
     
+    def getComplexity(self, term):
+        return 1.5 * reduce(lambda x, y: x+y.getComplexity(term), self.reqs, 0) 
+    
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements
         '''         

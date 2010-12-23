@@ -61,6 +61,15 @@ class ReqSingleSubject(Requirement):
             return 1
         else:
             return 0
+        
+    def getComplexity(self, term):
+        '''If the single subject has a blank requirement, returns 1.  Otherwise returns 1+ the complexity of that subject's requirement
+        '''
+        subj_req = term.getReq(self.singleSubject)
+        if subj_req.isBlank():
+            return 1
+        else:
+            return 1 + self.expand(term).getComplexity()
  
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements

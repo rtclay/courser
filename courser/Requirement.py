@@ -40,6 +40,7 @@ class MalformedReqError(RequirementError):
 class Requirement(object):
     '''
     classdocs
+    TODO: transform req into an abstract class or interface and force the use of its subclasses.  Remove all instantiations of Requirement class from project
     '''
 
 
@@ -197,6 +198,15 @@ class Requirement(object):
     def testValidity(self):
         if not self.isValid():
             raise MalformedReqError(self)
+        
+    def getComplexity(self, term):
+        '''Returns a positive number representing the complexity of the req's subordinate requirements
+        Roughly, complexity increases with the depth and number of the req's sub-requirements
+        Every subreq will be less complex than its parent
+        When the Requirement class becomes an interface, this function will return a notImplementedError for the Requirement Class; subclasses will define.
+        '''
+
+        return 1.5 * reduce(lambda x, y: x+y.getComplexity(term), self.reqs, 0) + int(self.isLeaf()) 
         
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements

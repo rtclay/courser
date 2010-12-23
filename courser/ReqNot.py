@@ -16,6 +16,7 @@ class ReqNot(Requirement):
         '''
         self.reqForNegation = reqForNegation        
         self.name = name
+        
 
     def __eq__(self, other):
         try:
@@ -50,6 +51,9 @@ class ReqNot(Requirement):
     
     def getSubjects(self):
         return None
+    
+    def getComplexity(self, term):
+        return self.reqForNegation.getComplexity(term)
          
     def isLeaf(self):
         '''Tests whether self has any subordinate requirements

@@ -29,9 +29,7 @@ class CoursePlan(object):
         if subject_req_choices is None:
             subject_req_choices= dict()
         self.subject_req_choices= subject_req_choices      
-            
-        #self.req = req
-        
+
         
         self.catalog = catalog
         self.breadth = 10
@@ -48,7 +46,7 @@ class CoursePlan(object):
     def staticScoreSemesterPlan(self, sem_plan):
         value = len(sem_plan.desired)
         if not sem_plan.getSolution():
-            value = value -1000
+            value = value -10000
         if sem_plan.getUnits() < self.minUnits:
             value = value * 0.75
         if sem_plan.getUnits() > self.maxUnits:
@@ -80,22 +78,16 @@ class CoursePlan(object):
         return list_of_subjects
     
     def getSolChoice(self, req, term):
-        #print "req is", req
+
         req.testValidity()
         req = req.completeSquish()
         if req.__repr__() in self.subject_req_choices:
             solution = self.subject_req_choices[req.__repr__()]
-            #print "key:", str(req)
-            #print "value:", str(solution) 
         else:
-            #print "key not found: ", req.__repr__(), "\n", req.__repr__() in self.subject_req_choices
-            #print "dict is: "
-            #for x in self.subject_req_choices.items():
-                #print x
+
             if req.isLeaf():
                 if term.getReq(req.getSingleSubj()) == Requirement():
                     solution = req
-                    #print req
                     
                 else:                    
                     pre_requirements = req.expand(term)
@@ -142,10 +134,8 @@ class CoursePlan(object):
         This function repeatedly searches for satisfactory reqs and picks the one that requires the fewest classes.
         '''
         
-        #self.term_info_dict.clear() # we are coming up with a new solution
-
         print "Finding a good solution",
-        minimum = self.catalog.getTerms()[-1]
+        minimum = self.catalog.getTerms()[-1]  #set as our starting point the final semester in catalog; all solutions will score better or equal to final semester
 
         best_solution_group = self.solveReq(req, term)
         
@@ -171,12 +161,7 @@ class CoursePlan(object):
         else:
             raise SatisfactionError(req)
                 
-                    
-        #print "Solution found:"
-        #print "Soonest to satisfy: ", str(minimum)        
-        
-        
-        
+
     
     def buildASP(self, term):
         '''Returns an iterator consisting of (plan, static score of plan) pairs
@@ -236,6 +221,7 @@ class CoursePlan(object):
             return SemesterPlan(term, [])
 
         #=======================================================================
+        # Deep search currently removed
         # for (sem_plan, score) in [x for x in all_semester_plans if x[1] > 0]:
         #    score = self.deepScoreSemesterPlan(sem_plan, depth, term)
         #=======================================================================
@@ -251,7 +237,14 @@ class CoursePlan(object):
 
             
         
-
+    def scoreSubject(self, subj, term):
+        #High complication subjects, ie those with complicated requirements, get a high score, subjects with simple requirements get a low score
+        complexity = len(term.getReq(subj).getSubjects())
+        req = term.getReq(subj)
+        
+        if req.isBlank():
+            return 1
+        
         
 
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
