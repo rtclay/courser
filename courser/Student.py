@@ -5,6 +5,9 @@ Created on Aug 18, 2010
 '''
 from courser.CoursePlan import CoursePlan
 from courserTests.Dataset import Dataset
+from courser.ReqSingleSubject import ReqSingleSubject
+from courser.ReqTotal import ReqTotal
+from courser.ReqNot import ReqNot
 
 
 class Student(object):
@@ -23,7 +26,7 @@ class Student(object):
         self.name = name
         self.student_id = ID
         self.goals = []
-        self.course_plan = CoursePlan([], self.dset)
+        self.course_plan = CoursePlan([], self.dset.catalog)
 
     def getDset(self):
         return self.dset
@@ -80,9 +83,10 @@ class Student(object):
     
     def satisfiesReq(self, req):
         return req.isSatisfied(self.subjectsTaken)
-
     
+    def avoid_Subject(self, subject):        
+        self.goals = ReqTotal([self.goals, ReqNot(ReqSingleSubject(subject))]) 
 
-    
-        
+    def __repr__(self):
+        return "<Student: " + str(self.name)+ ">"
         

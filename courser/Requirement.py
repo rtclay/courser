@@ -4,6 +4,7 @@ Created on Aug 18, 2010
 @author: richard
 '''
 from random import sample
+import copy
 
 
 
@@ -133,7 +134,8 @@ class Requirement(object):
         return newReq
     
     def completeSquish(self):
-        temp = Requirement(self.reqs[:], self.numNeeded, self.singleSubject)
+        temp = copy.copy(self)
+        #temp = Requirement(self.reqs[:], self.numNeeded, self.singleSubject)
         while temp != temp.squish():
             temp = temp.squish()
         return temp
