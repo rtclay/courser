@@ -4,10 +4,11 @@ Created on Aug 17, 2010
 @author: richard
 '''
 from courser.Catalog import Catalog, TermMissingError
+from courser.Requirement import Requirement, SatisfactionError
 from courser.SemesterPlan import SemesterPlan
 from itertools import izip, combinations, chain, imap
-from courser.Requirement import Requirement,  SatisfactionError
 from random import sample
+import sys
 
 
 
@@ -68,6 +69,8 @@ class CoursePlan(object):
         return list(set(self.desired) ^ set(self.getSubjectsTakenBeforeTerm(term)))
      
     def getSubjectsTakenBeforeTerm(self, term):
+        '''Returns a list of Subjects that have been taken before the start of a given term
+        '''
         list_of_subjects = self.subjects_credited[:]
         
         previous_terms = self.catalog.getPreviousTerms(term)
@@ -237,16 +240,46 @@ class CoursePlan(object):
 
             
         
-    def scoreSubject(self, subj, term):
+        
+    def scoreSubjects(self, term):
         #High complication subjects, ie those with complicated requirements, get a high score, subjects with simple requirements get a low score
-        complexity = len(term.getReq(subj).getSubjects())
-        req = term.getReq(subj)
         
-        if req.isBlank():
-            return 1
+        scores = dict()
+        subjects_to_score = []
+        subjects_scored= []
         
+        for subj in term.getSubjects():
+            #if the requirement is satisfied with the classes taken so far
+            if term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term)):
+                scores[subj] = 0
+                subjects_scored.append(subj)
+            else:
+                scores[subj] = -sys.maxint - 1
+                subjects_to_score.append(subj)
         
+        #depth=0
+        #subjects_at_depth=[subjects_scored]
+        subjects_prior_depth= self.getSubjectsTakenBeforeTerm(term)
+        while subjects_to_score != []:
+            #depth = depth +1
+            
+            
+            
+            subjects_prior_depth.extend(subjects_scored)
+            
+            for subj in subjects_to_score[:]:
+                if term.getReq(subj).isSatisfied(subjects_prior_depth):
+#                    required_subjects = term.getReq(subj).getSubjects()
+#                    scores_of_required = [scores[x] for x in required_subjects]
+#                    score_of_predecessor = max(scores_of_required)
+#                    
+#                    scores[subj]= 1+ score_of_predecessor
 
+                    scores[subj]= 1+ max([scores[x] for x in term.getReq(subj).getSubjects()])
+                    subjects_scored.append(subj)
+                    subjects_to_score.remove(subj)
+        return scores
+    
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
         if depth <= 0:
             return self.staticScoreSemesterPlan(sem_plan)
