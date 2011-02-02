@@ -81,7 +81,8 @@ class CoursePlan(object):
         return list_of_subjects
     
     def getSolChoice(self, req, term):
-
+        '''Returns a solution to a requirement, returning the same solution each time for partial requirements
+        '''
         req.testValidity()
         req = req.completeSquish()
         if req.__repr__() in self.subject_req_choices:
@@ -239,6 +240,27 @@ class CoursePlan(object):
         return best_sem_plan_tuple[0]
 
             
+    def getDependents(self, term):
+        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
+        '''
+        deps = dict()
+        for subj in term.getSubjects():
+            
+            for req_subject in self.getSolChoice(term.getReq(subj), term).getSubjects():
+                if req_subject not in deps:
+                    deps[req_subject] = set()
+                deps[req_subject].add(subj)
+        return deps
+    
+    def scoreSubject(self, subj, term):
+        deps = self.getDependents(term)
+        
+        if not subj in deps:
+            deps[subj] = 0
+        score = 1
+        score = score + 2* len(deps[subj]) #This class is a precursor to other classes
+        score = score + 10* len(deps[subj] & set(self.desired))  #this class is a relevant precursor to what we want
+        
         
         
     def scoreSubjects(self, term):
@@ -250,11 +272,13 @@ class CoursePlan(object):
         
         for subj in term.getSubjects():
             #if the requirement is satisfied with the classes taken so far
-            if term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term)):
+            if subj in self.getSubjectsTakenBeforeTerm(term):
                 scores[subj] = 0
+            elif term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term)):
+                scores[subj] = 1
                 subjects_scored.append(subj)
             else:
-                scores[subj] = -sys.maxint - 1
+                scores[subj] = sys.maxint 
                 subjects_to_score.append(subj)
         
         #depth=0
@@ -262,9 +286,7 @@ class CoursePlan(object):
         subjects_prior_depth= self.getSubjectsTakenBeforeTerm(term)
         while subjects_to_score != []:
             #depth = depth +1
-            
-            
-            
+
             subjects_prior_depth.extend(subjects_scored)
             
             for subj in subjects_to_score[:]:
