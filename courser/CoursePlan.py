@@ -140,7 +140,7 @@ class CoursePlan(object):
         best_solution_group = self.solveReq(req, term)
         
         #arbitrary number of repetitions
-        for x in xrange(20):
+        for x in xrange(10):
             
             temp_cplan = CoursePlan([], self.catalog)
             possible_subject_group = temp_cplan.solveReq(req, term)
@@ -220,32 +220,33 @@ class CoursePlan(object):
         if not all_semester_plans:
             return SemesterPlan(term, [])
 
-        #=======================================================================
-        # Deep search currently removed
-        # for (sem_plan, score) in [x for x in all_semester_plans if x[1] > 0]:
-        #    score = self.deepScoreSemesterPlan(sem_plan, depth, term)
-        #=======================================================================
+        
+       
+        for (sem_plan, score) in [x for x in all_semester_plans if x[1] > 0]:
+            score = self.deepScoreSemesterPlan(sem_plan, depth, term)
+        
 
         
         try:
             best_sem_plan_tuple = max(all_semester_plans, key = lambda sem_plan : sem_plan[1])            
         except ValueError():
             print "Error finding highest-scoring semester. Returning a semester with no classes."
-            return SemesterPlan(term)
+            return SemesterPlan(term, [])
  
         return best_sem_plan_tuple[0]
 
             
-#    def getDependents(self, term):
-#        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
-#        '''
-#        deps = dict()
-#        for subj in term.getSubjects():
-#            for req_subject in self.solveReq(term.getReq(subj), term).getSubjects():
-#                if req_subject not in deps:
-#                    deps[req_subject] = set()
-#                deps[req_subject].add(subj)
-#        return deps
+    def getDependents(self, term):
+        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
+        '''
+        deps = dict()
+        for subj in term.getSubjects(): 
+            req = self.solveReq(term.getReq(subj), term)
+            for req_subject in req.getSubjects():
+                if req_subject not in deps:
+                    deps[req_subject] = set()
+                deps[req_subject].add(subj)
+        return deps
     
     def scoreSubject(self, subj, term):
         deps = self.getDependents(term)
@@ -298,17 +299,32 @@ class CoursePlan(object):
         return scores
     
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
+        static_score = self.staticScoreSemesterPlan(sem_plan)
+        
         if depth <= 0:
-            return self.staticScoreSemesterPlan(sem_plan)
+            return static_score
         else:
+            #in order to have the course plan consider the next semester, we need to tell it that it has taken the courses in the possible semplan for this semester
+            #we save the list of subjects credited.  we NEED to revert to it before exiting function
+            real_credits = self.subjects_credited
+            
             #find the subjects that would remain after taking this semester plan
             remainingSubjects = set(sem_plan.getSubjects()) ^  set(self.getSubjectsRemaining(currentTerm))
+            
             #generate and score the semester plans that could immediately follow this semester plan
+            self.subjects_credited.extend(sem_plan.getSubjects())            
             sem_planScores = self.buildASP(self.catalog.getNextTerm(currentTerm))
             
-            bestChildSP = max(sem_planScores, key = lambda sp : sem_planScores[sp])
+            if list(sem_planScores) == []:
+                self.subjects_credited = real_credits
+                return static_score
             
-            return self.staticScoreSemesterPlan(sem_plan)+self.deepScoreSemesterPlan(bestChildSP, depth-1, self.catalog.getNextTerm(currentTerm), remainingSubjects)
+            
+            bestChildSP = max(sem_planScores, key = lambda sp : sem_planScores[sp])
+            deep_score = self.deepScoreSemesterPlan(bestChildSP, depth-1, self.catalog.getNextTerm(currentTerm), remainingSubjects)
+            
+            self.subjects_credited = real_credits            
+            return static_score+ deep_score
     
     def __repr__(self):
         response ="<Course Plan: "

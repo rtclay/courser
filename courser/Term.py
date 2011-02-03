@@ -93,10 +93,10 @@ class Term(object):
         self.subjects[subj.name] = subj
         self.subjectReqs[subj] = req
         self.subjectMsets[subj] = msets
-        for required_subject in req.expand(self).getSubjects():
-            if required_subject not in self.dependants:
-                self.dependants[required_subject] = set()
-            self.dependants[required_subject].add(subj)
+#        for required_subject in req.expand(self).getSubjects():
+#            if required_subject not in self.dependants:
+#                self.dependants[required_subject] = set()
+#            self.dependants[required_subject].add(subj)
         
     
     def removeSubject(self, subj):
