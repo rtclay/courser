@@ -236,17 +236,16 @@ class CoursePlan(object):
         return best_sem_plan_tuple[0]
 
             
-    def getDependents(self, term):
-        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
-        '''
-        deps = dict()
-        for subj in term.getSubjects():
-            
-            for req_subject in self.solveReq(term.getReq(subj), term).getSubjects():
-                if req_subject not in deps:
-                    deps[req_subject] = set()
-                deps[req_subject].add(subj)
-        return deps
+#    def getDependents(self, term):
+#        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
+#        '''
+#        deps = dict()
+#        for subj in term.getSubjects():
+#            for req_subject in self.solveReq(term.getReq(subj), term).getSubjects():
+#                if req_subject not in deps:
+#                    deps[req_subject] = set()
+#                deps[req_subject].add(subj)
+#        return deps
     
     def scoreSubject(self, subj, term):
         deps = self.getDependents(term)

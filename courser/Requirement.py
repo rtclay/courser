@@ -146,6 +146,8 @@ class Requirement(object):
         
         Returns a Requirement that includes the prerequisite subjects of every subject in self's reqs.  Almost certain to include duplicate subjects and reqs.
         '''
+        if self.isBlank():
+            return self
         #if it doesn't have sub requirements, just look at the single subject
         if not self.reqs:
             #if it is an empty requirement, return self

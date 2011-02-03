@@ -22,7 +22,9 @@ class Term(object):
         if subjectMsets is None:
             subjectMsets= dict()
         if subjectReqs is None:
-            subjectReqs= dict()    
+            subjectReqs= dict()
+            
+        self.dependants= dict()    
         
         self.season= season
         self.year = year
@@ -72,20 +74,39 @@ class Term(object):
             return self.subjectMsets[subj][:]
         else:
             return [Meetingset()]
+    
+    def rebuildDeps(self):
+        '''sets self.dependants to a dictionary containing pairs of (subj, set(subjects that require subj))
+        '''        
+        expanded_reqs = dict()
+        for req in self.subjectReqs:
+            expanded_reqs[req] = req.expand(self)
         
-    def addSubject(self, subj, req, msets, altSubjectName=""):
-        if subj is None:
-            subj= Subject(altSubjectName)
+        for subj in self.getSubjects():
+            for required_subject in expanded_reqs[self.getReq(subj)].getSubjects():
+                if required_subject not in self.dependants:
+                    self.dependants[required_subject] = set()
+                self.dependants[required_subject].add(subj)
+        
+        
+    def addSubject(self, subj, req, msets):
         self.subjects[subj.name] = subj
         self.subjectReqs[subj] = req
         self.subjectMsets[subj] = msets
+        for required_subject in req.expand(self).getSubjects():
+            if required_subject not in self.dependants:
+                self.dependants[required_subject] = set()
+            self.dependants[required_subject].add(subj)
+        
     
-    def removeSubject(self, subj, altSubjectName=""):
-        if subj is None:
-            subj= Subject(altSubjectName)
+    def removeSubject(self, subj):
+#        for required_subject in self.subjectReqs[subj].expand(self).getSubjects():
+#            if required_subject in self.dependants:
+#                self.dependants[required_subject].remove(subj)
         del self.subjects[subj.name]
         del self.subjectReqs[subj]
         del self.subjectMsets[subj]
+        
         
     def addMeetingSet(self, subj, mset):
         self.subjectMsets[subj].append(mset)
