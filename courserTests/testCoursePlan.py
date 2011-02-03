@@ -30,28 +30,28 @@ class Test(unittest.TestCase):
         #self.assertEqual(1, 2, "Assert Equal: %s == %s" % (1, 2))
         pass
     
-    def testSolveReq(self):
-        cplan = CoursePlan([], self.catalog)
-        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
-        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
-        b =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
-        print sorted(a.getSubjects())
-        print sorted(b.getSubjects())
-        for x,y in cplan.subject_req_choices.items():
-            print x, " : ", y
-        self.assertTrue(a.getSubjects() == b.getSubjects(),  "Assert: %s equals %s" % (a.getSubjects(), b.getSubjects()))
-    
-    def testSolveReq2(self):
-        cplan = CoursePlan([], self.catalog)
-        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
-        self.assertTrue(self.dset.reqs63.isSatisfied(cplan.getDesired()),  "Assert: %s satifies %s" % (cplan.getDesired(), self.dset.reqs63))
-        
+#    def testSolveReq(self):
+#        cplan = CoursePlan([], self.catalog)
+#        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
+#        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
+#        b =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
+#        print sorted(a.getSubjects())
+#        print sorted(b.getSubjects())
+#        for x,y in cplan.subject_req_choices.items():
+#            print x, " : ", y
+#        self.assertTrue(a.getSubjects() == b.getSubjects(),  "Assert: %s equals %s" % (a.getSubjects(), b.getSubjects()))
+#    
+#    def testSolveReq2(self):
+#        cplan = CoursePlan([], self.catalog)
+#        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
+#        self.assertTrue(self.dset.reqs63.isSatisfied(cplan.getDesired()),  "Assert: %s satifies %s" % (cplan.getDesired(), self.dset.reqs63))
+#        
         
     def testgetSolChoice(self):
         cplan = CoursePlan(None, self.catalog)
 
-        self.assertEqual(cplan.getSolChoice(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]), Requirement(), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[0], Requirement(), cplan.getSolChoice(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]) ))
-        self.assertEqual(cplan.getSolChoice(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]), Requirement([],1, subj= self.dset.subjects[0]), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[1], Requirement([],1, subj= self.dset.subjects[0]), cplan.getSolChoice(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]) ))
+        self.assertEqual(cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]), Requirement(), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[0], Requirement(), cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]) ))
+        self.assertEqual(cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]), Requirement([],1, subj= self.dset.subjects[0]), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[1], Requirement([],1, subj= self.dset.subjects[0]), cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]) ))
         
     
     def testPlotRemainingSemesters(self):

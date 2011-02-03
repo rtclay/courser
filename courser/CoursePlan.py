@@ -45,13 +45,17 @@ class CoursePlan(object):
         self.term_info_dict = dict(zip(catalog.getTerms(), map(SemesterPlan, catalog.getTerms()))) #key = term, value = sem_plan
     
     def staticScoreSemesterPlan(self, sem_plan):
+        term = sem_plan.getTerm()
         value = len(sem_plan.desired)
+        for subj in sem_plan.desired:
+            value = value + self.scoreSubject(subj, term)
+            
         if not sem_plan.getSolution():
             value = value -10000
         if sem_plan.getUnits() < self.minUnits:
-            value = value * 0.75
+            value = value * 0.15
         if sem_plan.getUnits() > self.maxUnits:
-            value = value * 0.75
+            value = value * 0.15
         
         if set(sem_plan.getSubjects()) == set(self.getSubjectsRemaining(sem_plan.getTerm())):
             value = value +1000    
@@ -80,7 +84,7 @@ class CoursePlan(object):
             list_of_subjects.extend(self.term_info_dict[t].getSubjects())
         return list_of_subjects
     
-    def getSolChoice(self, req, term):
+    def solveReq(self, req, term):
         '''Returns a solution to a requirement, returning the same solution each time for partial requirements
         '''
         req.testValidity()
@@ -97,16 +101,16 @@ class CoursePlan(object):
                     pre_requirements = req.expand(term)
                     pre_requirements.removeReq(req)
  
-                    solution = Requirement([req, self.getSolChoice(pre_requirements, term)], 2)    
+                    solution = Requirement([req, self.solveReq(pre_requirements, term)], 2)    
             elif req.isTotal():
-                solution_components = [self.getSolChoice(sub_req, term) for sub_req in req.reqs]
+                solution_components = [self.solveReq(sub_req, term) for sub_req in req.reqs]
                 unique_components = list(set(solution_components))
                 num_duplicates = len(solution_components) - len(unique_components)
                 #print "num dup is ", num_duplicates
                 solution = Requirement(unique_components, req.numNeeded-num_duplicates)
             #In this case, req is a partial requirement 
             else:
-                solution_components = [self.getSolChoice(sub_req, term) for sub_req in sample(req.reqs, req.numNeeded)]
+                solution_components = [self.solveReq(sub_req, term) for sub_req in sample(req.reqs, req.numNeeded)]
                 unique_components = list(set(solution_components))
                 num_duplicates = len(solution_components) - len(unique_components)
                 solution = Requirement(unique_components, req.numNeeded-num_duplicates) 
@@ -122,15 +126,7 @@ class CoursePlan(object):
     def setSolChoice(self, req, req_solution): 
         self.subject_req_choices[req] = req_solution
         
-    def solveReq(self, req, term): 
-        '''Returns a Requirement that represents one possible, complete solution of self, based on the subject requirements in term
-        
-        Repeated calls of this function return the same solution
-        '''
-        a = self.getSolChoice(req, term)
-       
-        return a
-    
+   
     def getGoodSolution(self, req, term):
         '''Returns a Requirement that represents one possible, complete solution of req, based on the subject requirements in term
         
@@ -143,7 +139,7 @@ class CoursePlan(object):
 
         best_solution_group = self.solveReq(req, term)
         
-        
+        #arbitrary number of repetitions
         for x in xrange(20):
             
             temp_cplan = CoursePlan([], self.catalog)
@@ -246,7 +242,7 @@ class CoursePlan(object):
         deps = dict()
         for subj in term.getSubjects():
             
-            for req_subject in self.getSolChoice(term.getReq(subj), term).getSubjects():
+            for req_subject in self.solveReq(term.getReq(subj), term).getSubjects():
                 if req_subject not in deps:
                     deps[req_subject] = set()
                 deps[req_subject].add(subj)
@@ -256,12 +252,27 @@ class CoursePlan(object):
         deps = self.getDependents(term)
         
         if not subj in deps:
-            deps[subj] = 0
+            deps[subj] = set()
         score = 1
         score = score + 2* len(deps[subj]) #This class is a precursor to other classes
         score = score + 10* len(deps[subj] & set(self.desired))  #this class is a relevant precursor to what we want
         
+        return score
         
+#        
+#    def getDepthofSubject(self, subj, term):
+#        req = term.getReq(subj)
+#        
+#        if subj in self.getSubjectsTakenBeforeTerm(term):
+#            return 0
+#        if req.isTotal():
+#            return 1+ max(self.getDepthofSubject(x, term) for x in term.getReq(subj))
+#        if req.isBlank():
+#            return 1
+#        if req.isLeaf():
+#            single_subj = req.getSingleSubj()
+#            return 1 + self.getDepthofSubject(single_subj, term)
+#            
         
     def scoreSubjects(self, term):
         #High complication subjects, ie those with complicated requirements, get a high score, subjects with simple requirements get a low score
@@ -274,32 +285,17 @@ class CoursePlan(object):
             #if the requirement is satisfied with the classes taken so far
             if subj in self.getSubjectsTakenBeforeTerm(term):
                 scores[subj] = 0
+                subjects_scored.append(subj)
             elif term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term)):
                 scores[subj] = 1
                 subjects_scored.append(subj)
             else:
                 scores[subj] = sys.maxint 
                 subjects_to_score.append(subj)
-        
-        #depth=0
-        #subjects_at_depth=[subjects_scored]
-        subjects_prior_depth= self.getSubjectsTakenBeforeTerm(term)
-        while subjects_to_score != []:
-            #depth = depth +1
+                      
+        for subj in subjects_scored:
+            pass
 
-            subjects_prior_depth.extend(subjects_scored)
-            
-            for subj in subjects_to_score[:]:
-                if term.getReq(subj).isSatisfied(subjects_prior_depth):
-#                    required_subjects = term.getReq(subj).getSubjects()
-#                    scores_of_required = [scores[x] for x in required_subjects]
-#                    score_of_predecessor = max(scores_of_required)
-#                    
-#                    scores[subj]= 1+ score_of_predecessor
-
-                    scores[subj]= 1+ max([scores[x] for x in term.getReq(subj).getSubjects()])
-                    subjects_scored.append(subj)
-                    subjects_to_score.remove(subj)
         return scores
     
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
