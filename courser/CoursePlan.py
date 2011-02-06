@@ -40,6 +40,7 @@ class CoursePlan(object):
         self.searchDepth = 1
         self.semesterPlanLimit= 6000
         self.subjects_credited = [] #this is for classes that start out having been passed, eg passing 18.01 with AP math credit
+        self.__depths= dict()  #this is a dictionary that memoizes the depths of classes.  it is reset every time a search is requested, in order that it remain current
         
         
         self.term_info_dict = dict(zip(catalog.getTerms(), map(SemesterPlan, catalog.getTerms()))) #key = term, value = sem_plan
@@ -259,44 +260,42 @@ class CoursePlan(object):
         
         return score
         
-#        
-#    def getDepthofSubject(self, subj, term):
-#        req = term.getReq(subj)
-#        
-#        if subj in self.getSubjectsTakenBeforeTerm(term):
-#            return 0
-#        if req.isTotal():
-#            return 1+ max(self.getDepthofSubject(x, term) for x in term.getReq(subj))
-#        if req.isBlank():
-#            return 1
-#        if req.isLeaf():
-#            single_subj = req.getSingleSubj()
-#            return 1 + self.getDepthofSubject(single_subj, term)
-#            
+        
+    def __getDepthofSubject(self, subj, term):
+        '''Returns the depth of a subject
+        The depth is the layer of subjects needing to be taken before the subj can be taken
+        do not call this function except with careful understanding of the self.__depth dictionary
+        '''
+        req = term.getReq(subj)
+        depth = sys.maxint
+        
+        if subj in self.__depths:
+            return self.__depths[subj]       
+        elif subj in self.getSubjectsTakenBeforeTerm(term):
+            depth = 0
+        elif req.isLeaf():
+            single_subj = req.getSingleSubj()
+            depth = 1 + self.__getDepthofSubject(single_subj, term)
+        elif req.isTotal():
+            depth = 1+ max([self.__getDepthofSubject(x, term) for x in req.expand(term)])        
+        elif req.isBlank():
+            depth = 1
+        
+        elif req.isPartial():
+            options = [x.expand(term).getSubjects() for x in req.reqs]
+            option_depths= [max([self.__getDepthofSubject(subject, term) for subject in option_group]) for option_group in options]
+            depth = 1+max(sorted(option_depths)[:req.getNumNeeded()])
+            
+        self.__depths[subj]= depth
+        return depth
+            
+            
+        
+        
+            
         
     def scoreSubjects(self, term):
-        #High complication subjects, ie those with complicated requirements, get a high score, subjects with simple requirements get a low score
-        
-        scores = dict()
-        subjects_to_score = []
-        subjects_scored= []
-        
-        for subj in term.getSubjects():
-            #if the requirement is satisfied with the classes taken so far
-            if subj in self.getSubjectsTakenBeforeTerm(term):
-                scores[subj] = 0
-                subjects_scored.append(subj)
-            elif term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term)):
-                scores[subj] = 1
-                subjects_scored.append(subj)
-            else:
-                scores[subj] = sys.maxint 
-                subjects_to_score.append(subj)
-                      
-        for subj in subjects_scored:
-            pass
-
-        return scores
+        pass
     
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
         static_score = self.staticScoreSemesterPlan(sem_plan)

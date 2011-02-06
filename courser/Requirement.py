@@ -219,11 +219,17 @@ class Requirement(object):
     
     def isTotal(self):
         '''Tests whether the top level of this requirement requires all of its components to be satisfied
+        Returns True IFF self is a leaf or self.numNeeded == self.getNumChoices()
         '''
         if self.isLeaf():
             return True
         else:
             return (self.numNeeded == self.getNumChoices())
+    def isPartial(self):
+        '''Tests whether the top level of this requirement requires only part of its components to be satisfied
+        Returns True IFF self.numNeeded != self.getNumChoices()
+        '''
+        return (self.numNeeded != self.getNumChoices())
     
     def isBlank(self):
         return (self.numNeeded == 0)&(self.singleSubject == None)
