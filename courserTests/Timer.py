@@ -46,9 +46,8 @@ if __name__ == '__main__':
     dset.dataSetup()
     catalog= Catalog(dict(zip([str(x) for x in dset.terms], dset.terms)))
     
-    
-    sol = dset.reqs63.getSolution(dset.terms[0]).getSubjects()
-    cplan = CoursePlan(sol, catalog)
+
+    cplan = CoursePlan([], catalog)
     
     expanded = dset.reqs63.expand(dset.terms[0])
 
@@ -60,7 +59,7 @@ if __name__ == '__main__':
     #===========================================================================
     
     timing2args(cplan.solveReq, 10, dset.reqs63, dset.terms[0])
-    timing(dset.reqs63.getSolution, 1, dset.terms[0])
+    
     
     timing2args(cplan.plotRemainingSemesters, 1, dset.terms[0], 16)
     

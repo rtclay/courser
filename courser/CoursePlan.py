@@ -42,8 +42,12 @@ class CoursePlan(object):
         self.subjects_credited = [] #this is for classes that start out having been passed, eg passing 18.01 with AP math credit
         self.__depths= dict()  #this is a dictionary that memoizes the depths of classes.  it is reset every time a search is requested, in order that it remain current
         
-        
         self.term_info_dict = dict(zip(catalog.getTerms(), map(SemesterPlan, catalog.getTerms()))) #key = term, value = sem_plan
+        
+        self.subject_scores=dict()
+        for trm in self.catalog.getTerms():
+            self.subject_scores[trm]=dict()
+        
     
     def staticScoreSemesterPlan(self, sem_plan):
         term = sem_plan.getTerm()
@@ -165,7 +169,9 @@ class CoursePlan(object):
 
     
     def buildASP(self, term):
-        '''Returns an iterator consisting of (plan, static score of plan) pairs
+        '''Returns the semesters possible for this term
+        returns an iterator consisting of (plan, static score of plan) pairs
+        subjects are included iff: the subject is available in the term, the subject's requirements are met, and the subject is desired 
         '''
         
         is_avail = lambda subj: subj in term.getSubjects() and term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term))
@@ -250,15 +256,19 @@ class CoursePlan(object):
         return deps
     
     def scoreSubject(self, subj, term):
-        deps = self.getDependents(term)
-        
-        if not subj in deps:
-            deps[subj] = set()
-        score = 1
-        score = score + 2* len(deps[subj]) #This class is a precursor to other classes
-        score = score + 10* len(deps[subj] & set(self.desired))  #this class is a relevant precursor to what we want
-        
-        return score
+        if subj in self.subject_scores[term]:
+            return self.subject_scores[term][subj]
+        else:                
+            deps = self.getDependents(term)
+            
+            if not subj in deps:
+                deps[subj] = set()
+            score = 1
+            score = score + 2* len(deps[subj]) #This class is a precursor to other classes
+            score = score + 10* len(deps[subj] & set(self.desired))  #this class is a relevant precursor to what we want
+            
+            self.subject_scores[term][subj] = score
+            return score
         
         
     def __getDepthofSubject(self, subj, term):

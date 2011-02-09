@@ -8,6 +8,7 @@ from courserTests.Dataset import Dataset
 from courser.ReqSingleSubject import ReqSingleSubject
 from courser.ReqTotal import ReqTotal
 from courser.ReqNot import ReqNot
+from courser.Requirement import Requirement
 
 
 class Student(object):
@@ -25,8 +26,9 @@ class Student(object):
         
         self.name = name
         self.student_id = ID
-        self.goals = []
+        self.goals = Requirement() #a requirement that the student wants to meet.
         self.course_plan = CoursePlan([], self.dset.catalog)
+        self.subjectsTaken = []
 
     def getDset(self):
         return self.dset
@@ -74,9 +76,13 @@ class Student(object):
 
     def setSubjects_taken(self, value):
         self.subjectsTaken = value
-
-   
         
+    def addSubject_taken(self, subject_or_subjects):        
+        try:
+            it = iter(subject_or_subjects)
+            self.subjectsTaken.extend(subject_or_subjects)
+        except TypeError:
+            self.subjectsTaken.append(subject_or_subjects)
         
     def getProgress(self, req):
         return req.getProgress(self.subjectsTaken)

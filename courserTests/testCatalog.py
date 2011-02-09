@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
 
 
     def testGetNextTerm(self):
-        self.assertEqual(self.terms[1], self.catalog.getNextTerm(self.terms[0]), "Assert: %s equals %s" % ([], self.catalog.getPreviousTerms(self.terms[0])))
+        self.assertEqual(self.terms[1], self.catalog.getNextTerm(self.terms[0]), "Assert: %s equals %s" % (self.terms[1], self.catalog.getNextTerm(self.terms[0])))
          
     def testGetPreviousTerms(self): 
         self.assertEqual([], self.catalog.getPreviousTerms(self.terms[0]), "Assert: %s equals %s" % ([], self.catalog.getPreviousTerms(self.terms[0])))
@@ -47,6 +47,17 @@ class Test(unittest.TestCase):
         self.assertEqual([], self.catalog.getFollowingTerms(self.terms[-1]), "Assert: %s equals %s" % ([], self.catalog.getFollowingTerms(self.terms[-1])))
         self.assertEqual(self.terms[1:], self.catalog.getFollowingTerms(self.terms[0]), "Assert: %s equals %s" % (self.terms[1:], self.catalog.getFollowingTerms(self.terms[0])))
 
+    def testRemoveTerm(self):
+        self.assertIn(self.terms[0], self.catalog.getTerms())
+        self.catalog.removeTerm(self.terms[0])
+        self.assertNotIn(self.terms[0], self.catalog.getTerms())
+        self.assertIn(self.terms[1], self.catalog.getTerms())
+        self.catalog.removeTerm(self.terms[1])
+        self.assertNotIn(self.terms[1], self.catalog.getTerms())
+
+    def testRepr(self):
+        print self.catalog
+        
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

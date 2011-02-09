@@ -169,6 +169,7 @@ class Requirement(object):
 
              
     def getSubjects(self):
+        
         if self.singleSubject:
             return [self.singleSubject]
         else:

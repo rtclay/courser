@@ -47,8 +47,23 @@ class Test(unittest.TestCase):
         self.assertTrue(self.dset.mathReq.isSatisfied([Subject("6.042"), Subject("18.06")]))
         self.assertTrue(self.dset.mathReq.isSatisfied([Subject("6.042"), Subject("18.06"), Subject("18.03")]))
         
+        
+        
         self.assertFalse(self.dset.physReq.isSatisfied([Subject("6.01")]))
         self.assertFalse(self.dset.mathReq.isSatisfied([Subject("18.03"), Subject("18.06")]))
+    
+#    def testIsSatisfied2(self):
+#        print self.dset.reqs63.getSubjects()
+#        print self.dset.reqs63
+#        print self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects())
+#        
+#        self.assertTrue(self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects()))
+#        
+#        self.assertTrue(self.dset.physReq.isSatisfied(self.dset.physReq.getSubjects()))
+        
+    def testGetSubjects(self):
+        self.assertEqual(self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]], "Assert Equal: %s == %s" % (self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]]))  
+        
         
     def testIsTotal(self):
         self.assertTrue(self.dset.physReq.isTotal())

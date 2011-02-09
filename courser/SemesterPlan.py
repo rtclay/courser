@@ -166,7 +166,7 @@ class SemesterPlan(object):
         for (x, y) in self.conflictDict.items(): 
             response = response +"    "+ str(x) + " conflicts with: " + str(y) + '\n'
          
-        response = response + ">"
+        response = response + ">\n"
         return response
     
     def __str__(self):

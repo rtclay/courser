@@ -6,8 +6,10 @@ Created on Sep 16, 2010
 from courser.Catalog import Catalog
 from courser.CoursePlan import CoursePlan
 from courser.Requirement import Requirement
+from courser.Subject import Subject
 from courser.Term import Term
 from courserTests.Dataset import Dataset
+from math import factorial
 import unittest
 
 
@@ -19,16 +21,35 @@ class Test(unittest.TestCase):
         self.dset= Dataset()
         self.dset.dataSetup()
         self.catalog= Catalog(dict(zip([str(x) for x in self.dset.terms], self.dset.terms)))
-
-
+        self.cplan = CoursePlan([], self.catalog)
+        self.cplan.desired = self.cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
+        
     def tearDown(self):
         pass
 
 
     def testBuildASP(self):
-        #print CoursePlan().buildASP(self.dset.terms[0], self.dset.AUSubjects)
-        #self.assertEqual(1, 2, "Assert Equal: %s == %s" % (1, 2))
-        pass
+        term =self.dset.terms[0]
+        is_avail = lambda subj: subj in term.getSubjects() and term.getReq(subj).isSatisfied(self.cplan.getSubjectsTakenBeforeTerm(term))
+        eligible_subjects = filter(is_avail , set(self.cplan.getSubjectsRemaining(term)))
+        
+        print eligible_subjects
+        
+        binom = lambda n, k: factorial(n) / (factorial(k)*factorial(n-k))
+        
+        ASP = list(self.cplan.buildASP(term))
+        sem_plan_count = [0]*(self.cplan.maxSubjectsPerTerm+1)
+        for (x,y) in ASP:
+            print x.getSubjects()
+            sem_plan_count[len(x.getSubjects())] += 1 
+        
+        print sem_plan_count
+        for x in range(1, self.cplan.maxSubjectsPerTerm+1):
+            if x<= len(eligible_subjects):
+                self.assertEqual(sem_plan_count[x], binom(len(eligible_subjects), x), "Assert Equal: number of semester plans length %s generated %s == %s" % (x, sem_plan_count[x], binom(len(eligible_subjects), x)))
+    
+        
+        
     
 #    def testSolveReq(self):
 #        cplan = CoursePlan([], self.catalog)
@@ -48,18 +69,19 @@ class Test(unittest.TestCase):
 #        
         
     def testgetSolChoice(self):
-        cplan = CoursePlan(None, self.catalog)
 
-        self.assertEqual(cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]), Requirement(), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[0], Requirement(), cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]) ))
-        self.assertEqual(cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]), Requirement([],1, subj= self.dset.subjects[0]), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[1], Requirement([],1, subj= self.dset.subjects[0]), cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]) ))
+        self.assertEqual(self.cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]), Requirement(), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[0], Requirement(), self.cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[0]), self.dset.terms[0]) ))
+        self.assertEqual(self.cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]), Requirement([],1, subj= self.dset.subjects[0]), "input: %s Expected %s: Actual: %s" % (self.dset.subjects[1], Requirement([],1, subj= self.dset.subjects[0]), self.cplan.solveReq(self.dset.terms[0].getReq(self.dset.subjects[1]), self.dset.terms[0]) ))
         
     
     def testPlotRemainingSemesters(self):
-        cplan = CoursePlan([], self.catalog)
-        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
-        cplan.plotRemainingSemesters(self.dset.terms[0], 16) #Parameters: starting term, maximum number of semesters
-        self.assertTrue(cplan.getSubjectsRemaining(cplan.getTermOfSatisfaction()) ==[], "Assert: no subjects remaining")
+        self.cplan.desired = self.cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
+        self.cplan.plotRemainingSemesters(self.dset.terms[0], 16) #Parameters: starting term, maximum number of semesters
+        self.assertTrue(self.cplan.getSubjectsRemaining(self.cplan.getTermOfSatisfaction()) ==[], "Assert: no subjects remaining")
         
+    def testDeepScore(self):
+        #self.cplan.deepScoreSemesterPlan(sem_plan, 4, self.dset.terms[0])
+        pass
 
     
 
