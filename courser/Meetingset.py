@@ -23,14 +23,11 @@ class SortingError(MeetingSetError):
 
 class Meetingset(object):
     '''
-    classdocs
+    A meetingset contains meetings.
     '''
 
 
     def __init__(self, meetings=[]):
-        '''
-        Constructor
-        '''
         self.meetings = sorted(meetings)
         if not self.isValid():
             raise SortingError(self.meetings)
