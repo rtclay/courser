@@ -51,22 +51,22 @@ class Test(unittest.TestCase):
         
         
     
-#    def testSolveReq(self):
-#        cplan = CoursePlan([], self.catalog)
-#        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
-#        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
-#        b =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
-#        print sorted(a.getSubjects())
-#        print sorted(b.getSubjects())
-#        for x,y in cplan.subject_req_choices.items():
-#            print x, " : ", y
-#        self.assertTrue(a.getSubjects() == b.getSubjects(),  "Assert: %s equals %s" % (a.getSubjects(), b.getSubjects()))
-#    
-#    def testSolveReq2(self):
-#        cplan = CoursePlan([], self.catalog)
-#        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
-#        self.assertTrue(self.dset.reqs63.isSatisfied(cplan.getDesired()),  "Assert: %s satifies %s" % (cplan.getDesired(), self.dset.reqs63))
-#        
+    def testSolveReq(self):
+        cplan = CoursePlan([], self.catalog)
+        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
+        a =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0]) 
+        b =  cplan.solveReq(self.dset.reqs63, self.dset.terms[0])
+        print sorted(a.getSubjects())
+        print sorted(b.getSubjects())
+        for x,y in cplan.subject_req_choices.items():
+            print x, " : ", y
+        self.assertTrue(a.getSubjects() == b.getSubjects(),  "Assert: %s equals %s" % (a.getSubjects(), b.getSubjects()))
+    
+    def testSolveReq2(self):
+        cplan = CoursePlan([], self.catalog)
+        cplan.desired = cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
+        self.assertTrue(self.dset.reqs63.isSatisfied(cplan.getDesired()),  "Assert: %s satifies %s" % (cplan.getDesired(), self.dset.reqs63))
+        
         
     def testgetSolChoice(self):
 
@@ -82,6 +82,13 @@ class Test(unittest.TestCase):
     def testDeepScore(self):
         #self.cplan.deepScoreSemesterPlan(sem_plan, 4, self.dset.terms[0])
         pass
+    
+    def testGetTermofSatisfaction(self):
+        self.cplan.plotRemainingSemesters(self.dset.terms[0], 16)
+        print self.cplan
+        term = self.cplan.getTermOfSatisfaction()
+        print term
+        self.assertTrue(self.dset.reqs63.isSatisfied(self.cplan.getSubjectsTakenBeforeTerm(term)))
 
     
 

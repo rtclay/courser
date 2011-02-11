@@ -52,18 +52,21 @@ class Test(unittest.TestCase):
         self.assertFalse(self.dset.physReq.isSatisfied([Subject("6.01")]))
         self.assertFalse(self.dset.mathReq.isSatisfied([Subject("18.03"), Subject("18.06")]))
     
-#    def testIsSatisfied2(self):
-#        print self.dset.reqs63.getSubjects()
-#        print self.dset.reqs63
-#        print self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects())
-#        
-#        self.assertTrue(self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects()))
-#        
-#        self.assertTrue(self.dset.physReq.isSatisfied(self.dset.physReq.getSubjects()))
+    def testIsSatisfied2(self):
+        print self.dset.reqs63.getSubjects()
+        print self.dset.reqs63
+        print self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects())
+        
+        self.assertTrue(self.dset.reqs63.isSatisfied(self.dset.reqs63.getSubjects()))
+        
+        self.assertTrue(self.dset.physReq.isSatisfied(self.dset.physReq.getSubjects()))
         
     def testGetSubjects(self):
-        self.assertEqual(self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]], "Assert Equal: %s == %s" % (self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]]))  
+        self.assertEqual(self.dset.physReq.getSubjects(), set([self.dset.subjectDict["8.02"]]), "Assert Equal: %s == %s" % (self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]]))
+        self.assertEqual(self.dset.introReq.getSubjects(), set([self.dset.subjectDict["6.01"], self.dset.subjectDict["6.02"]]), "Assert Equal: %s == %s" % (self.dset.introReq.getSubjects(), set([self.dset.subjectDict["6.01"], self.dset.subjectDict["6.02"]])))
         
+        self.assertEqual(self.dset.AUSReq.getSubjects(), set(self.dset.AUSubjects), "Assert Equal: %s == %s" % (self.dset.AUSReq.getSubjects(), set(self.dset.AUSubjects)))
+
         
     def testIsTotal(self):
         self.assertTrue(self.dset.physReq.isTotal())
@@ -110,8 +113,8 @@ class Test(unittest.TestCase):
     def testSquish(self):
         a = self.dset.reqs63.expand(self.dset.terms[0]).squish()
         
-        self.assertTrue(set(a.getSubjects()) == set(a.squish().getSubjects()), "Assert: %s == %s" % (set(a.getSubjects()), set(a.squish().getSubjects())))
-        self.assertTrue(set(a.getSubjects()) == set(a.squish().squish().getSubjects()), "Assert: %s == %s" % (set(a.getSubjects()), set(a.squish().squish().getSubjects())))
+        self.assertTrue(a.getSubjects() == a.squish().getSubjects(), "Assert: %s == %s" % (a.getSubjects(), a.squish().getSubjects()))
+        self.assertTrue(a.getSubjects() == a.squish().squish().getSubjects(), "Assert: %s == %s" % (a.getSubjects(), a.squish().squish().getSubjects()))
         self.assertTrue(Requirement().squish() == Requirement(), "Assert: %s == %s" % (Requirement().squish(), Requirement()))
         
         

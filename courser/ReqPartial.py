@@ -21,7 +21,7 @@ class ReqPartial(Requirement):
 
     def __eq__(self, other):
         try:
-            return self.reqs == other.reqs and self.numNeeded == other.numNeeded
+            return self.getReqs() == other.getReqs() and self.numNeeded == other.numNeeded
         except:
             return False
     

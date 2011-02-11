@@ -39,7 +39,7 @@ class CoursePlan(object):
         self.maxUnits = self.maxSubjectsPerTerm*12
         self.searchDepth = 1
         self.semesterPlanLimit= 6000
-        self.subjects_credited = [] #this is for classes that start out having been passed, eg passing 18.01 with AP math credit
+        self.subjects_credited = set() #this is for classes that start out having been passed, eg passing 18.01 with AP math credit
         self.__depths= dict()  #this is a dictionary that memoizes the depths of classes.  it is reset every time a search is requested, in order that it remain current
         
         self.term_info_dict = dict(zip(catalog.getTerms(), map(SemesterPlan, catalog.getTerms()))) #key = term, value = sem_plan
@@ -80,14 +80,14 @@ class CoursePlan(object):
     def getSubjectsTakenBeforeTerm(self, term):
         '''Returns a list of Subjects that have been taken before the start of a given term
         '''
-        list_of_subjects = self.subjects_credited[:]
+        set_of_subjects = self.subjects_credited.copy()
         
         previous_terms = self.catalog.getPreviousTerms(term)
 
         #get the subjects of the semester plans associated with each term in the catalog's previous terms
         for t in previous_terms:
-            list_of_subjects.extend(self.term_info_dict[t].getSubjects())
-        return list_of_subjects
+            set_of_subjects |= self.term_info_dict[t].getSubjects()
+        return set_of_subjects
     
     def solveReq(self, req, term):
         '''Returns a solution to a requirement, returning the same solution each time for partial requirements
@@ -108,14 +108,14 @@ class CoursePlan(object):
  
                     solution = Requirement([req, self.solveReq(pre_requirements, term)], 2)    
             elif req.isTotal():
-                solution_components = [self.solveReq(sub_req, term) for sub_req in req.reqs]
+                solution_components = [self.solveReq(sub_req, term) for sub_req in req.getReqs()]
                 unique_components = list(set(solution_components))
                 num_duplicates = len(solution_components) - len(unique_components)
                 #print "num dup is ", num_duplicates
                 solution = Requirement(unique_components, req.numNeeded-num_duplicates)
             #In this case, req is a partial requirement 
             else:
-                solution_components = [self.solveReq(sub_req, term) for sub_req in sample(req.reqs, req.numNeeded)]
+                solution_components = [self.solveReq(sub_req, term) for sub_req in sample(req.getReqs(), req.numNeeded)]
                 unique_components = list(set(solution_components))
                 num_duplicates = len(solution_components) - len(unique_components)
                 solution = Requirement(unique_components, req.numNeeded-num_duplicates) 
@@ -135,7 +135,7 @@ class CoursePlan(object):
     def getGoodSolution(self, req, term):
         '''Returns a Requirement that represents one possible, complete solution of req, based on the subject requirements in term
         
-        Repeated calls of this function return the same solution
+        Repeated calls of this function return either the same solution or a different solution
         This function repeatedly searches for satisfactory reqs and picks the one that requires the fewest classes.
         '''
         
@@ -210,11 +210,16 @@ class CoursePlan(object):
                 if req.isSatisfied(subjects_taken):
                     return term
         else:
-            #Note: this loop has n^2 performance n=number terms
-            for term in sorted(self.term_info_dict.keys()):
-                if self.getSubjectsRemaining(term) == []:
+            subjects_taken = set()
+            
+            for term, sem_plan in sorted(self.term_info_dict.items()):
+                subjects_taken |= self.getSubjectsTakenBeforeTerm(term)
+#                print len(subjects_taken), subjects_taken
+#                print len(self.desired), self.desired
+                if self.desired <= subjects_taken:
+                    
                     return term
-            return None
+        return None
     
     def getPlanForTerm(self, term, depth):
         '''Returns a semester plan that is judged to be the best for the given term
@@ -292,7 +297,7 @@ class CoursePlan(object):
             depth = 1
         
         elif req.isPartial():
-            options = [x.expand(term).getSubjects() for x in req.reqs]
+            options = [x.expand(term).getSubjects() for x in req.getReqs()]
             option_depths= [max([self.__getDepthofSubject(subject, term) for subject in option_group]) for option_group in options]
             depth = 1+max(sorted(option_depths)[:req.getNumNeeded()])
             
@@ -315,13 +320,13 @@ class CoursePlan(object):
         else:
             #in order to have the course plan consider the next semester, we need to tell it that it has taken the courses in the possible semplan for this semester
             #we save the list of subjects credited.  we NEED to revert to it before exiting function
-            real_credits = self.subjects_credited
+            real_credits = self.subjects_credited.copy()
             
             #find the subjects that would remain after taking this semester plan
             remainingSubjects = set(sem_plan.getSubjects()) ^  set(self.getSubjectsRemaining(currentTerm))
             
             #generate and score the semester plans that could immediately follow this semester plan
-            self.subjects_credited.extend(sem_plan.getSubjects())            
+            self.subjects_credited |= sem_plan.getSubjects()            
             sem_planScores = self.buildASP(self.catalog.getNextTerm(currentTerm))
             
             if list(sem_planScores) == []:

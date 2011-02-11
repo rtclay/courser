@@ -48,7 +48,7 @@ class SemesterPlan(object):
 
 
     def getSubjects(self):
-        return self.desired[:]
+        return set(self.desired[:])
     
     def getUnits(self):
         return reduce(lambda x, y: (x[0]+y[0], x[1]+y[1], x[2]+y[2]), [subj.getUnits() for subj in self.desired])

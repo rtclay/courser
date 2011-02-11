@@ -78,7 +78,19 @@ class Requirement(object):
             return reduce(lambda x, y: x+y.isSatisfied(classesTaken), self.reqs, 0) >= self.numNeeded
 
     def getNumNeeded(self):
-        return self.numNeeded 
+        return self.numNeeded
+    
+    def getReqs(self):
+        '''Returns a set containing the requirement's subrequirements
+        Returns an empty set if there are no subrequirements
+        '''
+        if self.reqs:
+            return self.reqs
+        else:
+            return set()
+        
+    def setReqs(self, set_of_Reqs):
+        self.reqs = set_of_Reqs
     
     def getNumChoices(self):
         if self.isLeaf():
@@ -125,7 +137,7 @@ class Requirement(object):
             return self.reqs[0].squish()
         
         newReq = Requirement(self.reqs[:], self.numNeeded, self.singleSubject)
-        #Note: because it iterates on self.reqs and removes from a copy, there is no longer the problem of deleting from a iterating sequence 
+        #Note: because it iterates on self.reqs and removes from a copy, there is no longer the problem of deleting from an iterating sequence 
         for subreq in self.reqs:
             if bool(subreq.reqs) & (subreq.numNeeded == len(subreq.reqs)):
                 for subsubreq in subreq:
@@ -169,15 +181,16 @@ class Requirement(object):
 
              
     def getSubjects(self):
-        
-        if self.singleSubject:
-            return [self.singleSubject]
-        else:
-            subjects = []
+        '''Returns a set of all the subjects touched by a requirement
+        '''
+        subjects = set()
+        if self.isLeaf():
+            subjects.add(self.singleSubject)           
+        else:            
             for req in self.reqs:
-                subjects.extend(req.getSubjects())
-            
-            return set(subjects)
+                subjects |= req.getSubjects()
+                            
+        return subjects
             
     def getSingleSubj(self):
         return self.singleSubject        
