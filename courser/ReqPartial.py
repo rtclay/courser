@@ -29,11 +29,11 @@ class ReqPartial(Requirement):
         return not self.__eq__(other)
     
     def getSubjects(self):
-        subjects = []
+        subjects = set()
         for req in self.reqs:
-            subjects.extend(req.getSubjects())
+            subjects |= req.getSubjects()
         
-        return set(subjects)
+        return subjects
     
     def getNumChoices(self):
         return len(self.reqs)

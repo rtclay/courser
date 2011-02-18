@@ -6,6 +6,7 @@ Created on Nov 19, 2010
 
 from courser.ReqSingleSubject import ReqSingleSubject
 from courserTests.Dataset import Dataset
+import cPickle
 import unittest
 
 
@@ -26,6 +27,9 @@ class Test(unittest.TestCase):
         self.assertFalse(ReqSingleSubject(self.dset.subjects[0]).isSatisfied([]))
         self.assertTrue(ReqSingleSubject(self.dset.subjects[0]).isSatisfied([self.dset.subjects[0]]))
         
+    def testPickle(self):
+        string = cPickle.dumps(ReqSingleSubject(self.dset.subjects[0]).isSatisfied([self.dset.subjects[0]]))
+        print string
 
 
 if __name__ == "__main__":

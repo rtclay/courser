@@ -36,9 +36,11 @@ class SemesterPlan(object):
             reservedTimes= Meetingset()
             
         if desired_subjects is None:
-            desired_subjects= []
+            desired_subjects= set()
+            
         
-        self.desired = desired_subjects        
+        
+        self.desired = set(desired_subjects)        
         self.term = term
         self.conflictDict = {}
         self.reservedTimes = reservedTimes
@@ -46,9 +48,17 @@ class SemesterPlan(object):
         if self.desired:
             self.fillMeetings()
 
+    def __eq__(self, other):       
+        try:
+            return self.desired <= other.desired and self.desired >= other.desired and self.term == other.term and self.reservedTimes==other.reservedTimes
+        except:
+            return False
+        
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     def getSubjects(self):
-        return set(self.desired[:])
+        return self.desired.copy()
     
     def getUnits(self):
         return reduce(lambda x, y: (x[0]+y[0], x[1]+y[1], x[2]+y[2]), [subj.getUnits() for subj in self.desired])
@@ -61,8 +71,7 @@ class SemesterPlan(object):
             self.desired.remove(course)
     
     def addCourse(self, course):
-        if course not in self.desired:            
-            self.desired.append(course)
+        self.desired.add(course)
             
     def hasCourse(self, course):
         return course in self.getSubjects()
@@ -114,7 +123,7 @@ class SemesterPlan(object):
         
     
     def getSolution(self):
-        duplicate = SemesterPlan(self.term, self.desired[:], Meetingset(sorted(self.reservedTimes.meetings)))
+        duplicate = SemesterPlan(self.term, self.desired.copy(), Meetingset(sorted(self.reservedTimes.meetings)))
         #First, deal with immediate disqualifications
         #if there is a subject with no selectable meeting times, return a failure
         if [] in [duplicate.term.getMeetingSets(x) for x in duplicate.desired]:
@@ -141,7 +150,7 @@ class SemesterPlan(object):
                         duplicate.reservedTimes.removeMeetingSet(mset)                        
                         continue
             
-            duplicate.desired.append(subj)
+            duplicate.desired.add(subj)
             
         
         return None

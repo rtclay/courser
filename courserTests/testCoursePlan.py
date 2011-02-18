@@ -10,6 +10,7 @@ from courser.Subject import Subject
 from courser.Term import Term
 from courserTests.Dataset import Dataset
 from math import factorial
+import cPickle
 import unittest
 
 
@@ -77,7 +78,7 @@ class Test(unittest.TestCase):
     def testPlotRemainingSemesters(self):
         self.cplan.desired = self.cplan.solveReq(self.dset.reqs63, self.dset.terms[0]).getSubjects()
         self.cplan.plotRemainingSemesters(self.dset.terms[0], 16) #Parameters: starting term, maximum number of semesters
-        self.assertTrue(self.cplan.getSubjectsRemaining(self.cplan.getTermOfSatisfaction()) ==[], "Assert: no subjects remaining")
+        self.assertTrue(self.cplan.getSubjectsRemaining(self.cplan.getTermOfSatisfaction()) == set(), "Assert: no subjects remaining")
         
     def testDeepScore(self):
         #self.cplan.deepScoreSemesterPlan(sem_plan, 4, self.dset.terms[0])
@@ -89,9 +90,30 @@ class Test(unittest.TestCase):
         term = self.cplan.getTermOfSatisfaction()
         print term
         self.assertTrue(self.dset.reqs63.isSatisfied(self.cplan.getSubjectsTakenBeforeTerm(term)))
+        
+    def testEQ(self):
+        self.assertEqual(CoursePlan(set(), self.catalog), CoursePlan(set(), self.catalog))
+        self.assertEqual(self.cplan, self.cplan)
+        self.assertNotEqual(CoursePlan(set(), self.catalog), self.cplan)
 
-    
-
+    def testPickle(self):
+        
+        string = cPickle.dumps(self.cplan)
+        pick = cPickle.loads(string)
+        
+        print dir(self.cplan)== dir(pick)
+        print len(self.cplan.desired), self.cplan.desired
+        print len(pick.desired), pick.desired
+        print sorted(self.cplan.desired ^ pick.desired)
+        print set(sorted(self.cplan.desired ^ pick.desired))
+        print self.cplan.desired.issubset(pick.desired), self.cplan.desired.issuperset(pick.desired)
+        print self.cplan.term_info_dict.items() == pick.term_info_dict.items()
+        print self.cplan == pick
+#        for x, y in zip(dir(self.cplan), dir(pick)):
+#            print x == y
+#            if x!= y:
+#                print x, y
+        self.assertEqual(self.cplan, pick)
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

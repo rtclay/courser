@@ -7,6 +7,7 @@ from courser.Meeting import Meeting
 from courser.Meetingset import Meetingset
 from courser.Subject import Subject
 from random import random, randint, shuffle
+import cPickle
 import unittest
 
 
@@ -99,7 +100,11 @@ class Test(unittest.TestCase):
         self.assertFalse(self.msets[4].isValid(), "Assert False: %s is Valid" % self.msets[4])
       
     
-        
+    def testPickle(self):
+        string = cPickle.dumps(self.msets[-1])
+        print string
+        string = cPickle.dumps(self.msets[-2])
+        print string
         
     
         

@@ -149,6 +149,11 @@ class Test(unittest.TestCase):
     def testProhibitMS(self):
         pass
     
+    def testEQ(self):
+        self.assertEqual(SemesterPlan(self.terms[0]), SemesterPlan(self.terms[0]))
+        self.assertEqual(self.semesterPlans[0], self.semesterPlans[0])
+        self.assertNotEqual(self.semesterPlans[0], self.semesterPlans[1])
+    
     
 
 

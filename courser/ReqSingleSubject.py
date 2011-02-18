@@ -36,7 +36,9 @@ class ReqSingleSubject(Requirement):
         return self.singleSubject in classesTaken
     
     def getSubjects(self):
-        return [self.singleSubject]
+        subjs = set()
+        subjs.add(self.singleSubject)
+        return subjs
     
     def expand(self,term):
         '''Returns a req with each subject traced out to subjects with no req 

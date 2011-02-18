@@ -5,6 +5,7 @@ Created on Sep 16, 2010
 '''
 from courser.Catalog import Catalog
 from courser.Term import Term
+import cPickle
 import unittest
 
 
@@ -54,6 +55,11 @@ class Test(unittest.TestCase):
         self.assertIn(self.terms[1], self.catalog.getTerms())
         self.catalog.removeTerm(self.terms[1])
         self.assertNotIn(self.terms[1], self.catalog.getTerms())
+        
+    def testPickle(self):
+        string = cPickle.dumps(self.catalog)
+        print string
+        
 
     def testRepr(self):
         print self.catalog

@@ -20,6 +20,8 @@ class Test(unittest.TestCase):
 
     def testEq(self):
         self.assertEqual(Subject("8.02"), Subject("8.02", 8), "Assert: %s must be %s" %(Subject("8.02"), Subject("8.02", 8)))
+        self.assertEqual(Subject("18.02"), Subject("18.02"))
+        self.assertNotEqual(Subject("8.02"), Subject("18.02"))
 
 
 if __name__ == "__main__":

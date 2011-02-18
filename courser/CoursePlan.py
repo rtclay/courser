@@ -24,7 +24,7 @@ class CoursePlan(object):
         Constructor
         '''
         if desired is None:
-            self.desired = []
+            self.desired = set()
         else:
             self.desired = desired
         if subject_req_choices is None:
@@ -47,6 +47,15 @@ class CoursePlan(object):
         self.subject_scores=dict()
         for trm in self.catalog.getTerms():
             self.subject_scores[trm]=dict()
+    
+    def __eq__(self, other):       
+        try:
+            return self.desired <= other.desired and self.desired >= other.desired and self.term_info_dict == other.term_info_dict
+        except:
+            return False
+        
+    def __ne__(self, other):
+        return not self.__eq__(other)
         
     
     def staticScoreSemesterPlan(self, sem_plan):
@@ -68,14 +77,14 @@ class CoursePlan(object):
         return value
     
     def getDesired(self):
-        return list(self.desired)[:]
+        return self.desired.copy()
     def setDesired(self, newDesired):
         self.desired = newDesired
     
     def getSubjectsRemaining(self, term):
         '''Returns a list of Subjects that are desired but not yet taken at the time of term
         '''
-        return list(set(self.desired) ^ set(self.getSubjectsTakenBeforeTerm(term)))
+        return self.desired ^ self.getSubjectsTakenBeforeTerm(term)
      
     def getSubjectsTakenBeforeTerm(self, term):
         '''Returns a list of Subjects that have been taken before the start of a given term
@@ -270,7 +279,7 @@ class CoursePlan(object):
                 deps[subj] = set()
             score = 1
             score = score + 2* len(deps[subj]) #This class is a precursor to other classes
-            score = score + 10* len(deps[subj] & set(self.desired))  #this class is a relevant precursor to what we want
+            score = score + 10* len(deps[subj] & self.desired)  #this class is a relevant precursor to what we want
             
             self.subject_scores[term][subj] = score
             return score

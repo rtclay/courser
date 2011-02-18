@@ -34,9 +34,9 @@ class ReqTotal(ReqPartial):
         return not self.__eq__(other)
     
     def getSubjects(self):
-        subjects = []
+        subjects = set()
         for req in self.reqs:
-            subjects.extend(req.getSubjects())
+            subjects |= req.getSubjects()
         
         return set(subjects)
     

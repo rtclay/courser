@@ -4,8 +4,9 @@ Created on Aug 23, 2010
 @author: richard
 '''
 from courser.Meeting import Meeting
-import unittest
 from courser.Subject import Subject
+import cPickle
+import unittest
 
 
 class Test(unittest.TestCase):
@@ -47,7 +48,9 @@ class Test(unittest.TestCase):
         self.assertFalse(self.meeting0.containsTime(time5), "Assert untrue: %s contains time %s" % (self.meeting0, time5))
         self.assertFalse(self.meeting2.containsTime(time3), "Assert untrue: %s contains time %s" % (self.meeting0, time3))
         
-    
+    def testPickle(self):
+        string = cPickle.dumps(self.meeting0)
+        print string
         
 
 if __name__ == "__main__":
