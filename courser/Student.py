@@ -29,6 +29,13 @@ class Student(object):
         self.goals = Requirement() #a requirement that the student wants to meet.
         self.course_plan = CoursePlan([], self.dset.catalog)
         self.subjectsTaken = []
+        
+    def __eq__(self, other):
+        return self.student_id == other.student_id
+    
+    def __hash__(self):
+        key = (self.student_id)
+        return hash(key)
 
     def getDset(self):
         return self.dset

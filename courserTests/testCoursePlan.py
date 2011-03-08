@@ -102,15 +102,15 @@ class Test(unittest.TestCase):
         pick = cPickle.loads(string)
         
         print dir(self.cplan)== dir(pick)
-        print len(self.cplan.desired), self.cplan.desired
-        print len(pick.desired), pick.desired
-        print sorted(self.cplan.desired ^ pick.desired)
-        print set(sorted(self.cplan.desired ^ pick.desired))
-        print self.cplan.desired.issubset(pick.desired), self.cplan.desired.issuperset(pick.desired)
-        print self.cplan.term_info_dict.items() == pick.term_info_dict.items()
-        print self.cplan == pick
-#        for x, y in zip(dir(self.cplan), dir(pick)):
-#            print x == y
+        print len(self.cplan.desired), sorted(self.cplan.desired)
+        print len(pick.desired), sorted(pick.desired)
+        print "----"
+        print Subject("6.02") in self.cplan.desired, Subject("6.02") in pick.desired 
+        self.assertEqual(self.cplan.catalog, pick.catalog)
+        self.assertEqual(self.cplan.desired, pick.desired)
+        self.assertEqual(set(self.cplan.term_info_dict.items()), set(pick.term_info_dict.items()))
+#        
+#        for x, y in zip(self.cplan.term_info_dict.items(), pick.term_info_dict.items()):
 #            if x!= y:
 #                print x, y
         self.assertEqual(self.cplan, pick)

@@ -50,9 +50,13 @@ class SemesterPlan(object):
 
     def __eq__(self, other):       
         try:
-            return self.desired <= other.desired and self.desired >= other.desired and self.term == other.term and self.reservedTimes==other.reservedTimes
+            return self.desired == other.desired and self.term == other.term and self.reservedTimes==other.reservedTimes
         except:
             return False
+        
+    def __hash__(self):
+        key = (frozenset(self.desired), self.term, self.reservedTimes)
+        return hash(key)
         
     def __ne__(self, other):
         return not self.__eq__(other)

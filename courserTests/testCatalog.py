@@ -60,6 +60,10 @@ class Test(unittest.TestCase):
         string = cPickle.dumps(self.catalog)
         print string
         
+    def testEquals(self):
+        self.assertTrue(self.catalog == self.catalog)
+        self.assertTrue(self.catalog == Catalog(dict([(str(x), x) for x in self.terms])))
+        self.assertTrue(self.catalog != Catalog(dict([(str(x), x) for x in self.terms[:-1]])))
 
     def testRepr(self):
         print self.catalog

@@ -33,6 +33,9 @@ class Meeting(object):
                     return 1
             if self.startTime > other.startTime:
                 return 1
+    def __hash__(self):
+        key = (self.startTime, self.endTime, self.subj)
+        return hash(key)
             
     def containsTime(self, time):
         '''Returns True IFF the time is after start time and before end time

@@ -36,6 +36,14 @@ class Catalog(object):
           
         self.terms= terms
         
+    def __eq__(self, other):       
+        try:
+            return self.terms == other.terms
+        except:
+            return False
+        
+    def __hash__(self):
+        return hash(self.terms)    
         
     def addTerm(self, term):
         self.terms[str(term)] = term

@@ -50,9 +50,17 @@ class CoursePlan(object):
     
     def __eq__(self, other):       
         try:
-            return self.desired <= other.desired and self.desired >= other.desired and self.term_info_dict == other.term_info_dict
+            truth = True
+            truth = truth and self.desired <= other.desired and self.desired >= other.desired
+            truth = truth and self.term_info_dict == other.term_info_dict
+            truth = truth and self.catalog == other.catalog
+            return  truth
         except:
             return False
+        
+    def __hash__(self):
+        key = (self.desired, self.term_info_dict, self.catalog)
+        return hash(key)
         
     def __ne__(self, other):
         return not self.__eq__(other)

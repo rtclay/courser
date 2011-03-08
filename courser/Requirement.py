@@ -65,6 +65,9 @@ class Requirement(object):
     def __ne__(self, other):
         return not self.__eq__(other)        
         
+    def __hash__(self):
+        key = (frozenset(self.reqs), self.singleSubject, self.numNeeded)
+        return hash(key)
         
     def isSatisfied(self, classesTaken):
         '''Takes a list of classes taken and returns True or False according to whether the req is satisfied

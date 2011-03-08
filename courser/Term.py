@@ -48,6 +48,10 @@ class Term(object):
     def __ne__(self, other):
         return not self.__eq__(other)
     
+    def __hash__(self):
+        key = (self.season, self.year)
+        return hash(key)
+    
     def __lt__(self, other): 
         if self.year == other.year:
             return self.SEASON_LIST.index(str.lower(self.season)) < self.SEASON_LIST.index(str.lower(other.season))
