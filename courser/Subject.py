@@ -10,7 +10,7 @@ class Subject(object):
     '''
 
 
-    def __init__(self, name, departmentcode = "", course=0, label="", incharge="no one", subjectLevel = "undergraduate", totalUnits=12, unitsLecture =4, unitsLab=4, unitsPreparation =4, gradeType="", description = ""):
+    def __init__(self, name, departmentcode="", course=0, label="", incharge="no one", subjectLevel="undergraduate", totalUnits=12, unitsLecture=4, unitsLab=4, unitsPreparation=4, gradeType="", description=""):
         '''
         Constructor
         '''
@@ -24,25 +24,27 @@ class Subject(object):
         self.unitsLecture = unitsLecture
         self.unitsLab = unitsLab
         self.unitsPreparation = unitsPreparation
-                
+
+
         self.gradeType = gradeType
         self.description = description
-        
+
     def __lt__(self, other):
         return self.name < other.name
-        
-    
+
+
     def __eq__(self, other):
         if other and self:
             return self.name == other.name
         return False
-    
+
     def __hash__(self):
         return hash(self.name)
-    
+
     def __repr__(self):
-        return "<Subject: " + str(self.name)+ ">"
-        
+        return "<Subject: " + str(self.name) + ">"
+
     def getUnits(self):
         return (self.unitsLecture, self.unitsLab, self.unitsPreparation)
-    
+
+

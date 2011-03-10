@@ -123,6 +123,7 @@ class Requirement(object):
             
     def generateReq(self, listOfSubjects, numNeeded):
         listOfReqs = []
+
         for subj in listOfSubjects:
             listOfReqs.append(Requirement([], 0, subj))
         return Requirement(listOfReqs, numNeeded, subj)

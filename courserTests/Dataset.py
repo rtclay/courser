@@ -14,7 +14,7 @@ from courser.Catalog import Catalog
 
 
 class Dataset(object):
-    
+
     def __init__(self):
         self.subjects = None
         self.AUSubjects = None
@@ -36,9 +36,9 @@ class Dataset(object):
         if self.AUSubjects is not None:
             del self.AUSubjects
         if self.mathReq is not None:
-            del self.mathReq 
+            del self.mathReq
         if self.physReq is not None:
-            del self.physReq 
+            del self.physReq
         if self.introReq is not None:
             del self.introReq
         if self.foundationReq is not None:
@@ -55,10 +55,10 @@ class Dataset(object):
             del self.reqs63
         if self.terms is not None:
             del self.terms
-    
 
-    def dataSetup(self):  
-          
+
+    def dataSetup(self):
+
         self.subjects = [Subject("18.01", "01", 18, "Calculus I"),
                     Subject("18.02", "02", 18, "Calculus II"),
                     Subject("18.03", "03", 18, "Calculus III"),
@@ -107,10 +107,10 @@ class Dataset(object):
                     Subject("6.131"),
                     Subject("6.141J"),
                     Subject("6.142J"),
-                    Subject("6.152J"),  
+                    Subject("6.152J"),
                     Subject("6.161", "161", 6),
                     Subject("6.163"),
-                    Subject("6.173", "173", 6),         
+                    Subject("6.173", "173", 6),
                     Subject("6.182"),
                     Subject("6.207J"),
                     Subject("6.241"),
@@ -229,8 +229,8 @@ class Dataset(object):
                     Subject("6.255"),
                     Subject("18.310"),
                     ]
-        
-        self.AUSubjects =[
+
+        self.AUSubjects = [
                     Subject("6.022J", "022J", 6, "Quantitative Systems Physiology"),
                     Subject("6.023J", "023J", 6, "Fields, Forces and Flows in Biological Systems"),
                     Subject("6.035", "035", 6, "Computer Language Engineering"),
@@ -266,52 +266,52 @@ class Dataset(object):
                     Subject("6.867", "867", 6, "Machine Learning"),
                     Subject("16.36", "36", 6, "Communication Systems Engineering"),
                     ]
-        
+
         self.subjectDict = {}
         for subj in self.subjects:
             self.subjectDict[subj.name] = subj
         for subj in self.AUSubjects:
             self.subjectDict[subj.name] = subj
-            
-        
-        
+
+
+
         self.terms = [Term("FALL", 2010, [], self.subjectDict),
                       Term("IAP", 2011, []),
                       Term("SPRING", 2011, [], self.subjectDict),
                       Term("SUMMER", 2011, []),
-                      
+
                       Term("FALL", 2011, [], self.subjectDict),
                       Term("IAP", 2012, []),
                       Term("SPRING", 2012, [], self.subjectDict),
                       Term("SUMMER", 2012, []),
-                      
+
                       Term("FALL", 2012, [], self.subjectDict),
                       Term("IAP", 2013, []),
                       Term("SPRING", 2013, [], self.subjectDict),
                       Term("SUMMER", 2013, []),
-                      
+
                       Term("FALL", 2013, [], self.subjectDict),
                       Term("IAP", 2014, []),
                       Term("SPRING", 2014, [], self.subjectDict),
                       Term("SUMMER", 2014, []),
-                      
+
                       Term("FALL", 2014, [], self.subjectDict),
                       Term("IAP", 2015, []),
                       Term("SPRING", 2015, [], self.subjectDict),
                       Term("SUMMER", 2015, []),
-                      
+
                       Term("FALL", 2015, [], self.subjectDict),
                       ]
-        self.catalog = Catalog(dict([(str(x), x) for x in self.terms] ))
-        
+        self.catalog = Catalog(dict([(str(x), x) for x in self.terms]))
+
         for semester in range(0, len(self.terms), 2):
             self.assignMeetings(self.terms[semester])
             self.assignReqs(self.terms[semester])
-        
-        
-        
-        
-        self.mathReq = Requirement([Requirement().generateReq([self.subjectDict["18.06"],self.subjectDict["18.03"]], 1),
+
+
+
+
+        self.mathReq = Requirement([Requirement().generateReq([self.subjectDict["18.06"], self.subjectDict["18.03"]], 1),
                                     Requirement([], 1, self.subjectDict["6.042"])
                                     ],
                               2, None, "MathReq"
@@ -324,8 +324,8 @@ class Dataset(object):
         self.softwareLabReq = Requirement([], 1, self.subjectDict["6.005"], "Software Lab")
         self.AUSReq = Requirement().generateReq(self.AUSubjects, 2)
         self.UAPReq = Requirement().generateReq([self.subjectDict["6.UAT"], self.subjectDict["6.UAP"]], 2)
-        
-        
+
+
         self.reqs63 = Requirement([self.mathReq, self.physReq, self.introReq, self.foundationReq, self.headerReq, self.softwareLabReq, self.AUSReq, self.UAPReq], 8, None, "6.3 Degree")
 
     def assignReqs(self, term):
@@ -483,10 +483,10 @@ class Dataset(object):
         ''' Returns a meetingset comprising meetings that start and end at the specified times each day
         
         '''
-        return Meetingset([Meeting(subj, minuteStart+x*1440, minuteEnd+x*1440) for x in range(5)])
-    
+        return Meetingset([Meeting(subj, minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
+
     def assignMeetings(self, term):
         for subj in term.subjects.values():
-            startTime=randint(7, 17)*60
+            startTime = randint(7, 17) * 60
             #print "adding "+ str(self.makeMeetings(subj, startTime, startTime+50)) +" to "+ str(subj)
-            term.subjectMsets[subj] =[self.makeMeetings(subj, startTime, startTime+50)]
+            term.subject_msets[subj] = [self.makeMeetings(subj, startTime, startTime + 50)]

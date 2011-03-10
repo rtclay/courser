@@ -23,16 +23,16 @@ class Student(object):
         '''
         self.dset = Dataset()
         self.dset.dataSetup()
-        
+
         self.name = name
         self.student_id = ID
         self.goals = Requirement() #a requirement that the student wants to meet.
         self.course_plan = CoursePlan([], self.dset.catalog)
         self.subjectsTaken = []
-        
+
     def __eq__(self, other):
         return self.student_id == other.student_id
-    
+
     def __hash__(self):
         key = (self.student_id)
         return hash(key)
@@ -83,23 +83,22 @@ class Student(object):
 
     def setSubjects_taken(self, value):
         self.subjectsTaken = value
-        
-    def addSubject_taken(self, subject_or_subjects):        
+
+    def addSubject_taken(self, subject_or_subjects):
         try:
             it = iter(subject_or_subjects)
             self.subjectsTaken.extend(subject_or_subjects)
         except TypeError:
             self.subjectsTaken.append(subject_or_subjects)
-        
+
     def getProgress(self, req):
         return req.getProgress(self.subjectsTaken)
-    
+
     def satisfiesReq(self, req):
         return req.isSatisfied(self.subjectsTaken)
-    
-    def avoid_Subject(self, subject):        
-        self.goals = ReqTotal([self.goals, ReqNot(ReqSingleSubject(subject))]) 
+
+    def avoid_Subject(self, subject):
+        self.goals = ReqTotal([self.goals, ReqNot(ReqSingleSubject(subject))])
 
     def __repr__(self):
-        return "<Student: " + str(self.name)+ ">"
-        
+        return "<Student: " + str(self.name) + ">"
