@@ -3,10 +3,13 @@ Created on Aug 20, 2010
 
 @author: richard
 '''
+from courser.CourserJsonDecoder import CourserJsonDecoder
+from courser.CourserJsonEncoder import CourserJsonEncoder
 from courser.Meetingset import Meetingset
 from courser.Requirement import Requirement
 from courser.Subject import Subject
 from courser.Term import Term
+import json
 import unittest
 
 
@@ -62,6 +65,11 @@ class TermTest(unittest.TestCase):
         self.assertTrue(self.terms[0].hasSubject(self.subjects[0]), "After adding a subject, term must contain subject")
         self.terms[0].removeSubject(self.subjects[0])
         self.assertFalse(self.terms[0].hasSubject(self.subjects[0]), "After removing a subject, term must not contain subject")
+    def testJSON(self):
+        a = self.terms[0]
+        string = json.dumps(a, cls = CourserJsonEncoder, indent = 2)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        self.assertEqual(a, b)
     
     
 

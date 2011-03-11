@@ -191,3 +191,10 @@ class SemesterPlan(object):
                 response = response + "    " + str(x) + " meets at: " + str(self.term.getMeetingSets(x)) + '\n'
         response = response + ">"
         return response
+    def to_json(self):
+        return {"__class__": "SemesterPlan",
+                "desired": self.desired,
+                "term": self.term,
+                "conflictDict": self.conflictDict,
+                "reservedTimes": self.reservedTimes,
+                }

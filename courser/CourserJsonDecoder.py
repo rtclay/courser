@@ -24,8 +24,8 @@ class CourserJsonDecoder(json.JSONDecoder):
 
     def decode (self, json_object):
         json_object_dict = json.loads(json_object)
-        if '__class__' in json_object_dict:
-            if json_object_dict['__class__'] == 'Subject':
+        if "__class__" in json_object_dict:
+            if json_object_dict["__class__"] == "Subject":
                 return Subject(name=json_object_dict["name"],
                             departmentcode=json_object_dict["departmentCode"],
                             course=json_object_dict["course"],
@@ -39,15 +39,17 @@ class CourserJsonDecoder(json.JSONDecoder):
                             gradeType=json_object_dict["gradeType"],
                             description=json_object_dict["description"]
                             )
-            if json_object_dict['__class__'] == 'Meeting':
+            if json_object_dict["__class__"] == "Meeting":
                 return Meeting(startTime=json_object_dict["startTime"],
                             endTime=json_object_dict["endTime"],
-                            subj=json_object_dict["subject"]
+                            # JSON can not use single quotes, so we replace ' with "
+                            subj=self.decode(json_object_dict["subject"].__str__().replace("'", '"'))
                             )
-            if json_object_dict['__class__'] == 'MeetingSet':
-                return Meetingset(meetings=json_object_dict["meetings"]
-                            )
-            if json_object_dict['__class__'] == 'CoursePlan':
+            if json_object_dict["__class__"] == "MeetingSet":
+                meeting_strings = [self.decode(x.__str__().replace("'", '"')) for x in json_object_dict["meetings"]]
+                
+                return Meetingset(meetings= meeting_strings)
+            if json_object_dict["__class__"] == "CoursePlan":
                 plan = CoursePlan(desired=json_object_dict["desired"],
                             catalog=json_object_dict["catalog"],
                             subject_req_choices=json_object_dict["subject_req_choices"]
@@ -56,43 +58,57 @@ class CourserJsonDecoder(json.JSONDecoder):
                 plan.term_info_dict = json_object_dict["term_info_dict"]
                 plan.subject_scores = json_object_dict["subject_scores"]
                 return plan
-            if json_object_dict['__class__'] == 'Catalog':
-                return Catalog(terms=json_object_dict["terms"]
-                            )
-            if json_object_dict['__class__'] == 'ReqNot':
+            if json_object_dict["__class__"] == "Catalog":
+                print json_object_dict["terms"].__class__.__name__
+                print  "dict is ", json_object_dict["terms"]
+                
+                for x, y in json_object_dict["terms"].items():
+                    print x," ---- ", y 
+                term_list = json_object_dict["terms"].keys()
+                print term_list
+                cat = Catalog(terms=term_list)
+                return cat
+            if json_object_dict["__class__"] == "ReqNot":
                 return ReqNot(reqForNegation=json_object_dict["reqForNegation"],
                               name=json_object_dict["name"]
                             )
-            if json_object_dict['__class__'] == 'ReqPartial':
+            if json_object_dict["__class__"] == "ReqPartial":
                 return ReqPartial(reqs=json_object_dict["reqs"],
                               numNeeded=json_object_dict["numNeeded"],
                               name=json_object_dict["name"]
                             )
-            if json_object_dict['__class__'] == 'ReqTotal':
+            if json_object_dict["__class__"] == "ReqTotal":
                 return ReqTotal(reqs=json_object_dict["reqs"],
                               numNeeded=json_object_dict["numNeeded"],
                               name=json_object_dict["name"]
                             )
-            if json_object_dict['__class__'] == 'ReqSingleSubject':
+            if json_object_dict["__class__"] == "ReqSingleSubject":
                 return ReqSingleSubject(subj=json_object_dict["singleSubject"],
                               name=json_object_dict["name"]
                             )
-            if json_object_dict['__class__'] == 'Requirement':
+            if json_object_dict["__class__"] == "Requirement":
                 return Requirement(reqs=json_object_dict["reqs"],
                               numNeeded=json_object_dict["numNeeded"],
                               singleSubject=json_object_dict["singleSubject"],
                               name=json_object_dict["name"]
                             )
-            if json_object_dict['__class__'] == 'Term':
+            if json_object_dict["__class__"] == "Term":
+                print "---"
+                print json_object_dict["subject_msets"]
+          
+                subjs = dict([(x, self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subjects"].items()])
+                msets = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_msets"].items()])
+                reqs = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_reqs"].items()])
+ 
                 term = Term(season=json_object_dict["season"],
                               year=json_object_dict["year"],
-                              subjects=json_object_dict["subjects"],
-                              subject_msets=json_object_dict["subject_msets"],
-                              subject_reqs=json_object_dict["subject_reqs"],
+                              subjects=subjs,
+                              subject_msets=msets,
+                              subject_reqs=reqs,
                             )
                 term.dependants = json_object_dict["dependants"]
                 return term
-            if json_object_dict['__class__'] == 'SemesterPlan':
+            if json_object_dict["__class__"] == "SemesterPlan":
                 plan = SemesterPlan(term=json_object_dict["season"],
                               desired_subjects=json_object_dict["desired"],
                               reservedTimes=json_object_dict["reservedTimes"],

@@ -84,3 +84,9 @@ class ReqSingleSubject(Requirement):
 
     def __repr__(self):
         return "<Require subject: " + str(self.singleSubject) + ">"
+    
+    def to_json(self):
+        return {"__class__": "ReqSingleSubject",
+                "singleSubject": self.singleSubject,
+                "name": self.name,
+                }

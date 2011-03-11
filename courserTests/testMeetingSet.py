@@ -3,11 +3,13 @@ Created on Sep 04, 2010
 
 @author: richard
 '''
+from courser.CourserJsonDecoder import CourserJsonDecoder
+from courser.CourserJsonEncoder import CourserJsonEncoder
 from courser.Meeting import Meeting
 from courser.Meetingset import Meetingset
 from courser.Subject import Subject
 from random import random, randint, shuffle
-import cPickle
+import json
 import unittest
 
 
@@ -98,13 +100,19 @@ class Test(unittest.TestCase):
         shuffle(self.msets[4].meetings)
 
         self.assertFalse(self.msets[4].isValid(), "Assert False: %s is Valid" % self.msets[4])
+        
+    def testJSON(self):
+        a = self.makeMeetings(self.subj, 560, 610)
+        string = json.dumps(a, cls = CourserJsonEncoder)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        print a
+        print b
+        print b.meetings
+        print [Meeting(x) for x in b.meetings]
+        self.assertEqual(a, b)
 
 
-    def testPickle(self):
-        string = cPickle.dumps(self.msets[-1])
-        print string
-        string = cPickle.dumps(self.msets[-2])
-        print string
+
 
 
 

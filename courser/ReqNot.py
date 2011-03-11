@@ -65,4 +65,8 @@ class ReqNot(Requirement):
         return False
     def __repr__(self):
         return "<ReqNot: " + str(self.reqForNegation) + ">"
-
+    def to_json(self):
+        return {"__class__": "ReqNot",
+                "reqForNegation": self.reqForNegation,
+                "name": self.name,
+                }

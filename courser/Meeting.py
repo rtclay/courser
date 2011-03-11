@@ -20,19 +20,40 @@ class Meeting(object):
         self.subj = subj
 
 
-    def __cmp__(self, other):
-        if isinstance(other, Meeting):
+#    def __cmp__(self, other):
+#        if isinstance(other, Meeting):
+#            if self.startTime < other.startTime:
+#                return - 1
+#            if self.startTime == other.startTime:
+#                if self.endTime < other.endTime:
+#                    return - 1
+#                if self.endTime == other.endTime:
+#                    return 0
+#                if self.endTime > other.endTime:
+#                    return 1
+#            if self.startTime > other.startTime:
+#                return 1
+    def __eq__(self, other):
+        try:
+            return self.startTime == other.startTime and self.endTime == other.endTime and self.subj== other.subj
+        except:
+            return False
+    def __ne__(self, other):
+        return not self == other    
+    
+    def __lt__(self, other):
+        try:
             if self.startTime < other.startTime:
-                return - 1
+                return True
             if self.startTime == other.startTime:
                 if self.endTime < other.endTime:
-                    return - 1
-                if self.endTime == other.endTime:
-                    return 0
-                if self.endTime > other.endTime:
-                    return 1
-            if self.startTime > other.startTime:
-                return 1
+                    return True
+            else:
+                return False
+        except:
+            return False
+    
+    
     def __hash__(self):
         key = (self.startTime, self.endTime, self.subj)
         return hash(key)
@@ -78,4 +99,11 @@ class Meeting(object):
 
     def __str__(self):
         return "<Meeting %d %d %d TO %d %d %d>" % self.getDHM()
+    
+    def to_json(self):
+        return {"__class__": "Meeting",
+            "startTime": self.startTime,
+            "endTime": self.endTime,
+            "subject": self.subj
+            }
 

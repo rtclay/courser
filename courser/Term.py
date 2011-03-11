@@ -30,7 +30,7 @@ class Term(object):
         
         self.season = season
         self.year = year
-        self.metaRequirementList = reqs
+
         
         self.SEASON_LIST = [ "iap", "spring", "summer", "fall"]
 
@@ -46,7 +46,7 @@ class Term(object):
                      
         
     def __eq__(self, other):
-        return str.lower(self.season) == str.lower(other.season) and self.year == other.year #and self.metaRequirementList == other.metaRequirementList and self.subject_msets == other.subject_msets and self.subject_reqs == other.subject_reqs
+        return str.lower(self.season) == str.lower(other.season) and self.year == other.year #and self.subject_msets == other.subject_msets and self.subject_reqs == other.subject_reqs
     
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -133,7 +133,7 @@ class Term(object):
         self.subjects = otherTerm.subjects.items()
         self.subject_reqs = otherTerm.subject_reqs.items()
         self.subject_msets = otherTerm.subject_msets.items()
-        self.metaRequirementList = otherTerm.metaRequirementList
+
     
     def hasSubject(self, subject):
         return subject in self.subjects.values()
@@ -158,3 +158,17 @@ class Term(object):
     
     def __str__(self):
         return "<Term: " + str.lower(self.season)+ str(self.year)+" "+str(len(self.subjects))+" subjects>"
+    
+    def to_json(self):
+        reqs = dict([(subj.to_json().items(), req.to_json().items()) for (subj, req) in self.subject_reqs.items()]) 
+        msets = dict([(subj.to_json().items(), req.to_json().items()) for (subj, req) in self.subject_msets.items()])
+        return {"__class__": "Term",
+                "dependants": self.dependants,
+                "season": self.season,
+                "year": self.year,
+                "subjects": self.subjects,
+                "subject_reqs": reqs,
+                "subject_msets": msets,
+                #"subject_reqs": self.subject_reqs,
+                #"subject_msets": self.subject_msets,
+                }

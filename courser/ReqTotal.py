@@ -74,3 +74,10 @@ class ReqTotal(ReqPartial):
 
     def __repr__(self):
         return "<Req: all of " + str(self.getNumChoices()) + ":" + str(sorted(self.reqs, key=lambda x : x.getSingleSubj)) + ">"
+    
+    def to_json(self):
+        return {"__class__": "ReqTotal",
+                "reqs": self.reqs,
+                "numNeeded": self.numNeeded,
+                "name": self.name,
+                }

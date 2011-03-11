@@ -66,11 +66,7 @@ class Catalog(object):
 
     def getNextTerm(self, term):
         return self.getFollowingTerms(term)[0]
-    
-    
 
-
-            
     def __repr__(self):
         response ="<Catalog: "
         
@@ -83,5 +79,9 @@ class Catalog(object):
         response = response + ">"
         return response
     
+    def to_json(self):
+        return {"__class__": "Catalog",
+                "terms": self.terms,
+                }
     
         

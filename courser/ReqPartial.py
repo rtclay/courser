@@ -66,8 +66,11 @@ class ReqPartial(Requirement):
         '''Tests whether self has any subordinate requirements
         '''
         return False
-
-
-
     def __repr__(self):
         return "<Req: " + str(self.numNeeded) + " of " + str(self.getNumChoices()) + ":" + str(sorted(self.reqs, key=lambda x : x.getSingleSubj)) + ">"
+    def to_json(self):
+        return {"__class__": "ReqPartial",
+                "reqs": self.reqs,
+                "numNeeded": self.numNeeded,
+                "name": self.name,
+                }

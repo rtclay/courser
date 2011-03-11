@@ -47,4 +47,18 @@ class Subject(object):
     def getUnits(self):
         return (self.unitsLecture, self.unitsLab, self.unitsPreparation)
 
-
+    def to_json(self):
+        return {"__class__": "Subject",
+                "name": self.name,
+                "departmentCode": self.departmentCode,
+                "course": self.course,
+                "label": self.label,
+                "inCharge": self.inCharge,
+                "subjectLevel": self.subjectLevel,
+                "totalUnits": self.totalUnits,
+                "unitsLecture": self.unitsLecture,
+                "unitsLab": self.unitsLab,
+                "unitsPreparation": self.unitsPreparation,
+                "gradeType": self.gradeType,
+                "description": self.description
+                }

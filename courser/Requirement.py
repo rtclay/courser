@@ -257,3 +257,11 @@ class Requirement(object):
             return "<Req: "+ str(self.singleSubject)+">"
         else:
             return "<Req: " + str(self.numNeeded)+ " of " + str(self.getNumChoices())+":"+ str(sorted(self.reqs, key = lambda x : x.getSingleSubj)) +">"
+    def to_json(self):
+        return {"__class__": "Requirement",
+                "reqs": self.reqs,
+                "singleSubject": self.singleSubject,
+                "numNeeded": self.numNeeded,
+                "name": self.name,
+                }    
+    

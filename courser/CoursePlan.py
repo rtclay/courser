@@ -367,3 +367,19 @@ class CoursePlan(object):
             response = response + "    " + str(x) + " : " + str(y.getSubjects()) + '\n'
         response = response + ">"
         return response
+    
+    def to_json(self):
+        return {"__class__": "CoursePlan",
+            "desired": list(self.desired),
+            "subject_req_choices": self.subject_req_choices,
+            "catalog": self.catalog,
+            "breadth": self.breadth,
+            "maxSubjectsPerTerm": self.maxSubjectsPerTerm,
+            "minUnits": self.minUnits,
+            "maxUnits": self.maxUnits,
+            "searchDepth": self.searchDepth,
+            "semesterPlanLimit": self.semesterPlanLimit,
+            "subjects_credited": self.subjects_credited,
+            "term_info_dict": self.term_info_dict,
+            "subject_scores": self.subject_scores
+            }
