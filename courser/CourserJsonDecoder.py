@@ -47,8 +47,8 @@ class CourserJsonDecoder(json.JSONDecoder):
                             )
             if json_object_dict["__class__"] == "MeetingSet":
                 meeting_strings = [self.decode(x.__str__().replace("'", '"')) for x in json_object_dict["meetings"]]
-                
-                return Meetingset(meetings= meeting_strings)
+
+                return Meetingset(meetings=meeting_strings)
             if json_object_dict["__class__"] == "CoursePlan":
                 plan = CoursePlan(desired=json_object_dict["desired"],
                             catalog=json_object_dict["catalog"],
@@ -61,9 +61,9 @@ class CourserJsonDecoder(json.JSONDecoder):
             if json_object_dict["__class__"] == "Catalog":
                 print json_object_dict["terms"].__class__.__name__
                 print  "dict is ", json_object_dict["terms"]
-                
+
                 for x, y in json_object_dict["terms"].items():
-                    print x," ---- ", y 
+                    print x, " ---- ", y
                 term_list = json_object_dict["terms"].keys()
                 print term_list
                 cat = Catalog(terms=term_list)
@@ -89,17 +89,17 @@ class CourserJsonDecoder(json.JSONDecoder):
             if json_object_dict["__class__"] == "Requirement":
                 return Requirement(reqs=json_object_dict["reqs"],
                               numNeeded=json_object_dict["numNeeded"],
-                              singleSubject=json_object_dict["singleSubject"],
+                              subj=json_object_dict["singleSubject"],
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Term":
                 print "---"
                 print json_object_dict["subject_msets"]
-          
+
                 subjs = dict([(x, self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subjects"].items()])
                 msets = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_msets"].items()])
                 reqs = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_reqs"].items()])
- 
+
                 term = Term(season=json_object_dict["season"],
                               year=json_object_dict["year"],
                               subjects=subjs,

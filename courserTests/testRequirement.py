@@ -4,12 +4,15 @@ Created on Aug 21, 2010
 @author: richard
 '''
 
+from courser.CourserJsonDecoder import CourserJsonDecoder
+from courser.CourserJsonEncoder import CourserJsonEncoder
 from courser.Requirement import Requirement
-
 from courser.Subject import Subject
-
 from courserTests.Dataset import Dataset
+import json
 import unittest
+
+
 
 
 
@@ -116,7 +119,11 @@ class Test(unittest.TestCase):
         self.assertTrue(a.getSubjects() == a.squish().getSubjects(), "Assert: %s == %s" % (a.getSubjects(), a.squish().getSubjects()))
         self.assertTrue(a.getSubjects() == a.squish().squish().getSubjects(), "Assert: %s == %s" % (a.getSubjects(), a.squish().squish().getSubjects()))
         self.assertTrue(Requirement().squish() == Requirement(), "Assert: %s == %s" % (Requirement().squish(), Requirement()))
-        
+    def testJSON(self):
+        a = self.dset.physReq
+        string = json.dumps(a, cls = CourserJsonEncoder, indent = 2)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        self.assertEqual(a, b)
         
         
     
