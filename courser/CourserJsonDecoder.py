@@ -23,7 +23,10 @@ class CourserJsonDecoder(json.JSONDecoder):
     '''
 
     def decode (self, json_object):
+#        print "---"
+#        print "Trying to load: ", json_object.__class__.__name__, json_object        
         json_object_dict = json.loads(json_object)
+        #print "still ok"
         if "__class__" in json_object_dict:
             if json_object_dict["__class__"] == "Subject":
                 return Subject(name=json_object_dict["name"],
@@ -87,18 +90,27 @@ class CourserJsonDecoder(json.JSONDecoder):
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Requirement":
-                return Requirement(reqs=json_object_dict["reqs"],
+                requirements = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["reqs"]]
+                
+                if json_object_dict["singleSubject"] is None:
+                    singlesubj = None
+                else:
+                    singlesubj = self.decode(json_object_dict["singleSubject"].__str__().replace("'", '"'))
+                
+                return Requirement(reqs=requirements,
                               numNeeded=json_object_dict["numNeeded"],
-                              subj=json_object_dict["singleSubject"],
+                              subj= singlesubj,
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Term":
                 print "---"
                 print json_object_dict["subject_msets"]
 
-                subjs = dict([(x, self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subjects"].items()])
-                msets = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_msets"].items()])
-                reqs = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_reqs"].items()])
+#                subjs = dict([(x, self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subjects"].items()])
+#                msets = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_msets"].items()])
+#                reqs = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_reqs"].items()])
+                subject_data = json_object_dict["subject_data"] 
+                
 
                 term = Term(season=json_object_dict["season"],
                               year=json_object_dict["year"],

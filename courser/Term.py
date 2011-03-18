@@ -160,15 +160,14 @@ class Term(object):
         return "<Term: " + str.lower(self.season)+ str(self.year)+" "+str(len(self.subjects))+" subjects>"
     
     def to_json(self):
-        reqs = dict([(subj.to_json().items(), req.to_json().items()) for (subj, req) in self.subject_reqs.items()]) 
-        msets = dict([(subj.to_json().items(), req.to_json().items()) for (subj, req) in self.subject_msets.items()])
+        subject_data = dict()
+        for subj in self.getSubjects():
+            subject_data[subj] = (self.getReq(subj), self.getMeetingSets(subj))
+        
         return {"__class__": "Term",
                 "dependants": self.dependants,
                 "season": self.season,
                 "year": self.year,
                 "subjects": self.subjects,
-                "subject_reqs": reqs,
-                "subject_msets": msets,
-                #"subject_reqs": self.subject_reqs,
-                #"subject_msets": self.subject_msets,
+                "subject_data": subject_data
                 }

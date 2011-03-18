@@ -10,7 +10,7 @@ class Subject(object):
     '''
 
 
-    def __init__(self, name, departmentcode="", course=0, label="", incharge="no one", subjectLevel="undergraduate", totalUnits=12, unitsLecture=4, unitsLab=4, unitsPreparation=4, gradeType="", description=""):
+    def __init__(self, name, departmentcode=0, course=0, label=0, incharge="no one", subjectLevel="undergraduate", totalUnits=12, unitsLecture=4, unitsLab=4, unitsPreparation=4, gradeType="ABCDEF", description="Blank"):
         '''
         Constructor
         '''

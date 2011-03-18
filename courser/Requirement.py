@@ -45,11 +45,11 @@ class Requirement(object):
     '''
 
 
-    def __init__(self, reqList=[], numNeeded=0, subj=None, name="unnamed requirement"):
+    def __init__(self, reqs=[], numNeeded=0, subj=None, name="unnamed requirement"):
         '''
         Constructor
         '''
-        self.reqs = reqList
+        self.reqs = reqs
         self.singleSubject = subj
         self.numNeeded = numNeeded
         self.name = name
@@ -60,7 +60,10 @@ class Requirement(object):
                 yield n
                 
     def __eq__(self, other):
-        return self.reqs == other.reqs and self.singleSubject == other.singleSubject and self.numNeeded == other.numNeeded
+        try:
+            return self.reqs == other.reqs and self.singleSubject == other.singleSubject and self.numNeeded == other.numNeeded
+        except:
+            return False
     
     def __ne__(self, other):
         return not self.__eq__(other)        

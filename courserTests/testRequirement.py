@@ -121,10 +121,17 @@ class Test(unittest.TestCase):
         self.assertTrue(Requirement().squish() == Requirement(), "Assert: %s == %s" % (Requirement().squish(), Requirement()))
     def testJSON(self):
         a = self.dset.physReq
-        string = json.dumps(a, cls = CourserJsonEncoder, indent = 2)
+        string = json.dumps(a, cls = CourserJsonEncoder)
         b = json.loads(string, cls = CourserJsonDecoder)
         self.assertEqual(a, b)
         
+    def testJSON2(self):
+        a = self.dset.reqs63
+        string = json.dumps(a, cls = CourserJsonEncoder)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        print "a: ", a
+        print "b reqs: ", b.reqs
+        self.assertEqual(a, b)
         
     
     
