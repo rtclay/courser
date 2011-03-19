@@ -96,10 +96,10 @@ class Test(unittest.TestCase):
     def testIsValid(self):
         ''' fails when shuffle returns the same order as the original
         '''
-        self.assertTrue(self.msets[4].isValid(), "Assert: %s is Valid" % self.msets[4])
+        self.assertTrue(self.msets[4].isValidMset(), "Assert: %s is Valid" % self.msets[4])
         shuffle(self.msets[4].meetings)
 
-        self.assertFalse(self.msets[4].isValid(), "Assert False: %s is Valid" % self.msets[4])
+        self.assertFalse(self.msets[4].isValidMset(), "Assert False: %s is Valid" % self.msets[4])
         
     def testJSON(self):
         a = self.makeMeetings(self.subj, 560, 610)

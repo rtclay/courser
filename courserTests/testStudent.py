@@ -39,8 +39,8 @@ class StudentTest(unittest.TestCase):
 #        self.assertTrue(self.stud.satisfiesReq(self.dset.reqs63), "Assert True: self.stud.satisfiesReq(self.dset.reqs63)")
     
     def testAvoid_Subject(self):
-        self.stud.goals = ReqPartial([ReqSingleSubject(self.dset.subjectDict["18.03"]), ReqSingleSubject(self.dset.subjectDict["18.06"])], 1)
-        self.stud.subjectsTaken = [self.dset.subjectDict["18.03"], self.dset.subjectDict["18.06"]]
+        self.stud.goals = ReqPartial([ReqSingleSubject(self.dset.get_subject_by_name("18.03")), ReqSingleSubject(self.dset.get_subject_by_name("18.06"))], 1)
+        self.stud.subjectsTaken = [self.dset.get_subject_by_name("18.03"), self.dset.get_subject_by_name("18.06")]
         self.assertTrue(self.stud.satisfiesReq(self.stud.goals), "Assert True: self.stud.satisfiesReq(%s)" % self.stud.goals)
 
 

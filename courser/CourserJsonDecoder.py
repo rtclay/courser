@@ -86,7 +86,8 @@ class CourserJsonDecoder(json.JSONDecoder):
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "ReqSingleSubject":
-                return ReqSingleSubject(subj=json_object_dict["singleSubject"],
+                subj = json_object_dict["singleSubject"]
+                return ReqSingleSubject(subj=self.decode(subj.__str__().replace("'", '"').replace("None", "null")),
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Requirement":
@@ -103,20 +104,15 @@ class CourserJsonDecoder(json.JSONDecoder):
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Term":
-                print "---"
-                print json_object_dict["subject_msets"]
 
-#                subjs = dict([(x, self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subjects"].items()])
-#                msets = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_msets"].items()])
-#                reqs = dict([(self.decode(x.__str__().replace("'", '"')), self.decode(y.__str__().replace("'", '"'))) for x, y in json_object_dict["subject_reqs"].items()])
-                subject_data = json_object_dict["subject_data"] 
+                subj_data_keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["subject_data_keys"]]
+                subj_data_values = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["subject_data_values"]]
+                subj_data = dict(zip(subj_data_keys, subj_data_values))
                 
 
                 term = Term(season=json_object_dict["season"],
                               year=json_object_dict["year"],
-                              subjects=subjs,
-                              subject_msets=msets,
-                              subject_reqs=reqs,
+                              subject_data = subj_data
                             )
                 term.dependants = json_object_dict["dependants"]
                 return term

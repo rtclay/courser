@@ -19,8 +19,8 @@ class TermTest(unittest.TestCase):
 
 
     def setUp(self):
-        self.terms= [Term("firstTerm", 2010, [], {}, {}),
-                     Term("secondTerm", 2010, [], {}, {}),
+        self.terms= [Term("firstTerm", 2010, {}),
+                     Term("secondTerm", 2010, {}),
                      ]
 
         self.subjects = [Subject("18.01"),
@@ -54,6 +54,10 @@ class TermTest(unittest.TestCase):
             self.assertTrue(self.terms[0].hasSubject(subj), "Assert: %s is in %s" % (subj, self.terms[0]))
         for subj in self.subjects[-3:]:
             self.assertFalse(self.terms[0].hasSubject(subj), "Assert False: %s is in %s" % (subj, self.terms[0]))
+            
+    def testGetSubjectByName(self):
+        self.assertEqual(self.subjects[0], self.terms[0].get_subject_by_name("18.01") )
+        self.assertEqual(self.subjects[1], self.terms[0].get_subject_by_name("18.02") )
 
     def testAddSubject(self):
         #self.assertNotIn(self.subjects[0], self.terms[0], "Assert: %s is not in %s" % (self.subjects[0], self.terms[0]))

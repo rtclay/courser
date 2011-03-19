@@ -13,18 +13,13 @@ class Term(object):
     '''
 
 
-    def __init__(self, season, year, reqs = None, subjects = None, subject_reqs = None, subject_msets = None):
+    def __init__(self, season, year, subject_data = None):
         '''
         Constructor
         '''
-        if reqs is None:
-            reqs = set()
-        if subjects is None:
-            subjects = dict()
-        if subject_msets is None:
-            subject_msets = dict()
-        if subject_reqs is None:
-            subject_reqs = dict()
+        
+        if subject_data is None:
+            subject_data = dict()
             
         self.dependants = dict()    
         
@@ -35,14 +30,7 @@ class Term(object):
         self.SEASON_LIST = [ "iap", "spring", "summer", "fall"]
 
 
-        self.subjects = subjects #String representations of subjects are Keys, subjects are values
-        self.subject_reqs = subject_reqs #subjects are Keys, requirements are values
-        self.subject_msets = subject_msets #subjects are Keys, values are lists of meetingsets
-        for subj in self.subjects.values():
-            if subj not in self.subject_msets:
-                self.subject_msets[subj] = set([Meetingset()])
-            if subj not in self.subject_reqs:
-                self.subject_reqs[subj] = Requirement()
+        self.subject_data = subject_data #Key: Value = Subject : (Req, MsetList)
                      
         
     def __eq__(self, other):
@@ -64,31 +52,39 @@ class Term(object):
     def getReq(self, subj):
         '''Takes a subject and returns the requirement paired with that subject this term
         '''
-        try:
-            return self.subject_reqs[subj]
-        except:
+        if subj in self.subject_data:
+            return self.subject_data[subj][0]
+        else:
             return Requirement()
+        
+    def get_subject_by_name(self, string):
+        '''Returns a subject that has a name matching string
+        '''
+        #this could be sped up a lot
+        try:
+            for subj in self.getSubjects():
+                if subj == Subject(string):
+                    return subj
+        except:
+            return None
+        
     
     def getSubjects(self):
         '''Returns a copied set of the term's subjects
         '''
-        return set(self.subjects.values()) 
+        return set(self.subject_data.keys()) 
     
     def getMeetingSets(self, subj):
         ''' Returns a copied set of the total meetingsets used by subj  
         '''
-        if subj in self.subject_msets:
-            return set(self.subject_msets[subj])
-        else:
-            msets = set()
-            msets.add(Meetingset())
-            return msets
+        return set(self.subject_data[subj][1])
+        
     
     def rebuildDeps(self):
         '''sets self.dependants to a dictionary containing pairs of (subj, set(subjects that require subj))
         '''        
         expanded_reqs = dict()
-        for req in self.subject_reqs:
+        for req in [data_tuple[0] for data_tuple in self.subject_data.values()]:
             expanded_reqs[req] = req.expand(self)
         
         for subj in self.getSubjects():
@@ -99,75 +95,50 @@ class Term(object):
         
         
     def addSubject(self, subj, req, msets):
-        self.subjects[subj.name] = subj
-        self.subject_reqs[subj] = req
-        self.subject_msets[subj] = msets
-#        for required_subject in req.expand(self).getSubjects():
-#            if required_subject not in self.dependants:
-#                self.dependants[required_subject] = set()
-#            self.dependants[required_subject].add(subj)
+        self.subject_data[subj] = (req, msets)
         
     
     def removeSubject(self, subj):
-#        for required_subject in self.subject_reqs[subj].expand(self).getSubjects():
-#            if required_subject in self.dependants:
-#                self.dependants[required_subject].remove(subj)
-        del self.subjects[subj.name]
-        del self.subject_reqs[subj]
-        del self.subject_msets[subj]
+        del self.subject_data[subj]
         
         
     def addMeetingSet(self, subj, mset):
-        self.subject_msets[subj].append(mset)
+        msets = self.getMeetingSets(subj)
+        msets.add(mset)
+        self.subject_data[subj] = (self.getReq(subj), msets,)
         
     def removeMeetingSet(self, subj, mset):
-        self.subject_msets[subj].remove(mset)
+        msets = self.getMeetingSets(subj)
+        msets.remove(mset)
+        self.subject_data[subj]= (self.getReq(subj), msets,)
     
     def setReq(self, subj, newReq):
-        self.subject_reqs[subj] = newReq
+        
+        self.subject_data[subj] = (newReq, self.getMeetingSets(subj),)
         
     def isValid(self):
-        return len(self.subject_msets)== len(self.subject_reqs)
+        #FIX ME
+        return True
     
-    def copyTerm(self, otherTerm):
-        self.subjects = otherTerm.subjects.items()
-        self.subject_reqs = otherTerm.subject_reqs.items()
-        self.subject_msets = otherTerm.subject_msets.items()
-
     
     def hasSubject(self, subject):
-        return subject in self.subjects.values()
-    
-    
+        return subject in self.subject_data.keys()
     
     def __repr__(self):
-        response ="<Term: "+ str(self.season)+ str(self.year)+" "+str(len(self.subjects))+" subjects"
-        
-        #=======================================================================
-        # response = response + '\n   SubjectMsets:\n' 
-        # for (x, y) in self.subject_msets.items():
-        #    response = response +"    "+ str(x) + " meets at: " + str(y) + '\n'
-        # response = response + '   SubjectReqs:\n'
-        # for (x, y) in self.subject_reqs.items():
-        #        response = response +"    "+ str(x) + " requires " + str(y) + '\n'
-        #=======================================================================
-
+        response ="<Term: "+ str(self.season)+ str(self.year)+" "+str(len(self.getSubjects()))+" subjects"
         
         response = response + ">"
         return response
     
     def __str__(self):
-        return "<Term: " + str.lower(self.season)+ str(self.year)+" "+str(len(self.subjects))+" subjects>"
+        return "<Term: " + str.lower(self.season)+ str(self.year)+" "+str(len(self.getSubjects()))+" subjects>"
     
-    def to_json(self):
-        subject_data = dict()
-        for subj in self.getSubjects():
-            subject_data[subj] = (self.getReq(subj), self.getMeetingSets(subj))
+    def to_json(self):        
         
         return {"__class__": "Term",
                 "dependants": self.dependants,
                 "season": self.season,
                 "year": self.year,
-                "subjects": self.subjects,
-                "subject_data": subject_data
+                "subject_data_keys": self.subject_data.keys(),
+                "subject_data_values": self.subject_data.values()
                 }

@@ -29,7 +29,7 @@ class Meetingset(object):
 
     def __init__(self, meetings=[]):
         self.meetings = sorted(meetings)
-        if not self.isValid():
+        if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def __iter__(self):
@@ -52,27 +52,27 @@ class Meetingset(object):
     def addMeeting(self, meeting):
         self.meetings.append(meeting)
         self.meetings.sort()
-        if not self.isValid():
+        if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def removeMeeting(self, meeting):
         self.meetings.remove(meeting)
         self.meetings.sort()
-        if not self.isValid():
+        if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def addMeetingSet(self, otherMS):
         self.meetings.extend(otherMS.meetings)
         self.meetings.sort()
 
-        if not self.isValid():
+        if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def removeMeetingSet(self, otherMS):
         for meet in otherMS.meetings:
             self.meetings.remove(meet)
         self.meetings.sort()
-        if not self.isValid():
+        if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def isBusyAtTime(self, time):
@@ -104,7 +104,6 @@ class Meetingset(object):
             focus0 = sortedMeetings[0]
             focus1 = otherMeetings[0]
 
-
             if focus0.startTime > focus1.endTime:
                 otherMeetings.pop(0)
                 continue
@@ -116,7 +115,7 @@ class Meetingset(object):
 
         return False
 
-    def isValid(self):
+    def isValidMset(self):
         return self.meetings == sorted(self.meetings)
 
     def __repr__(self):

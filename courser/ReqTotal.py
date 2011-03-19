@@ -64,6 +64,26 @@ class ReqTotal(ReqPartial):
         #the req has multiple subreqs
         return ReqTotal([req.expand(term) for req in self.reqs])
 
+    def squish(self):
+        '''Returns a new requirement that has empty shells stripped away        
+        '''
+        
+        self.testValidity()
+        if not self.reqs:
+            return self
+        
+        
+        if len(self.reqs)== 1 and self.numNeeded==1:
+            return self.reqs[0].squish()
+        
+        newReq = ReqTotal(self.reqs[:])
+        #Note: because it iterates on self.reqs and removes from a copy, there is no longer the problem of deleting from an iterating sequence 
+        for subreq in self.reqs:
+            if hasattr(subreq, "reqs") and bool(subreq.reqs) & (subreq.numNeeded == len(subreq.reqs)):
+                for subsubreq in subreq:
+                    newReq.addReq(subsubreq.squish())
+                newReq.removeReq(subreq)
+        return newReq
     def getComplexity(self, term):
         return 1.5 * reduce(lambda x, y: x + y.getComplexity(term), self.reqs, 0)
 

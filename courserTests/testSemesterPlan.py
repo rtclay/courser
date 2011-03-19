@@ -23,9 +23,9 @@ class Test(unittest.TestCase):
         return Meetingset([Meeting(subj, minuteStart+x*1440, minuteEnd+x*1440) for x in range(5)])
 
     def setUp(self):
-        self.terms = [Term("FALL", 2010, [], {}, {}),
-                      Term("IAP", 2011, [], {}, {}),
-                      Term("SPRING", 2011, [], {}, {}),
+        self.terms = [Term("FALL", 2010, {}),
+                      Term("IAP", 2011, {}),
+                      Term("SPRING", 2011, {}),
                       ]
         
         self.subjects = [Subject("18.01"),

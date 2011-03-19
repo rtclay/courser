@@ -8,6 +8,7 @@ import copy
 
 
 
+
 class RequirementError(Exception):
     """Base class for exceptions in this module."""
     pass
@@ -34,7 +35,9 @@ class MalformedReqError(RequirementError):
 
     def __init__(self, req, msg="Malformed Requirement"):
         self.req = req
-        self.msg = msg + req.__str__()
+        self.msg = msg +" "+ req.__class__.__name__+" "+ str(req.__dict__)
+    def __str__(self):
+        return repr(self.msg)
 
 
 
@@ -45,14 +48,30 @@ class Requirement(object):
     '''
 
 
-    def __init__(self, reqs=[], numNeeded=0, subj=None, name="unnamed requirement"):
+    def __init__(self, reqs=None, numNeeded=0, subj=None, name="unnamed requirement"):
         '''
         Constructor
         '''
-        self.reqs = reqs
+        if reqs is None:
+            reqs = []
+        self.reqs = []
+        
+        for item in reqs:            
+            if hasattr(item, "isValidReq") and item.isValidReq():
+                self.reqs.append(item)
+                continue
+            elif hasattr(item, "isValidSubject") and item.isValidSubject():
+                self.reqs.append(Requirement([], 1, subj = item ))
+                continue
+            else:
+                raise MalformedReqError(item)
+        
+        
+        
         self.singleSubject = subj
         self.numNeeded = numNeeded
         self.name = name
+        self.testValidity()
         
     def __iter__(self):
         for n in self.reqs:
@@ -133,9 +152,10 @@ class Requirement(object):
 
       
     def squish(self):
-        '''Returns a new requirement that has empty shells stripped away
-        
+        '''Returns a new requirement that has empty shells stripped away        
         '''
+        
+        self.testValidity()
         if not self.reqs:
             return self
         
@@ -146,7 +166,7 @@ class Requirement(object):
         newReq = Requirement(self.reqs[:], self.numNeeded, self.singleSubject)
         #Note: because it iterates on self.reqs and removes from a copy, there is no longer the problem of deleting from an iterating sequence 
         for subreq in self.reqs:
-            if bool(subreq.reqs) & (subreq.numNeeded == len(subreq.reqs)):
+            if hasattr(subreq, "reqs") and bool(subreq.reqs) & (subreq.numNeeded == len(subreq.reqs)):
                 for subsubreq in subreq:
                     newReq.addReq(subsubreq.squish())
                 newReq.removeReq(subreq)
@@ -212,16 +232,22 @@ class Requirement(object):
             #return the progress of its constituent requirements
             return reduce(lambda x, y: x+y.getProgress(classesTaken), self.reqs, 0)
     
-    def isValid(self):
-        
-        if not (self.getNumChoices() >= 0) & (self.numNeeded <= self.getNumChoices()):
-            print self.getNumChoices()
-            print self.numNeeded
-        
-        return (self.getNumChoices() >= 0) & (self.numNeeded <= self.getNumChoices())
+    def isValidReq(self):
+        try:
+            for req in self.reqs:
+                if not req.isValidReq():
+                    return False
+            
+            if not (self.getNumChoices() >= 0) & (self.numNeeded <= self.getNumChoices()):
+                print self.getNumChoices()
+                print self.numNeeded
+            
+            return (self.getNumChoices() >= 0) & (self.numNeeded <= self.getNumChoices())
+        except:
+            return False
     
     def testValidity(self):
-        if not self.isValid():
+        if not self.isValidReq():
             raise MalformedReqError(self)
         
     def getComplexity(self, term):

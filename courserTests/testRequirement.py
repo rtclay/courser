@@ -37,9 +37,9 @@ class Test(unittest.TestCase):
         
     def testCompare(self):
         self.assertEqual(Requirement(), Requirement(), "Assert Equal: %s == %s" % (Requirement(), Requirement()))
-        self.assertEqual(Requirement([], 1, self.dset.subjects[0], ""), Requirement([], 1, self.dset.subjects[0], ""), "Assert Equal: %s == %s" % (Requirement([], 1, self.dset.subjects[0], ""), Requirement([], 1, self.dset.subjects[0], "")))
+        self.assertEqual(Requirement([], 1, self.dset.subjects[0], ""), Requirement([], 1, self.dset.subjects[0], ""))
         self.assertEqual(self.dset.reqs63, self.dset.reqs63, "Assert Equal: %s == %s" % (self.dset.reqs63, self.dset.reqs63))
-        self.assertEqual(self.dset.reqs63.expand(self.dset.terms[0]), self.dset.reqs63.expand(self.dset.terms[0]), "Assert Equal: %s == %s" % (self.dset.reqs63.expand(self.dset.terms[0]), self.dset.reqs63.expand(self.dset.terms[0])))
+        self.assertEqual(self.dset.reqs63.expand(self.dset.terms[0]), self.dset.reqs63.expand(self.dset.terms[0]))
         
 
     def testIsSatisfied(self):
@@ -65,8 +65,8 @@ class Test(unittest.TestCase):
         self.assertTrue(self.dset.physReq.isSatisfied(self.dset.physReq.getSubjects()))
         
     def testGetSubjects(self):
-        self.assertEqual(self.dset.physReq.getSubjects(), set([self.dset.subjectDict["8.02"]]), "Assert Equal: %s == %s" % (self.dset.physReq.getSubjects(), [self.dset.subjectDict["8.02"]]))
-        self.assertEqual(self.dset.introReq.getSubjects(), set([self.dset.subjectDict["6.01"], self.dset.subjectDict["6.02"]]), "Assert Equal: %s == %s" % (self.dset.introReq.getSubjects(), set([self.dset.subjectDict["6.01"], self.dset.subjectDict["6.02"]])))
+        self.assertEqual(self.dset.physReq.getSubjects(), set([self.dset.get_subject_by_name("8.02")]) )
+        self.assertEqual(self.dset.introReq.getSubjects(), set([self.dset.get_subject_by_name("6.01"), self.dset.get_subject_by_name("6.02")]))
         
         self.assertEqual(self.dset.AUSReq.getSubjects(), set(self.dset.AUSubjects), "Assert Equal: %s == %s" % (self.dset.AUSReq.getSubjects(), set(self.dset.AUSubjects)))
 
