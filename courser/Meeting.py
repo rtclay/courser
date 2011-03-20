@@ -11,13 +11,12 @@ class Meeting(object):
     '''
 
 
-    def __init__(self, subj, startTime=0, endTime=1):
+    def __init__(self, startTime=0, endTime=1):
         '''
         Constructor
         '''
         self.startTime = startTime
         self.endTime = endTime
-        self.subj = subj
 
 
 #    def __cmp__(self, other):
@@ -35,12 +34,12 @@ class Meeting(object):
 #                return 1
     def __eq__(self, other):
         try:
-            return self.startTime == other.startTime and self.endTime == other.endTime and self.subj== other.subj
+            return self.startTime == other.startTime and self.endTime == other.endTime
         except:
             return False
     def __ne__(self, other):
-        return not self == other    
-    
+        return not self == other
+
     def __lt__(self, other):
         try:
             if self.startTime < other.startTime:
@@ -52,10 +51,10 @@ class Meeting(object):
                 return False
         except:
             return False
-    
-    
+
+
     def __hash__(self):
-        key = (self.startTime, self.endTime, self.subj)
+        key = (self.startTime, self.endTime)
         return hash(key)
 
     def containsTime(self, time):
@@ -84,7 +83,7 @@ class Meeting(object):
         return False
 
 
-    def isValid(self):
+    def isValidMeeting(self):
         '''Returns True IFF end time is after start time, and start and end time fall within the week
         '''
         return (self.endTime > self.startTime) and (self.startTime > 0) and self.endTime < 10080
@@ -99,11 +98,10 @@ class Meeting(object):
 
     def __str__(self):
         return "<Meeting %d %d %d TO %d %d %d>" % self.getDHM()
-    
+
     def to_json(self):
         return {"__class__": "Meeting",
             "startTime": self.startTime,
             "endTime": self.endTime,
-            "subject": self.subj
             }
 

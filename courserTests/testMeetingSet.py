@@ -15,19 +15,19 @@ import unittest
 
 class Test(unittest.TestCase):
 
-    def makeMeetings(self, subj, minuteStart, minuteEnd):
-        return Meetingset([Meeting(subj, minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
+    def makeMeetings(self, minuteStart, minuteEnd):
+        return Meetingset([Meeting(minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
 
     def setUp(self):
         self.subj = Subject("blank")
-        self.meetings = [Meeting(self.subj, 1, 50),
-                        Meeting(self.subj, 51, 100),
-                        Meeting(self.subj, 101, 150),
-                        Meeting(self.subj, 201, 250),
-                        Meeting(self.subj, 251, 300),
+        self.meetings = [Meeting( 1, 50),
+                        Meeting( 51, 100),
+                        Meeting( 101, 150),
+                        Meeting( 201, 250),
+                        Meeting( 251, 300),
                         ]
-        self.meetingsRNoConf = sorted([Meeting(self.subj, x, x + y) for x, y in [(randint(301, 500), randint(0, 60) + 61) for z in range(5) ]])
-        self.meetingsR = sorted([Meeting(self.subj, x, x + y) for x, y in [(randint(0, 240), randint(0, 60)) for z in range(5) ]])
+        self.meetingsRNoConf = sorted([Meeting( x, x + y) for x, y in [(randint(301, 500), randint(0, 60) + 61) for z in range(5) ]])
+        self.meetingsR = sorted([Meeting( x, x + y) for x, y in [(randint(0, 240), randint(0, 60)) for z in range(5) ]])
 
 
 
@@ -35,9 +35,9 @@ class Test(unittest.TestCase):
                       Meetingset(self.meetings),
                       Meetingset(self.meetingsR),
                       Meetingset(self.meetingsRNoConf),
-                      self.makeMeetings(self.subj, 485, 535),
-                      self.makeMeetings(self.subj, 545, 595),
-                      self.makeMeetings(self.subj, 560, 610)    #conflicts with previous set
+                      self.makeMeetings( 485, 535),
+                      self.makeMeetings( 545, 595),
+                      self.makeMeetings( 560, 610)    #conflicts with previous set
                       ]
 
 
@@ -45,7 +45,7 @@ class Test(unittest.TestCase):
         pass
     def testCompare(self):
         self.assertEqual(Meetingset(), Meetingset(), "Assert Equal: %s == %s" % (Meetingset(), Meetingset()))
-        self.assertNotEqual(Meetingset(), Meetingset([Meeting(self.subj)]), "Assert Equal: %s == %s" % (Meetingset(), Meetingset([Meeting(self.subj)])))
+        self.assertNotEqual(Meetingset(), Meetingset([Meeting()]), "Assert Equal: %s == %s" % (Meetingset(), Meetingset([Meeting()])))
         self.assertEqual(self.msets[0], self.msets[0], "Assert Equal: %s == %s" % (self.msets[0], self.msets[0]))
         self.assertEqual(self.msets[1], self.msets[1], "Assert Equal: %s == %s" % (self.msets[1], self.msets[1]))
 
@@ -102,13 +102,17 @@ class Test(unittest.TestCase):
         self.assertFalse(self.msets[4].isValidMset(), "Assert False: %s is Valid" % self.msets[4])
         
     def testJSON(self):
-        a = self.makeMeetings(self.subj, 560, 610)
+        a = self.makeMeetings(560, 610)
         string = json.dumps(a, cls = CourserJsonEncoder)
         b = json.loads(string, cls = CourserJsonDecoder)
-        print a
-        print b
-        print b.meetings
-        print [Meeting(x) for x in b.meetings]
+        
+        self.assertEqual(a, b)
+        
+    def testJSON2(self):
+        a = Meetingset([])
+        string = json.dumps(a, cls = CourserJsonEncoder)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        
         self.assertEqual(a, b)
 
 

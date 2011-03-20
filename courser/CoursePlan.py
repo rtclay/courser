@@ -367,7 +367,7 @@ class CoursePlan(object):
             response = response + "    " + str(x) + " : " + str(y.getSubjects()) + '\n'
         response = response + ">"
         return response
-    
+
     def to_json(self):
         return {"__class__": "CoursePlan",
             "desired": list(self.desired),

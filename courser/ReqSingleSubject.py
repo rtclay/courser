@@ -81,19 +81,19 @@ class ReqSingleSubject(Requirement):
         '''Tests whether self has any subordinate requirements
         '''
         return True
-    
+
     def isValidReq(self):
         if self.singleSubject and hasattr(self.singleSubject, "isValidSubject") and self.singleSubject.isValidSubject():
             return True
         else:
             return False
-        
+
     def squish(self):
         return self
 
     def __repr__(self):
         return "<Require subject: " + str(self.singleSubject) + ">"
-    
+
     def to_json(self):
         return {"__class__": "ReqSingleSubject",
                 "singleSubject": self.singleSubject,

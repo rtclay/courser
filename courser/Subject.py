@@ -46,7 +46,7 @@ class Subject(object):
 
     def getUnits(self):
         return (self.unitsLecture, self.unitsLab, self.unitsPreparation)
-    
+
     def isValidSubject(self):
         '''MAKE ME A REAL FUNCTION please
         '''

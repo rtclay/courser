@@ -115,8 +115,8 @@ class Meetingset(object):
 
         return False
 
-    def isValidMset(self):
-        return self.meetings == sorted(self.meetings)
+    def isValidMset(self):        
+        return self.meetings == sorted(self.meetings) and reduce(lambda x, y: x and hasattr(y, "isValidMeeting") and y.isValidMeeting(), self.meetings, True)
 
     def __repr__(self):
         if self.meetings:

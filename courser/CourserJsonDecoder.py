@@ -23,6 +23,7 @@ class CourserJsonDecoder(json.JSONDecoder):
     '''
 
     def decode (self, json_object):
+        # JSON can not use single quotes, so we replace ' with "
 #        print "---"
 #        print "Trying to load: ", json_object.__class__.__name__, json_object        
         json_object_dict = json.loads(json_object)
@@ -45,12 +46,10 @@ class CourserJsonDecoder(json.JSONDecoder):
             if json_object_dict["__class__"] == "Meeting":
                 return Meeting(startTime=json_object_dict["startTime"],
                             endTime=json_object_dict["endTime"],
-                            # JSON can not use single quotes, so we replace ' with "
-                            subj=self.decode(json_object_dict["subject"].__str__().replace("'", '"'))
+
                             )
             if json_object_dict["__class__"] == "MeetingSet":
                 meeting_strings = [self.decode(x.__str__().replace("'", '"')) for x in json_object_dict["meetings"]]
-
                 return Meetingset(meetings=meeting_strings)
             if json_object_dict["__class__"] == "CoursePlan":
                 plan = CoursePlan(desired=json_object_dict["desired"],
@@ -62,13 +61,9 @@ class CourserJsonDecoder(json.JSONDecoder):
                 plan.subject_scores = json_object_dict["subject_scores"]
                 return plan
             if json_object_dict["__class__"] == "Catalog":
-                print json_object_dict["terms"].__class__.__name__
-                print  "dict is ", json_object_dict["terms"]
 
-                for x, y in json_object_dict["terms"].items():
-                    print x, " ---- ", y
-                term_list = json_object_dict["terms"].keys()
-                print term_list
+                term_list = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["terms"].values]
+
                 cat = Catalog(terms=term_list)
                 return cat
             if json_object_dict["__class__"] == "ReqNot":
@@ -92,36 +87,48 @@ class CourserJsonDecoder(json.JSONDecoder):
                             )
             if json_object_dict["__class__"] == "Requirement":
                 requirements = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["reqs"]]
-                
+
                 if json_object_dict["singleSubject"] is None:
                     singlesubj = None
                 else:
                     singlesubj = self.decode(json_object_dict["singleSubject"].__str__().replace("'", '"'))
-                
+
                 return Requirement(reqs=requirements,
                               numNeeded=json_object_dict["numNeeded"],
-                              subj= singlesubj,
+                              subj=singlesubj,
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "Term":
-
+                #these are Subjects
                 subj_data_keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["subject_data_keys"]]
-                subj_data_values = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["subject_data_values"]]
-                subj_data = dict(zip(subj_data_keys, subj_data_values))
-                
+                #acquire lists of Requirements and [MeetingSet] from tuples of (Requirement, [Meetingset])
+                subj_data_reqs, subj_data_mset_lists = zip(*[(self.decode(req.__str__().replace("'", '"').replace("None", "null")), [self.decode(mset.__str__().replace("'", '"').replace("None", "null")) for mset in mset_list]) for req , mset_list in json_object_dict["subject_data_values"]])
+
+
+
+                print "Keys: ", subj_data_keys
+                print "Reqs: ", subj_data_reqs
+                print "mset lists: ", subj_data_mset_lists
+                # zip up req and list of msets into a tuple, then zip up Subject and that tuple into another tuple, then make a dictionary of it
+                subj_data = dict(zip(subj_data_keys, zip(subj_data_reqs , subj_data_mset_lists)))
+
 
                 term = Term(season=json_object_dict["season"],
                               year=json_object_dict["year"],
-                              subject_data = subj_data
+                              subject_data=subj_data
                             )
                 term.dependants = json_object_dict["dependants"]
                 return term
+
+
             if json_object_dict["__class__"] == "SemesterPlan":
-                plan = SemesterPlan(term=json_object_dict["season"],
-                              desired_subjects=json_object_dict["desired"],
-                              reservedTimes=json_object_dict["reservedTimes"],
-                              subject_reqs=json_object_dict["subject_reqs"],
+                desired = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["desired"]]
+                reserved = self.decode(json_object_dict["reserved_times"].__str__().replace("'", '"').replace("None", "null"))
+                trm = self.decode(json_object_dict["term"].__str__().replace("'", '"').replace("None", "null"))
+                plan = SemesterPlan(term=trm,
+                              desired_subjects=desired,
+                              reserved_times=reserved,
                             )
                 plan.conflictDict = json_object_dict["conflictDict"]
-                return term
+                return plan
         return json_object

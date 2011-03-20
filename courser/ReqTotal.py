@@ -67,15 +67,15 @@ class ReqTotal(ReqPartial):
     def squish(self):
         '''Returns a new requirement that has empty shells stripped away        
         '''
-        
+
         self.testValidity()
         if not self.reqs:
             return self
-        
-        
-        if len(self.reqs)== 1 and self.numNeeded==1:
+
+
+        if len(self.reqs) == 1 and self.numNeeded == 1:
             return self.reqs[0].squish()
-        
+
         newReq = ReqTotal(self.reqs[:])
         #Note: because it iterates on self.reqs and removes from a copy, there is no longer the problem of deleting from an iterating sequence 
         for subreq in self.reqs:
@@ -94,7 +94,7 @@ class ReqTotal(ReqPartial):
 
     def __repr__(self):
         return "<Req: all of " + str(self.getNumChoices()) + ":" + str(sorted(self.reqs, key=lambda x : x.getSingleSubj)) + ">"
-    
+
     def to_json(self):
         return {"__class__": "ReqTotal",
                 "reqs": self.reqs,

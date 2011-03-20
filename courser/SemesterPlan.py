@@ -26,36 +26,37 @@ class SemesterPlan(object):
     classdocs
     '''
 
-    def __init__(self, term, desired_subjects=None, reservedTimes=None):
+    def __init__(self, term, desired_subjects=None, reserved_times=None):
         '''
         desired_subjects = [subject, subject, subject ...]
         '''
 
 
-        if reservedTimes is None:
-            reservedTimes = Meetingset()
+        if reserved_times is None:
+            reserved_times = Meetingset()
 
         if desired_subjects is None:
             desired_subjects = set()
 
 
-
         self.desired = set(desired_subjects)
         self.term = term
         self.conflictDict = {}
-        self.reservedTimes = reservedTimes
+        self.reserved_times = reserved_times
+
+        print "reserved: ", self.reserved_times
 
         if self.desired:
             self.fillMeetings()
 
     def __eq__(self, other):
         try:
-            return self.desired == other.desired and self.term == other.term and self.reservedTimes == other.reservedTimes
+            return self.desired == other.desired and self.term == other.term and self.reserved_times == other.reserved_times
         except:
             return False
 
     def __hash__(self):
-        key = (frozenset(self.desired), self.term, self.reservedTimes)
+        key = (frozenset(self.desired), self.term, self.reserved_times)
         return hash(key)
 
     def __ne__(self, other):
@@ -100,7 +101,7 @@ class SemesterPlan(object):
         #meetingset is the key, conflicts = list of meetingsets with which this meetingset conflicts
 
         m_sets = self.term.getMeetingSets(subj)
-
+        print "msets: ", m_sets
         for mset in m_sets:
             #===================================================================
             # print "mset is " + str(mset)
@@ -110,6 +111,7 @@ class SemesterPlan(object):
             #===================================================================
             keys_minus_subj = self.getSubjects()
             keys_minus_subj.remove(subj)
+            print mset, mset.__class__.__name__, mset.isValidMset()
 
             for otherSubj in keys_minus_subj:
                 for otherMset in self.term.getMeetingSets(otherSubj):
@@ -127,7 +129,7 @@ class SemesterPlan(object):
 
 
     def getSolution(self):
-        duplicate = SemesterPlan(self.term, self.desired.copy(), Meetingset(sorted(self.reservedTimes.meetings)))
+        duplicate = SemesterPlan(self.term, self.desired.copy(), Meetingset(sorted(self.reserved_times.meetings)))
         #First, deal with immediate disqualifications
         #if there is a subject with no selectable meeting times, return a failure
         if [] in [duplicate.term.getMeetingSets(x) for x in duplicate.desired]:
@@ -146,12 +148,12 @@ class SemesterPlan(object):
             #the subject under consideration has now been removed from the list of desired classes
             for mset in subjMSList:
                 if duplicate.canAddMS(mset):
-                    duplicate.reservedTimes.addMeetingSet(mset)
+                    duplicate.reserved_times.addMeetingSet(mset)
                     solution = duplicate.getSolution()
                     if solution:
                         return solution
                     else:
-                        duplicate.reservedTimes.removeMeetingSet(mset)
+                        duplicate.reserved_times.removeMeetingSet(mset)
                         continue
 
             duplicate.desired.add(subj)
@@ -161,7 +163,7 @@ class SemesterPlan(object):
 
 
     def canAddMS(self, mset):
-        return not self.reservedTimes.isConflict(mset)
+        return not self.reserved_times.isConflict(mset)
 
 
     def __repr__(self):
@@ -171,9 +173,9 @@ class SemesterPlan(object):
             response = response + '\n'
             for x in self.desired:
                 response = response + "    " + str(x) + " meets at: " + str(self.term.getMeetingSets(x)) + '\n'
-        if self.reservedTimes:
+        if self.reserved_times:
             response = response + '    Reserved:\n'
-            response = response + '        ' + str(self.reservedTimes) + '\n'
+            response = response + '        ' + str(self.reserved_times) + '\n'
         if self.conflictDict:
             response = response + '    Conflicts:\n'
         for (x, y) in self.conflictDict.items():
@@ -193,8 +195,8 @@ class SemesterPlan(object):
         return response
     def to_json(self):
         return {"__class__": "SemesterPlan",
-                "desired": self.desired,
+                "desired": list(self.desired),
                 "term": self.term,
                 "conflictDict": self.conflictDict,
-                "reservedTimes": self.reservedTimes,
+                "reserved_times": self.reserved_times,
                 }

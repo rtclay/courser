@@ -16,9 +16,9 @@ class Test(unittest.TestCase):
 
     def setUp(self):
         self.subj = Subject("blank")
-        self.meeting0 = Meeting(self.subj, 900, 930)
-        self.meeting1 = Meeting(self.subj, 900, 1000)
-        self.meeting2 = Meeting(self.subj, 930, 1000)
+        self.meeting0 = Meeting(900, 930)
+        self.meeting1 = Meeting(900, 1000)
+        self.meeting2 = Meeting(930, 1000)
 
 
     def tearDown(self):
@@ -50,9 +50,9 @@ class Test(unittest.TestCase):
         self.assertFalse(self.meeting0.containsTime(time5), "Assert untrue: %s contains time %s" % (self.meeting0, time5))
         self.assertFalse(self.meeting2.containsTime(time3), "Assert untrue: %s contains time %s" % (self.meeting0, time3))
     def testJSON(self):
-        a = Meeting(self.subj, 900, 930)
-        string = json.dumps(a, cls = CourserJsonEncoder)
-        b = json.loads(string, cls = CourserJsonDecoder)        
+        a = Meeting(900, 930)
+        string = json.dumps(a, cls=CourserJsonEncoder)
+        b = json.loads(string, cls=CourserJsonDecoder)
         self.assertEqual(a, b)
 
 

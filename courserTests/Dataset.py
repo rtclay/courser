@@ -312,7 +312,7 @@ class Dataset(object):
 
 
 
-        
+
         self.mathReq = Requirement([Requirement([ReqSingleSubject(Subject("18.06")), ReqSingleSubject(Subject("18.03"))], 1),
                                     Requirement([], 1, Subject("6.042"))
                                     ],
@@ -481,18 +481,17 @@ class Dataset(object):
         term.setReq(Subject("6.UAP"), Requirement([], 1, Subject("6.UAT")))
         term.setReq(Subject("8.02"), Requirement([], 1, Subject("8.01")))
 
-    def makeMeetings(self, subj, minuteStart, minuteEnd):
+    def makeMeetings(self, minuteStart, minuteEnd):
         ''' Returns a meetingset comprising meetings that start and end at the specified times each day
         
         '''
-        return Meetingset([Meeting(subj, minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
+        return Meetingset([Meeting(minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
 
     def assignMeetings(self, term):
         for subj in term.getSubjects():
             startTime = randint(7, 17) * 60
-            #print "adding "+ str(self.makeMeetings(subj, startTime, startTime+50)) +" to "+ str(subj)
-            term.addMeetingSet(subj, self.makeMeetings(subj, startTime, startTime + 50))
-            
+            term.addMeetingSet(subj, self.makeMeetings(startTime, startTime + 50))
+
     def get_subject_by_name(self, string):
         '''Returns a subject that has a name matching string
         '''
