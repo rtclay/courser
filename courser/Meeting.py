@@ -86,7 +86,7 @@ class Meeting(object):
     def isValidMeeting(self):
         '''Returns True IFF end time is after start time, and start and end time fall within the week
         '''
-        return (self.endTime > self.startTime) and (self.startTime > 0) and self.endTime < 10080
+        return (self.endTime > self.startTime) and (self.startTime >= 0) and self.endTime <= 10080
 
     def __repr__(self):
         return "<Meeting " + str(self.startTime) + " to " + str(self.endTime) + ">"

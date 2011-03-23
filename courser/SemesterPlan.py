@@ -41,10 +41,10 @@ class SemesterPlan(object):
 
         self.desired = set(desired_subjects)
         self.term = term
-        self.conflictDict = {}
+        self.conflict_dict = {}
         self.reserved_times = reserved_times
 
-        print "reserved: ", self.reserved_times
+#        print "reserved: ", self.reserved_times
 
         if self.desired:
             self.fillMeetings()
@@ -101,7 +101,8 @@ class SemesterPlan(object):
         #meetingset is the key, conflicts = list of meetingsets with which this meetingset conflicts
 
         m_sets = self.term.getMeetingSets(subj)
-        print "msets: ", m_sets
+#        print "msets: ", m_sets
+
         for mset in m_sets:
             #===================================================================
             # print "mset is " + str(mset)
@@ -111,21 +112,21 @@ class SemesterPlan(object):
             #===================================================================
             keys_minus_subj = self.getSubjects()
             keys_minus_subj.remove(subj)
-            print mset, mset.__class__.__name__, mset.isValidMset()
+#            print mset, mset.__class__.__name__, mset.isValidMset()
 
             for otherSubj in keys_minus_subj:
                 for otherMset in self.term.getMeetingSets(otherSubj):
                     if mset.isConflict(otherMset):
-                        if self.conflictDict.has_key(mset):
-                            self.conflictDict[mset].append(otherMset)
-                            self.conflictDict[mset] = list(set(self.conflictDict[mset]))
+                        if self.conflict_dict.has_key(mset):
+                            self.conflict_dict[mset].append(otherMset)
+                            self.conflict_dict[mset] = list(set(self.conflict_dict[mset]))
                         else:
-                            self.conflictDict[mset] = [otherMset]
-                        if self.conflictDict.has_key(otherMset):
-                            self.conflictDict[otherMset].append(mset)
-                            self.conflictDict[otherMset] = list(set(self.conflictDict[otherMset]))
+                            self.conflict_dict[mset] = [otherMset]
+                        if self.conflict_dict.has_key(otherMset):
+                            self.conflict_dict[otherMset].append(mset)
+                            self.conflict_dict[otherMset] = list(set(self.conflict_dict[otherMset]))
                         else:
-                            self.conflictDict[otherMset] = [mset]
+                            self.conflict_dict[otherMset] = [mset]
 
 
     def getSolution(self):
@@ -176,9 +177,9 @@ class SemesterPlan(object):
         if self.reserved_times:
             response = response + '    Reserved:\n'
             response = response + '        ' + str(self.reserved_times) + '\n'
-        if self.conflictDict:
+        if self.conflict_dict:
             response = response + '    Conflicts:\n'
-        for (x, y) in self.conflictDict.items():
+        for (x, y) in self.conflict_dict.items():
             response = response + "    " + str(x) + " conflicts with: " + str(y) + '\n'
 
         response = response + ">\n"
@@ -197,6 +198,7 @@ class SemesterPlan(object):
         return {"__class__": "SemesterPlan",
                 "desired": list(self.desired),
                 "term": self.term,
-                "conflictDict": self.conflictDict,
+                "conflict_dict_keys": self.conflict_dict.keys(),
+                "conflict_dict_values": self.conflict_dict.values(),
                 "reserved_times": self.reserved_times,
                 }

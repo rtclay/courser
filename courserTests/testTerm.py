@@ -41,7 +41,7 @@ class TermTest(unittest.TestCase):
         self.req0 = Requirement()
 
         for subj in self.subjects[:-3]:
-            self.terms[0].addSubject(subj, Requirement(), Meetingset())
+            self.terms[0].addSubject(subj, Requirement(), [Meetingset()])
 
 
     def tearDown(self):
@@ -72,6 +72,7 @@ class TermTest(unittest.TestCase):
     def testJSON(self):
         a = self.terms[0]
         string = json.dumps(a, cls=CourserJsonEncoder, indent=2)
+        print string
         b = json.loads(string, cls=CourserJsonDecoder)
         self.assertEqual(a, b)
 

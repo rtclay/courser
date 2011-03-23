@@ -19,7 +19,10 @@ class SortingError(MeetingSetError):
 
     def __init__(self, meetingList, msg="Unsorted meetings"):
         self.meetingList = meetingList
-        self.msg = msg
+        self.msg = msg + str(meetingList)
+    def __str__(self):
+        return repr(self.msg)
+        
 
 class Meetingset(object):
     '''
@@ -29,8 +32,6 @@ class Meetingset(object):
 
     def __init__(self, meetings=[]):
         self.meetings = sorted(meetings)
-        if not self.isValidMset():
-            raise SortingError(self.meetings)
 
     def __iter__(self):
         for n in self.meetings:
@@ -115,8 +116,11 @@ class Meetingset(object):
 
         return False
 
-    def isValidMset(self):        
-        return self.meetings == sorted(self.meetings) and reduce(lambda x, y: x and hasattr(y, "isValidMeeting") and y.isValidMeeting(), self.meetings, True)
+    def isValidMset(self):
+        if not self.meetings:
+            return True
+        else:
+            return self.meetings == sorted(self.meetings) and reduce(lambda x, y: x and hasattr(y, "isValidMeeting") and y.isValidMeeting(), self.meetings, True)
 
     def __repr__(self):
         if self.meetings:

@@ -156,6 +156,10 @@ class Test(unittest.TestCase):
 
     def testJSON2(self):
         a = self.semesterPlans[1]
+        print "---"
+        print "a attributes"
+        for x in a.__dict__.items():
+            print x
         string = json.dumps(a, cls=CourserJsonEncoder)
         b = json.loads(string, cls=CourserJsonDecoder)
         self.assertEqual(a, b)

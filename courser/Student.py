@@ -28,7 +28,7 @@ class Student(object):
         self.student_id = ID
         self.goals = Requirement() #a requirement that the student wants to meet.
         self.course_plan = CoursePlan([], self.dset.catalog)
-        self.subjectsTaken = []
+        self.subjects_taken = []
 
     def __eq__(self, other):
         return self.student_id == other.student_id
@@ -58,7 +58,7 @@ class Student(object):
 
 
     def getSubjects_taken(self):
-        return self.subjectsTaken
+        return self.subjects_taken
 
 
     def setDset(self, value):
@@ -82,23 +82,31 @@ class Student(object):
 
 
     def setSubjects_taken(self, value):
-        self.subjectsTaken = value
+        self.subjects_taken = value
 
     def addSubject_taken(self, subject_or_subjects):
         try:
             it = iter(subject_or_subjects)
-            self.subjectsTaken.extend(subject_or_subjects)
+            self.subjects_taken.extend(subject_or_subjects)
         except TypeError:
-            self.subjectsTaken.append(subject_or_subjects)
+            self.subjects_taken.append(subject_or_subjects)
 
     def getProgress(self, req):
-        return req.getProgress(self.subjectsTaken)
+        return req.getProgress(self.subjects_taken)
 
     def satisfiesReq(self, req):
-        return req.isSatisfied(self.subjectsTaken)
+        return req.isSatisfied(self.subjects_taken)
 
     def avoid_Subject(self, subject):
         self.goals = ReqTotal([self.goals, ReqNot(ReqSingleSubject(subject))])
 
     def __repr__(self):
         return "<Student: " + str(self.name) + ">"
+    def to_json(self):
+        return {"__class__": "Student",
+                "name": self.name,
+                "student_id": self.student_id,
+                "goals": self.goals,
+                #"course_plan": self.course_plan,
+                "subjects_taken": self.subjects_taken,
+                }

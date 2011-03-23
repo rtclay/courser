@@ -30,7 +30,7 @@ class Term(object):
         self.SEASON_LIST = [ "iap", "spring", "summer", "fall"]
 
 
-        self.subject_data = subject_data #Key: Value = Subject : (Req, MsetList)
+        self.subject_data = subject_data #Key: Value = Subject : (Req, set of Msets)
 
 
     def __eq__(self, other):
@@ -77,8 +77,8 @@ class Term(object):
     def getMeetingSets(self, subj):
         ''' Returns a copied set of the total meetingsets used by subj  
         '''
-        msets = set(self.subject_data[subj][1])
-        print msets, self.subject_data[subj]
+#        msets = set(self.subject_data[subj][1])
+#        print msets, self.subject_data[subj]
         return set(self.subject_data[subj][1])
 
 

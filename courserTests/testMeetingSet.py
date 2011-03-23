@@ -26,8 +26,8 @@ class Test(unittest.TestCase):
                         Meeting( 201, 250),
                         Meeting( 251, 300),
                         ]
-        self.meetingsRNoConf = sorted([Meeting( x, x + y) for x, y in [(randint(301, 500), randint(0, 60) + 61) for z in range(5) ]])
-        self.meetingsR = sorted([Meeting( x, x + y) for x, y in [(randint(0, 240), randint(0, 60)) for z in range(5) ]])
+        self.meetingsRNoConf = sorted([Meeting( x, x + y) for x, y in [(randint(301, 500), randint(1, 60) + 61) for z in range(5) ]])
+        self.meetingsR = sorted([Meeting( x, x + y) for x, y in [(randint(1, 240), randint(1, 60)) for z in range(5) ]])
 
 
 
@@ -45,7 +45,7 @@ class Test(unittest.TestCase):
         pass
     def testCompare(self):
         self.assertEqual(Meetingset(), Meetingset(), "Assert Equal: %s == %s" % (Meetingset(), Meetingset()))
-        self.assertNotEqual(Meetingset(), Meetingset([Meeting()]), "Assert Equal: %s == %s" % (Meetingset(), Meetingset([Meeting()])))
+        self.assertNotEqual(Meetingset(), Meetingset([Meeting()]))
         self.assertEqual(self.msets[0], self.msets[0], "Assert Equal: %s == %s" % (self.msets[0], self.msets[0]))
         self.assertEqual(self.msets[1], self.msets[1], "Assert Equal: %s == %s" % (self.msets[1], self.msets[1]))
 

@@ -16,6 +16,7 @@ from courser.SemesterPlan import SemesterPlan
 from courser.Subject import Subject
 from courser.Term import Term
 import json
+from courser.Student import Student
 
 class CourserJsonDecoder(json.JSONDecoder):
     '''
@@ -45,9 +46,16 @@ class CourserJsonDecoder(json.JSONDecoder):
                             )
             if json_object_dict["__class__"] == "Meeting":
                 return Meeting(startTime=json_object_dict["startTime"],
-                            endTime=json_object_dict["endTime"],
-
+                            endTime=json_object_dict["endTime"]
                             )
+            if json_object_dict["__class__"] == "Student":
+                stud = Student(name=json_object_dict["name"],
+                               ID=json_object_dict["student_id"]
+                            )
+                stud.setGoals(self.decode(json_object_dict["goals"].__str__().replace("'", '"').replace("None", "null")))
+                stud.setSubjects_taken(self.decode(json_object_dict["subjects_taken"].__str__().replace("'", '"').replace("None", "null")))
+                #stud.setCourse_plan(self.decode(json_object_dict["course_plan"].__str__().replace("'", '"').replace("None", "null")))
+                return stud
             if json_object_dict["__class__"] == "MeetingSet":
                 meeting_strings = [self.decode(x.__str__().replace("'", '"')) for x in json_object_dict["meetings"]]
                 return Meetingset(meetings=meeting_strings)
@@ -106,9 +114,9 @@ class CourserJsonDecoder(json.JSONDecoder):
 
 
 
-                print "Keys: ", subj_data_keys
-                print "Reqs: ", subj_data_reqs
-                print "mset lists: ", subj_data_mset_lists
+#                print "Keys: ", subj_data_keys
+#                print "Reqs: ", subj_data_reqs
+#                print "mset lists: ", subj_data_mset_lists
                 # zip up req and list of msets into a tuple, then zip up Subject and that tuple into another tuple, then make a dictionary of it
                 subj_data = dict(zip(subj_data_keys, zip(subj_data_reqs , subj_data_mset_lists)))
 
@@ -129,6 +137,9 @@ class CourserJsonDecoder(json.JSONDecoder):
                               desired_subjects=desired,
                               reserved_times=reserved,
                             )
-                plan.conflictDict = json_object_dict["conflictDict"]
+                keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["conflict_dict_keys"]]
+                values = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["conflict_dict_values"]]
+
+                plan.conflict_dict = dict(zip(keys, values))
                 return plan
         return json_object
