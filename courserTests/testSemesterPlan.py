@@ -20,7 +20,7 @@ import unittest
 class Test(unittest.TestCase):
 
     def addSubjectToTerm(self, term, subj, req, minuteStart, minuteEnd):
-        term.addSubject(subj, req, [self.makeMeetings(minuteStart, minuteEnd)])
+        term.addSubject(subj, req, set([self.makeMeetings(minuteStart, minuteEnd)]))
 
     def makeMeetings(self, minuteStart, minuteEnd):
         return Meetingset([Meeting(minuteStart + x * 1440, minuteEnd + x * 1440) for x in range(5)])
@@ -152,22 +152,39 @@ class Test(unittest.TestCase):
         a = self.semesterPlans[0]
         string = json.dumps(a, cls=CourserJsonEncoder)
         b = json.loads(string, cls=CourserJsonDecoder)
+#        for (attr, value) in a.__dict__.items():
+#            print attr, value == b.__getattribute__(attr)
+#            if value != b.__getattribute__(attr):
+#                print value, b.__getattribute__(attr)
         self.assertEqual(a, b)
 
     def testJSON2(self):
         a = self.semesterPlans[1]
-        print "---"
-        print "a attributes"
-        for x in a.__dict__.items():
-            print x
+#        print "---"
+#        print "a attributes"
+#        for x in a.__dict__.items():
+#            print x
         string = json.dumps(a, cls=CourserJsonEncoder)
         b = json.loads(string, cls=CourserJsonDecoder)
+#        for (attr, value) in a.__dict__.items():
+#            print attr, value == b.__getattribute__(attr)
+#            if value != b.__getattribute__(attr):
+#                print value, b.__getattribute__(attr)
         self.assertEqual(a, b)
 
     def testJSON3(self):
         a = self.semesterPlans[2]
         string = json.dumps(a, cls=CourserJsonEncoder)
         b = json.loads(string, cls=CourserJsonDecoder)
+#        for (attr, value) in a.__dict__.items():
+#            print attr, value == b.__getattribute__(attr)
+#            if value != b.__getattribute__(attr):
+#                 print value, b.__getattribute__(attr)
+#                 
+#        for (attr, value) in a.term.__dict__.items():
+#            print attr, value == b.term.__getattribute__(attr)
+#            if value != b.term.__getattribute__(attr):
+#                 print value, b.term.__getattribute__(attr)
         self.assertEqual(a, b)
 
 

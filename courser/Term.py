@@ -34,13 +34,13 @@ class Term(object):
 
 
     def __eq__(self, other):
-        return str.lower(self.season) == str.lower(other.season) and self.year == other.year #and self.subject_msets == other.subject_msets and self.subject_reqs == other.subject_reqs
+        return str.lower(self.season) == str.lower(other.season) and self.year == other.year and self.subject_data == other.subject_data
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __hash__(self):
-        key = (self.season, self.year)
+        key = (self.season, self.year, frozenset(self.getSubjects()))
         return hash(key)
 
     def __lt__(self, other):
@@ -48,6 +48,10 @@ class Term(object):
             return self.SEASON_LIST.index(str.lower(self.season)) < self.SEASON_LIST.index(str.lower(other.season))
         else:
             return self.year < other.year
+
+    def matches_time_of(self, other_term):
+        return str.lower(self.season) == str.lower(other_term.season) and self.year == other_term.year #and self.subject_msets == other.subject_msets and self.subject_reqs == other.subject_reqs
+
 
     def getReq(self, subj):
         '''Takes a subject and returns the requirement paired with that subject this term
@@ -96,7 +100,10 @@ class Term(object):
                 self.dependants[required_subject].add(subj)
 
 
-    def addSubject(self, subj, req, msets):
+    def addSubject(self, subj, req, msets=None):
+        if msets is None:
+            msets = set()
+            msets.add(Meetingset())
         self.subject_data[subj] = (req, msets)
 
 
@@ -142,10 +149,13 @@ class Term(object):
     def to_json(self):
         '''Returns a JSON appropriate dictionary for use in rebuilding this object
         '''
+        #change the sets into lists for JSON
+        s_d_values = [(x, list(y)) for (x,y) in self.subject_data.values()]
+        
         return {"__class__": "Term",
                 "dependants": self.dependants,
                 "season": self.season,
                 "year": self.year,
                 "subject_data_keys": self.subject_data.keys(),
-                "subject_data_values": self.subject_data.values()
+                "subject_data_values": s_d_values
                 }

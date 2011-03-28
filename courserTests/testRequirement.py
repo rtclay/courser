@@ -133,7 +133,13 @@ class Test(unittest.TestCase):
         print "b reqs: ", b.reqs
         self.assertEqual(a, b)
         
-    
+    def testJSON3(self):
+        a = Requirement()
+        string = json.dumps(a, cls = CourserJsonEncoder)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        print "a: ", a
+        print "b reqs: ", b.reqs
+        self.assertEqual(a, b)
     
         
 

@@ -48,7 +48,7 @@ class Subject(object):
         return (self.unitsLecture, self.unitsLab, self.unitsPreparation)
 
     def isValidSubject(self):
-        '''MAKE ME A REAL FUNCTION please
+        '''TODO: MAKE ME A REAL FUNCTION please
         '''
         return True
 

@@ -271,9 +271,9 @@ class Dataset(object):
 
         self.subject_data = {}
         for subj in self.subjects:
-            self.subject_data[subj] = (Requirement(), [])
+            self.subject_data[subj] = (Requirement(), set())
         for subj in self.AUSubjects:
-            self.subject_data[subj] = (Requirement(), [])
+            self.subject_data[subj] = (Requirement(), set())
 
 
 

@@ -9,6 +9,7 @@ from courser.Meetingset import Meetingset
 from courser.Requirement import Requirement
 from courser.Subject import Subject
 from courser.Term import Term
+from courserTests.Dataset import Dataset
 import json
 import unittest
 
@@ -19,6 +20,9 @@ class TermTest(unittest.TestCase):
 
 
     def setUp(self):
+        self.dset = Dataset()
+        self.dset.dataSetup()
+        
         self.terms = [Term("firstTerm", 2010, {}),
                      Term("secondTerm", 2010, {}),
                      ]
@@ -41,7 +45,7 @@ class TermTest(unittest.TestCase):
         self.req0 = Requirement()
 
         for subj in self.subjects[:-3]:
-            self.terms[0].addSubject(subj, Requirement(), [Meetingset()])
+            self.terms[0].addSubject(subj, Requirement())
 
 
     def tearDown(self):
@@ -72,12 +76,25 @@ class TermTest(unittest.TestCase):
     def testJSON(self):
         a = self.terms[0]
         string = json.dumps(a, cls=CourserJsonEncoder, indent=2)
-        print string
         b = json.loads(string, cls=CourserJsonDecoder)
+#        for (attr, value) in a.__dict__.items():
+#            print attr, value == b.__getattribute__(attr)
+#            if value != b.__getattribute__(attr):
+#                print value, b.__getattribute__(attr)
         self.assertEqual(a, b)
 
-
-
+    def testJSON2(self):
+        a = self.dset.terms[0]
+        string = json.dumps(a, cls=CourserJsonEncoder, indent=2)
+        b = json.loads(string, cls=CourserJsonDecoder)
+#        with open('testJSON2a.json', mode='w') as f:
+#            json.dump(a, f, indent=2, cls = CourserJsonEncoder)
+#        with open('testJSON2b.json', mode='w') as f:
+#            json.dump(b, f, indent=2, cls = CourserJsonEncoder)
+        
+        self.assertEqual(a.getSubjects(), b.getSubjects())
+        self.assertEqual(a.subject_data, b.subject_data)
+        self.assertEqual(a, b)
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testAddSubject']

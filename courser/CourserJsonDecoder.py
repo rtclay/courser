@@ -75,16 +75,19 @@ class CourserJsonDecoder(json.JSONDecoder):
                 cat = Catalog(terms=term_list)
                 return cat
             if json_object_dict["__class__"] == "ReqNot":
-                return ReqNot(reqForNegation=json_object_dict["reqForNegation"],
+                req_for_negation = json_object_dict["reqForNegation"]
+                return ReqNot(reqForNegation=self.decode(req_for_negation.__str__().replace("'", '"').replace("None", "null")),
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "ReqPartial":
-                return ReqPartial(reqs=json_object_dict["reqs"],
+                requirements = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["reqs"]]
+                return ReqPartial(reqs=requirements,
                               numNeeded=json_object_dict["numNeeded"],
                               name=json_object_dict["name"]
                             )
             if json_object_dict["__class__"] == "ReqTotal":
-                return ReqTotal(reqs=json_object_dict["reqs"],
+                requirements = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["reqs"]]
+                return ReqTotal(reqs=requirements,
                               numNeeded=json_object_dict["numNeeded"],
                               name=json_object_dict["name"]
                             )
@@ -110,7 +113,7 @@ class CourserJsonDecoder(json.JSONDecoder):
                 #these are Subjects
                 subj_data_keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["subject_data_keys"]]
                 #acquire lists of Requirements and [MeetingSet] from tuples of (Requirement, [Meetingset])
-                subj_data_reqs, subj_data_mset_lists = zip(*[(self.decode(req.__str__().replace("'", '"').replace("None", "null")), [self.decode(mset.__str__().replace("'", '"').replace("None", "null")) for mset in mset_list]) for req , mset_list in json_object_dict["subject_data_values"]])
+                subj_data_reqs, subj_data_mset_lists = zip(*[(self.decode(req.__str__().replace("'", '"').replace("None", "null")), set([self.decode(mset.__str__().replace("'", '"').replace("None", "null")) for mset in mset_list])) for req , mset_list in json_object_dict["subject_data_values"]])
 
 
 
@@ -137,8 +140,8 @@ class CourserJsonDecoder(json.JSONDecoder):
                               desired_subjects=desired,
                               reserved_times=reserved,
                             )
-                keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["conflict_dict_keys"]]
-                values = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["conflict_dict_values"]]
+                keys = [self.decode(x.__str__().replace("'", '"').replace("None", "null")) for x in json_object_dict["conflict_dict_keys"]]                
+                values = [[self.decode(mset.__str__().replace("'", '"').replace("None", "null")) for mset in list_of_msets] for list_of_msets in json_object_dict["conflict_dict_values"]]
 
                 plan.conflict_dict = dict(zip(keys, values))
                 return plan

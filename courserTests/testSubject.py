@@ -6,6 +6,7 @@ Created on Sep 26, 2010
 from courser.CourserJsonDecoder import CourserJsonDecoder
 from courser.CourserJsonEncoder import CourserJsonEncoder
 from courser.Subject import Subject
+from courserTests.Dataset import Dataset
 import json
 import unittest
 
@@ -14,7 +15,8 @@ class Test(unittest.TestCase):
 
 
     def setUp(self):
-        pass
+        self.dset = Dataset()
+        self.dset.dataSetup()
 
 
     def tearDown(self):
@@ -28,6 +30,13 @@ class Test(unittest.TestCase):
         
     def testJSON(self):
         a = Subject("8.02")
+        string = json.dumps(a, cls = CourserJsonEncoder)
+        b = json.loads(string, cls = CourserJsonDecoder)
+        self.assertEqual(a.inCharge, b.inCharge)
+        self.assertEqual(a, b)
+        
+    def testJSON2(self):
+        a = self.dset.AUSubjects[0]
         string = json.dumps(a, cls = CourserJsonEncoder)
         b = json.loads(string, cls = CourserJsonDecoder)
         self.assertEqual(a.inCharge, b.inCharge)

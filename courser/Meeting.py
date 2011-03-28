@@ -19,19 +19,6 @@ class Meeting(object):
         self.endTime = endTime
 
 
-#    def __cmp__(self, other):
-#        if isinstance(other, Meeting):
-#            if self.startTime < other.startTime:
-#                return - 1
-#            if self.startTime == other.startTime:
-#                if self.endTime < other.endTime:
-#                    return - 1
-#                if self.endTime == other.endTime:
-#                    return 0
-#                if self.endTime > other.endTime:
-#                    return 1
-#            if self.startTime > other.startTime:
-#                return 1
     def __eq__(self, other):
         try:
             return self.startTime == other.startTime and self.endTime == other.endTime
