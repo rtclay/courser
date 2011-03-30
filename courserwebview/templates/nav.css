@@ -1,0 +1,89 @@
+/*globalnav*/
+#navbar{
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 1px;
+  
+  -webkit-box-shadow: 0 1px 10px rgba(0,0,0,.5);
+  -moz-box-shadow: 0 1px 10px rgba(0,0,0,.5);
+  box-shadow: 0 1px 10px rgba(0,0,0,.5);
+  background:#fff;
+  float: right;
+}
+
+#globalnav {
+	position:relative;
+	/*float:left;
+	width:100%;*/
+	padding:0 0 1.75em 1em;
+	margin:5px 0 5px 0;
+	list-style:none;
+	line-height:1em;
+}
+
+#globalnav LI {
+	float:left;
+	margin:0;
+	padding:0;
+}
+
+#globalnav A {
+	display:block;
+	color:#000;
+	text-decoration:none;
+	font-weight:bold;
+	margin:0;
+	padding:0.25em .25em;
+	
+}
+
+#globalnav A:hover,
+#globalnav A:active,
+#globalnav A.here:link,
+#globalnav A.here:visited {
+	color:#888;
+}
+
+#globalnav A.here:link,
+#globalnav A.here:visited {
+	position:relative;
+	z-index:102;
+}
+
+/*subnav*/
+
+#globalnav UL {
+	position:absolute;
+	left:0;
+	top:1.5em;
+	float:left;
+	background:#bbb;
+	/*width:100%;*/
+	margin:0;
+	padding:0.25em 0.25em 0.25em 1em;
+	list-style:none;
+	border-top:1px solid #fff;
+}
+
+#globalnav UL LI {
+	float:left;
+	display:block;
+	margin-top:1px;
+}
+
+#globalnav UL A {
+	background:#bbb;
+	color:#fff;
+	display:inline;
+	margin:0;
+	padding:0 1em;
+	border:0
+}
+
+#globalnav UL A:hover,
+#globalnav UL A:active,
+#globalnav UL A.here:link,
+#globalnav UL A.here:visited {
+	color:#444;
+}

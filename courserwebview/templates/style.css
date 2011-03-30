@@ -1,0 +1,52 @@
+div.Courseplan  {
+background-color:	8ff;
+padding: 2px;
+}
+div.Courseplan  div.Student{
+display: inline-block;
+float: right;
+}
+
+div.Meeting  {
+background-color:	8f8;
+width:	40;
+}
+div.Subject_collection {
+display: inline-block;
+width: 300px;
+}
+
+div.weekchart  {
+border-color:	000;
+border-style:	solid;
+border-width:	1px;
+height:	288;
+width:	280;
+
+}
+div.weekchart li {
+list-style-type: none;
+display: inline;
+margin: 0;
+padding: 0;
+}
+div.Meetingset{
+display: inline-block;
+}
+
+div.SemesterPlan  {
+background-color:	f88;
+padding: 2px;
+}
+
+div.Subject  {
+background-color:	ff8;
+height:	3em;
+width:	128px;
+padding: 2px;
+}
+div.Term  {
+background-color:	88f;
+
+margin: 1px;
+}

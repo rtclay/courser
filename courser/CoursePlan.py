@@ -108,6 +108,7 @@ class CoursePlan(object):
 
     def solveReq(self, req, term):
         '''Returns a solution to a requirement, returning the same solution each time for partial requirements
+        The solution is a fully expanded requirement that has been traced out to single subject Reqs.
         '''
         req.testValidity()
         req = req.completeSquish()

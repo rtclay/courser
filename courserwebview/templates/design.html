@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" title="Default" />
+<script src="prototype.js" type="text/javascript"></script>
+<script src="scriptaculous.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="Courseplan"> Courseplan </div>
+<div class="SemesterPlan"> <h2>SemesterPlan</h2>
+	<div id="subjlist01" class="Subject_collection">Desired Classes
+	<ul>
+	<li><div id = "subj0000" class="Subject">Balloon Theory</div></li>
+	<li><div id = "subj0001" class="Subject">Beginner Baking</div></li>
+	<li><div id = "subj0002" class="Subject">Beginner Hula Hoops</div></li>
+	<li><div id = "subj0003" class="Subject">Intermediate Pies</div></li>
+	</ul>
+	</div>
+	<div class="Meetingset">Reserved Times
+		<div class = "weekchart">
+		<ul>
+		<li><div class="Meeting"> Meeting <span class = "time"> 09:35 Monday</span> <span class = "time">10:55 Monday</span>  </div></li>
+		<li><div class="Meeting"> Meeting <span class = "time"> 09:35 Monday</span> <span class = "time">10:55 Monday</span>  </div></li>
+		<li><div class="Meeting" > Meeting <span class = "time"> 09:35 Monday</span> <span class = "time">10:55 Monday</span>  </div></li>
+		</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="Requirement"> Requirement </div>
+<div class="ReqNot"> ReqNot </div>
+<div class="ReqTotal"> ReqTotal </div>
+<div class="ReqPartial"> ReqPartial </div>
+<div class="Student"> Ben Bitdiddle <span class ="student_id">31415</span> </div>
+<div class="Term"> Term <span class = "season">Fall</span> <span class = "time">2012</span></div>
+
+<script type="text/javascript">
+  new Draggable('subj0000', { 
+    revert: true 
+  });
+  new Draggable('subj0001', { 
+    revert: true 
+  });
+  new Draggable('subj0002', { 
+    revert: true 
+  });
+  new Draggable('subj0003', { 
+    revert: true 
+  });
+  
+  Droppables.add('subjlist01', { 
+    accept: 'Subject',
+    hoverclass: 'hover',
+    onDrop: function() { $('subjlist01').highlight(); }
+  });
+</script>
+</body>
+</html>
