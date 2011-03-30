@@ -21,9 +21,11 @@ startTerm = dset.terms[0]
 #with open('subjects.json', mode='w') as f:
 #    json.dump(dset.subjects.extend(dset.AUSubjects), f, indent=2, cls = CourserJsonEncoder)
 items_minus_sets = [(x, list(y[1])) for (x, y) in dset.subject_data.items()]
-print items_minus_sets 
-with open('subject_data.json', mode='w') as f:
-    json.dump(items_minus_sets, f, indent=2, cls = CourserJsonEncoder)
+#print items_minus_sets 
+#with open('subject_data.json', mode='w') as f:
+#    json.dump(items_minus_sets, f, indent=2, cls = CourserJsonEncoder)
+with open('subjects.json', mode='w') as f:
+    json.dump(list(dset.terms[0].getSubjects()), f, indent=2, cls = CourserJsonEncoder)
 
 
 #print json.dumps(cplan, cls = CourserJsonEncoder,  encoding = 'utf-8')

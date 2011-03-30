@@ -29,10 +29,11 @@ class CWVSubject(models.Model):
     unitsLecture = models.PositiveIntegerField()
     unitsLab = models.PositiveIntegerField()
     unitsPreparation = models.PositiveIntegerField()
-
-
     gradeType = models.CharField(max_length=16)
     description = models.TextField()
+    
+    terms = models.ManyToManyField("CWVTerm")
+    
 
 class CWVCatalog(models.Model):
     pass
@@ -63,3 +64,11 @@ class CWVReqTotal(models.Model):
     name = models.CharField(max_length=64)
 class CWVTerm(models.Model):
     catalog = models.ForeignKey("CWVCatalog")
+    subjects = models.ManyToManyField("CWVSubject")
+    subject_data_set = models.ManyToManyField("CWVSubjectData")
+    
+class CWVSubjectData(models.Model):
+    term = models.ForeignKey("CWVTerm")
+    subject = models.ForeignKey("CWVSubject")
+    requirement = models.ForeignKey("CWVRequirement")
+    meetingsets = models.ManyToManyField("CWVMeetingset")

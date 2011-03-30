@@ -35,14 +35,14 @@ body {
 }
 #bodywrap {
     width:960;
-        
+	background: url(../images/courser.png) fixed no-repeat center top;
     padding-top: 20px;
     margin-left:auto;
     margin-right:auto;
 }
 
 #bodywrap header{
-    background:rgba(145,193,255, .6);    
+    background:rgba(145,193,255, .6) ;    
     width: 960px;
     margin-left: auto ;
     margin-right: auto ;
