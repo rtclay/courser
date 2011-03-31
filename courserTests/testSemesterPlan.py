@@ -79,18 +79,18 @@ class Test(unittest.TestCase):
         pass
 
     def testRemoveCourse(self):
-        self.assertTrue(self.semesterPlans[0].hasCourse(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
-        self.semesterPlans[0].removeCourse(self.subjects[1])
-        self.assertFalse(self.semesterPlans[0].hasCourse(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
+        self.assertTrue(self.semesterPlans[0].hasSubject(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
+        self.semesterPlans[0].removeSubject(self.subjects[1])
+        self.assertFalse(self.semesterPlans[0].hasSubject(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
 
     def testAddCourse(self):
-        self.assertFalse(self.semesterPlans[0].hasCourse(self.subjects[0]), "Assert: %s is not in %s" % (self.subjects[0], self.semesterPlans[0]))
-        self.semesterPlans[0].addCourse(self.subjects[0])
-        self.assertTrue(self.semesterPlans[0].hasCourse(self.subjects[0]), "Assert: %s is in %s" % (self.subjects[0], self.semesterPlans[0]))
+        self.assertFalse(self.semesterPlans[0].hasSubject(self.subjects[0]), "Assert: %s is not in %s" % (self.subjects[0], self.semesterPlans[0]))
+        self.semesterPlans[0].addSubject(self.subjects[0])
+        self.assertTrue(self.semesterPlans[0].hasSubject(self.subjects[0]), "Assert: %s is in %s" % (self.subjects[0], self.semesterPlans[0]))
 
     def testHasCourse(self):
-        self.assertFalse(self.semesterPlans[0].hasCourse(self.subjects[0]), "Assert: %s is not in %s" % (self.subjects[0], self.semesterPlans[0]))
-        self.assertTrue(self.semesterPlans[0].hasCourse(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
+        self.assertFalse(self.semesterPlans[0].hasSubject(self.subjects[0]), "Assert: %s is not in %s" % (self.subjects[0], self.semesterPlans[0]))
+        self.assertTrue(self.semesterPlans[0].hasSubject(self.subjects[1]), "Assert: %s is in %s" % (self.subjects[1], self.semesterPlans[0]))
 
     def testIsValid(self):
         pass
@@ -119,9 +119,9 @@ class Test(unittest.TestCase):
 
     def testSolve2(self):
         self.assertTrue(self.semesterPlans[0].getSolution(), "Assert: %s is solvable" % self.semesterPlans[0])
-        self.semesterPlans[0].addCourse(self.subjects[9])
+        self.semesterPlans[0].addSubject(self.subjects[9])
         self.assertTrue(self.semesterPlans[0].getSolution(), "Assert: %s is solvable" % self.semesterPlans[0])
-        self.semesterPlans[0].addCourse(self.subjects[0])
+        self.semesterPlans[0].addSubject(self.subjects[0])
         self.assertFalse(self.semesterPlans[0].getSolution(), "Assert False: %s is solvable" % self.semesterPlans[0])
 
     def testSolve3(self):

@@ -54,12 +54,12 @@ class Catalog(object):
     def getFollowingTerms(self, term):
         '''Takes a term and returns a list containing all future terms in the catalog
         '''
-        return filter(lambda x : x > term, sorted(self.terms.values()))
+        return filter(lambda x : x > term, sorted(self.getTerms()))
 
     def getPreviousTerms(self, term):
         '''Takes a term and returns a list containing all past terms in the catalog
         '''
-        return filter(lambda x : x < term, sorted(self.terms.values()))
+        return filter(lambda x : x < term, sorted(self.getTerms()))
 
     def removeTerm(self, term):
         del self.terms[str(term)]

@@ -71,14 +71,14 @@ class SemesterPlan(object):
     def getTerm(self):
         return self.term
 
-    def removeCourse(self, course):
+    def removeSubject(self, course):
         if course in self.getSubjects():
             self.desired.remove(course)
 
-    def addCourse(self, course):
+    def addSubject(self, course):
         self.desired.add(course)
 
-    def hasCourse(self, course):
+    def hasSubject(self, course):
         return course in self.getSubjects()
 
 
