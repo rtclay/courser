@@ -3,7 +3,8 @@ Created on Aug 17, 2010
 
 @author: richard
 '''
-from courser.Meetingset import Meetingset
+from courserwebview.models import Meetingset
+from django.db import models
 
 class SemesterPlanError(Exception):
     """Base class for exceptions in this module."""
@@ -21,11 +22,12 @@ class SolutionError(SemesterPlanError):
         self.desired = desired
         self.msg = msg
 
-class SemesterPlan(object):
+class SemesterPlan(models.Model):
     '''
     A semester plan is a collection of subjects and the ability to test if 
     any selection of the subjects' meetingsets will allow all classes to be taken in the term.
     '''
+    courseplan = models.ForeignKey("CoursePlan")
 
     def __init__(self, term, desired_subjects=None, reserved_times=None):
         '''

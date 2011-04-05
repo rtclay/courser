@@ -25,15 +25,46 @@
 	</div>
     </header>
     <section id="central">
-	
-    <hr class="hidden">
-    <h1>Courser</h1>
-	<ol>
-		<li>Create an account or login.</li>
-		<li>Select the requirement you want to meet</li>
-		<li>Go to the courseplan page and select solve requirement</li>
-		<li>Plot remaining semesters</li>
-	</ol>
+	{% if subj_list %}
+    <ul>
+    {% for subj in subj_list %}
+        <li><a href="/subjects/{{ subj.id }}/">{{ subj.question }}</a>
+        <div class="Subject_long">
+      <div id="name">
+        <h3>
+          {{subj.name}} {{subj.label}}
+        </h3>
+      </div>
+      <div class="Control Panel">
+        <ul>
+          <li>
+            <a href="#">Bookmark</a>
+          </li>
+          <li>
+            <a href="#">Add to a term</a>
+          </li>
+        </ul>
+      </div>
+	  <h4>Requirement:</h4>
+      <div id="Prereq" class ="Requirement">
+        None
+      </div>
+	  <h4>Course Level:</h4>
+      <div id="course_level">
+        {{subj.subjectLevel}}
+      </div>
+      <div id="description">
+        <p>
+          {{subj.description}}
+        </p>
+      </div>
+    </div>
+        </li>
+    {% endfor %}
+    </ul>
+	{% else %}
+    <p>No subjects are available.</p>
+	{% endif %}
     </section>
     <footer>    
     <ul>
