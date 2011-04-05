@@ -1,0 +1,3422 @@
+[
+  {
+    "model": "courserwebview.CWVSubject",
+	"pk": null,
+	"fields":{
+		"totalUnits": 12,
+	    "inCharge": "no one",
+	    "course": 0,
+	    "departmentCode": 0,
+	    "unitsLab": 4,
+	    "gradeType": "ABCDEF",
+	    "description": "Blank",
+	    "unitsLecture": 4,
+	    "name": "6.152J",
+	    "subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+	}
+  },
+  {
+  	"model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields": {
+		"totalUnits": 12,
+		"inCharge": "no one",
+		"course": 0,
+		"departmentCode": 0,
+		"unitsLab": 4,
+		"gradeType": "ABCDEF",
+		"description": "Blank",
+		"unitsLecture": 4,
+		"name": "6.001",
+		"subjectLevel": "undergraduate",
+		"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.876J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "003",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.003",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "002",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.002",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.005",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "004",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.004",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "007",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.007",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.842",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.922",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.923",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.921",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.849",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.207J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.823",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "700",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.700",
+    	"subjectLevel": "undergraduate",
+    	"label": "Linear Algebra",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.163",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "161",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.161",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "641",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.641",
+    	"subjectLevel": "undergraduate",
+    	"label": "Electromagnetic Fields, Forces, and Motion",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.122J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.142J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.841J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.023J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "012",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.012",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "013",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.013",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.010",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.011",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.853",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.850",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.851",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "207",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.207",
+    	"subjectLevel": "undergraduate",
+    	"label": "Networks",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "20.310",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.858",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.845",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "20.320",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.719",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.561J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "840J",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.840J",
+    	"subjectLevel": "undergraduate",
+    	"label": "Theory of Computation",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.345J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.840",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.338J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.854J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.006",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.281J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "867",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.867",
+    	"subjectLevel": "undergraduate",
+    	"label": "Machine Learning",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.780J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.865",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.869",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.777J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.020",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.455J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.404",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.728",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "701",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.701",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introduction to Nanoelectronics",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.621",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.778J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.263J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.855J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.975",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.946J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.977",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.976",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.875",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "033",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.033",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.034",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.021J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.376",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.131",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.978",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "341",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.341",
+    	"subjectLevel": "undergraduate",
+    	"label": "Discrete-Time Signal Processing",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "15.064",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.731",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.730",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.267",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.266",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.982J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 8,
+    	"departmentCode": "01",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "8.01",
+    	"subjectLevel": "undergraduate",
+    	"label": "Physics: Classical Mechanics",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.438",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.524J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.436",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.437",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.581J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.878J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "02",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.02",
+    	"subjectLevel": "undergraduate",
+    	"label": "Calculus II",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.804J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.00",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "01",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.01",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introduction to EECS I",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "02",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.02",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introduction to EECS II",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.024J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "801",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.801",
+    	"subjectLevel": "undergraduate",
+    	"label": "Machine Vision",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.902J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "803",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.803",
+    	"subjectLevel": "undergraduate",
+    	"label": "The Human Intelligence Enterprise",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "042",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.042",
+    	"subjectLevel": "undergraduate",
+    	"label": "unnamed",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "805",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.805",
+    	"subjectLevel": "undergraduate",
+    	"label": "Ethics and the Law on the Electronic Frontier",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.872J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.774",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.602",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.045",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.870",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.047",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "046",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.046",
+    	"subjectLevel": "undergraduate",
+    	"label": "Advanced Algorithms",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "041",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.041",
+    	"subjectLevel": "undergraduate",
+    	"label": "unnamed",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "035",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.035",
+    	"subjectLevel": "undergraduate",
+    	"label": "Computer Language Engineering",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.443J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.337J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.440",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.071J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.720J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.717J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.873J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "045J",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.045J",
+    	"subjectLevel": "undergraduate",
+    	"label": "Automata, Computability and Complexity",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.046J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.050J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "9.07",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.952",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.951",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.243",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.241",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.813",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "115",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.115",
+    	"subjectLevel": "undergraduate",
+    	"label": "Microcomputer Project Laboratory",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.111",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.815",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "16.04",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "336J",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.336J",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introductory to Numerical Simulation",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "7.014",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.452",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.456",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.454",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.852J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.827",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "03",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.03",
+    	"subjectLevel": "undergraduate",
+    	"label": "Calculus III",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "825",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.825",
+    	"subjectLevel": "undergraduate",
+    	"label": "Techniques in Artificial Intelligence",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "01",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.01",
+    	"subjectLevel": "undergraduate",
+    	"label": "Calculus I",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "022J",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.022J",
+    	"subjectLevel": "undergraduate",
+    	"label": "Quantitative Systems Physiology",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.821",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.820",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.310",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.829",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.251",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "14.30",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.255",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.256",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "100",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.100",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "101",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.101",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "06",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.06",
+    	"subjectLevel": "undergraduate",
+    	"label": "Linear Algebra",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.874J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "102",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.102",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.522J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.182",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "UAP",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.UAP",
+    	"subjectLevel": "undergraduate",
+    	"label": "Undergraduate Advanced Project",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.814",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "UAT",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.UAT",
+    	"subjectLevel": "undergraduate",
+    	"label": "Undergraduate Advanced Project",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "061",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.061",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introduction to Electric Power Systems",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 18,
+    	"departmentCode": "440",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.440",
+    	"subjectLevel": "undergraduate",
+    	"label": "unnamed",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.07J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.892",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.893",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.608J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.891",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.896",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.897",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.894",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.895",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.898",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "3.155",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.830",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.831",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.833",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "837",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.837",
+    	"subjectLevel": "undergraduate",
+    	"label": "Computer Graphics",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.838",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.834J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 8,
+    	"departmentCode": "02",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "8.02",
+    	"subjectLevel": "undergraduate",
+    	"label": "Physics: E&M",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.938",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "36",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "16.36",
+    	"subjectLevel": "undergraduate",
+    	"label": "Communication Systems Engineering",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "2.008",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "2.005",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.775",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "2.006",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "2.001",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "079",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.079",
+    	"subjectLevel": "undergraduate",
+    	"label": "Introduction to Complex Optimization (Fall 2009 only)",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "2.003",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "857",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.857",
+    	"subjectLevel": "undergraduate",
+    	"label": "Network and Computer Security",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "302",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.302",
+    	"subjectLevel": "undergraduate",
+    	"label": "Feedback Systems",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "301",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.301",
+    	"subjectLevel": "undergraduate",
+    	"label": "Solid-State Circuits",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "173",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.173",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 6,
+    	"departmentCode": "172",
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.172",
+    	"subjectLevel": "undergraduate",
+    	"label": "Performance Engineering of Software Systems",
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.05",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "18.435",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.141J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+      }
+  },
+  {
+    "model": "courserwebview.CWVSubject",
+    "pk": null,
+    "fields":{
+    	"totalUnits": 12,
+    	"inCharge": "no one",
+    	"course": 0,
+    	"departmentCode": 0,
+    	"unitsLab": 4,
+    	"gradeType": "ABCDEF",
+    	"description": "Blank",
+    	"unitsLecture": 4,
+    	"name": "6.070J",
+    	"subjectLevel": "undergraduate",
+    	"label": 0,
+		"unitsPreparation": 4
+	}
+  }
+]
