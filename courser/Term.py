@@ -9,7 +9,8 @@ from courser.Meetingset import Meetingset
 
 class Term(object):
     '''
-    classdocs
+    A term contains subject data.  The subject_data dictionary matches a Subject to a tuple of (Requirement, set containing Meetingsets)
+     
     '''
 
 

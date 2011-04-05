@@ -13,7 +13,7 @@ from courser.Requirement import Requirement
 
 class Student(object):
     '''
-    classdocs
+    A student takes classes.
     '''
 
 

@@ -43,7 +43,7 @@ class MalformedReqError(RequirementError):
 
 class Requirement(object):
     '''
-    classdocs
+    A requirement is a condition that can be applied to a set of subjects.
     TODO: transform req into an abstract class or interface and force the use of its subclasses.  Remove all instantiations of Requirement class from project
     '''
 
@@ -96,7 +96,7 @@ class Requirement(object):
         return hash(key)
 
     def isSatisfied(self, classesTaken):
-        '''Takes a list of classes taken and returns True or False according to whether the req is satisfied
+        '''Takes a collection of Subjects and returns True or False according to whether the req is satisfied
         '''
         if self.isLeaf():
             if self.singleSubject is None:
@@ -107,6 +107,9 @@ class Requirement(object):
             return reduce(lambda x, y: x + y.isSatisfied(classesTaken), self.reqs, 0) >= self.numNeeded
 
     def getNumNeeded(self):
+        """Return the integer number of subsidiary requirements
+         necessary to be fulfilled for the requirement to be satisfied
+        """
         return self.numNeeded
 
     def getReqs(self):
@@ -122,6 +125,9 @@ class Requirement(object):
         self.reqs = set_of_Reqs
 
     def getNumChoices(self):
+        """Return the integer number of subsidiary requirements.
+        For a ReqNot, this will always be 1.
+        """
         if self.isLeaf():
             if self.singleSubject is None:
                 return 0
@@ -131,28 +137,31 @@ class Requirement(object):
             return len(self.reqs)
 
     def addSubject(self, subject):
+        """Add a new leaf req to self's list containing the subj"""
         #if the subject isnt already in the top layer of requirements, add a new leaf req to self's list containing the subj
         if not(subject in [x.getSingleSubj for x in self.reqs]):
             self.numNeeded += 1
             self.reqs.append(Requirement(subj=subject))
 
     def addReq(self, req):
+        """Add req to self.reqs"""
         #if the subject isnt already in the top layer of requirements, add the req to self's reqs
         if not(req in self.reqs):
             self.numNeeded = self.numNeeded + 1
             self.reqs.append(req)
 
     def removeReq(self, req):
+        """Remove req from self.reqs"""
         if req in self.reqs:
             self.reqs.remove(req)
             self.numNeeded = self.numNeeded - 1
 
-    def generateReq(self, listOfSubjects, numNeeded):
-        listOfReqs = []
-
-        for subj in listOfSubjects:
-            listOfReqs.append(Requirement([], 0, subj))
-        return Requirement(listOfReqs, numNeeded, subj)
+#    def generateReq(self, listOfSubjects, numNeeded):
+#        listOfReqs = []
+#
+#        for subj in listOfSubjects:
+#            listOfReqs.append(Requirement([], 0, subj))
+#        return Requirement(listOfReqs, numNeeded, subj)
 
 
     def squish(self):
@@ -177,17 +186,19 @@ class Requirement(object):
         return newReq
 
     def completeSquish(self):
+        '''Returns a new requirement that has all empty shells stripped away        
+        '''
         temp = copy.copy(self)
-        #temp = Requirement(self.reqs[:], self.numNeeded, self.singleSubject)
-        while temp != temp.squish():
-            temp = temp.squish()
+        squishy = temp.squish()
+        while temp != squishy:
+            temp = squishy
         return temp
 
 
     def expand(self, term):
-        '''Returns a req with each subject traced out to subjects with no req 
+        '''Return a req with each subject traced out to subjects with no req 
         
-        Returns a Requirement that includes the prerequisite subjects of every subject in self's reqs.  Almost certain to include duplicate subjects and reqs.
+        Return a Requirement that includes the prerequisite subjects of every subject in self's reqs.  Almost certain to include duplicate subjects and reqs.
         '''
         if self.isBlank():
             return self
@@ -224,9 +235,14 @@ class Requirement(object):
         return subjects
 
     def getSingleSubj(self):
+        """Return the single subject
+        """
         return self.singleSubject
 
     def getProgress(self, classesTaken):
+        """Return the integer number of subsidiary requirements fulfilled.
+        For a ReqNot, this will always be either 0 or 1.
+        """
         if self.isLeaf():
             if self.singleSubject in classesTaken:
                 return 1
@@ -248,7 +264,8 @@ class Requirement(object):
             raise MalformedReqError(self)
 
     def getComplexity(self, term):
-        '''Returns a positive number representing the complexity of the req's subordinate requirements
+        '''CURRENTLY USELESS
+        Returns a positive number representing the complexity of the req's subordinate requirements
         Roughly, complexity increases with the depth and number of the req's sub-requirements
         Every subreq will be less complex than its parent
         When the Requirement class becomes an interface, this function will return a notImplementedError for the Requirement Class; subclasses will define.

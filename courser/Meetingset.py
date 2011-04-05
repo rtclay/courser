@@ -26,7 +26,8 @@ class SortingError(MeetingSetError):
 
 class Meetingset(object):
     '''
-    A meetingset contains meetings.
+    A meetingset contains meetings.  It can also test if a time conflicts with any of its meetings,
+     or if another meetingset conflicts with any of its meetings.
     '''
 
 
@@ -51,18 +52,24 @@ class Meetingset(object):
         return not self.__eq__(other)
 
     def addMeeting(self, meeting):
+        """ Add a meeting
+        """
         self.meetings.append(meeting)
         self.meetings.sort()
         if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def removeMeeting(self, meeting):
+        """ Remove a meeting
+        """
         self.meetings.remove(meeting)
         self.meetings.sort()
         if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def addMeetingSet(self, otherMS):
+        """ Add all the meetings in the other MeetingSet's meetings, then sort the meetings
+        """
         self.meetings.extend(otherMS.meetings)
         self.meetings.sort()
 
@@ -70,16 +77,20 @@ class Meetingset(object):
             raise SortingError(self.meetings)
 
     def removeMeetingSet(self, otherMS):
+        """ Add all the meetings in the other MeetingSet's meetings from this Meetingset's meetings, then sort this MeetingSet's meetings
+        """
         for meet in otherMS.meetings:
-            self.meetings.remove(meet)
+            try:
+                self.meetings.remove(meet)
+            except ValueError:
+                continue
         self.meetings.sort()
         if not self.isValidMset():
             raise SortingError(self.meetings)
 
     def isBusyAtTime(self, time):
-        #time is considered to be an integer representing whole minutes past midnight on Sunday
-        #EG 00001 is 12:01 Monday morning
-        #EG 00480 is 8:00 Monday morning
+        """Return True IFF time is included in any of this MeetingSet's Meetings
+        """
         for x in self.meetings:
             if x.containsTime(time):
                 return True
@@ -91,10 +102,12 @@ class Meetingset(object):
 
     def isConflict(self, otherMeetingSet):
         """
-        This function looks at the sorted lists A and B.  If the first class (call it CLASS) in either list
-        begins after the first class in the other list ends, then the first class in the other list
+        Return True IFF any of the other MS's Meetings conflicts with any of this MeetingSet's Meetings.
+        
+        This function looks at the sorted lists A and B.  If the first Meeting in either list
+        begins after the first Meeting in the other list ends, then the first Meeting in the other list
         is guaranteed not to be a conflict and is removed.
-        If there exist any classes left in the lists, and neither one ends before the other begins, then there is a conflict.
+        If at the end there exist any Meetings left in the lists, and neither one ends before the other begins, then there is a conflict.
         """
         sortedMeetings = sorted(self.meetings)
         otherMeetings = sorted(otherMeetingSet.meetings)
@@ -117,6 +130,8 @@ class Meetingset(object):
         return False
 
     def isValidMset(self):
+        """Return True IFF the meetings are sorted, and each meeting is a valid meeting
+        """
         if not self.meetings:
             return True
         else:

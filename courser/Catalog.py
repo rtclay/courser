@@ -23,13 +23,13 @@ class TermMissingError(CatalogError):
 
 class Catalog(object):
     '''
-    classdocs
+    A catalog contains Terms, which then include Subjects and information about those Subjects.  The catalog has functions for selecting and manipulating Terms
     '''
 
 
     def __init__(self, terms=None):
         '''
-        Constructor
+        Set Terms to the argument passed in, or an empty dictionary
         '''
         if terms is None:
             terms = dict()
@@ -39,33 +39,45 @@ class Catalog(object):
     def __eq__(self, other):
         try:
             return self.terms == other.terms
-        except:
+        except AttributeError:
             return False
 
     def __hash__(self):
         return hash(self.terms)
 
     def addTerm(self, term):
+        '''Add a term to the catalog's collection of Terms.
+        '''
         self.terms[str(term)] = term
 
     def getTerms(self):
+        '''Return a list containing the catalog's Terms.
+        '''
         return self.terms.values()
 
     def getFollowingTerms(self, term):
-        '''Takes a term and returns a list containing all future terms in the catalog
+        '''Take a term and returns a list containing all future terms in the catalog.
         '''
         return filter(lambda x : x > term, sorted(self.getTerms()))
 
     def getPreviousTerms(self, term):
-        '''Takes a term and returns a list containing all past terms in the catalog
+        '''Take a term and returns a list containing all past terms in the catalog.
         '''
         return filter(lambda x : x < term, sorted(self.getTerms()))
 
     def removeTerm(self, term):
+        '''Remove a Term from the catalog's list of Terms.
+        '''
         del self.terms[str(term)]
 
     def getNextTerm(self, term):
-        return self.getFollowingTerms(term)[0]
+        '''Return the Term immediately following the term given as an argument.
+        Return None if there are no Terms following the term. 
+        '''
+        try:
+            return self.getFollowingTerms(term)[0]
+        except IndexError:
+            return None
 
     def __repr__(self):
         response = "<Catalog: "

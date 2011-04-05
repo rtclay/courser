@@ -15,7 +15,21 @@ import sys
 
 class CoursePlan(object):
     '''
-    classdocs
+    A CoursePlan contains information about a possible route to a goal.
+    The CoursePlan does not directly store a Requirement as a goal.
+    Instead, it stores a set of Subjects that are desired to be taken.
+    SolveReq takes a Requirement and returns a set of Subjects that solve that Requirement.
+    The Courseplan has a SemesterPlan for each Term in its Catalog.
+    
+    member data:
+    desired = set()    Contains subjects that the Courseplan wants to take.
+    catalog = Catalog()
+    subjects_credited = set()    Contains subjects that start out having been passed, eg passing 18.01 with AP math credit
+    __depths = dict()  Memoizes the depths of classes.  It is reset every time a search is requested, in order that it remain current
+    term_info_dict = dict()    Matches a term to a semester plan
+    subject_scores = dict()    Matches a term to a dictionary.  That dictionary matches a subject to a score, used as a heuristic for deciding routes
+    subject_req_choices = dict()    Matches a Requirement to a completely expanded, total Requirement. 
+    
     '''
 
 
@@ -67,6 +81,10 @@ class CoursePlan(object):
 
 
     def staticScoreSemesterPlan(self, sem_plan):
+        """ Return a number that represents the heuristic value of a SemesterPlan
+         towards completing the desired set of subjects.
+        Does not consider future semesters
+        """
         term = sem_plan.getTerm()
         value = len(sem_plan.desired)
         for subj in sem_plan.desired:
@@ -85,17 +103,21 @@ class CoursePlan(object):
         return value
 
     def getDesired(self):
+        """Return a set containing the Subjects desired to be taken.
+        """
         return self.desired.copy()
     def setDesired(self, newDesired):
+        """Define the desired Subjects to be taken.
+        """
         self.desired = set(newDesired)
 
     def getSubjectsRemaining(self, term):
-        '''Returns a list of Subjects that are desired but not yet taken at the time of term
+        '''Return the complete set of Subjects that are desired but not yet taken at the time of term.
         '''
         return self.desired ^ self.getSubjectsTakenBeforeTerm(term)
 
     def getSubjectsTakenBeforeTerm(self, term):
-        '''Returns a set of Subjects that have been taken before the start of a given term
+        '''Return the complete set of Subjects that have been taken before the start of a given term.
         '''
         set_of_subjects = self.subjects_credited.copy()
 
@@ -107,8 +129,8 @@ class CoursePlan(object):
         return set_of_subjects
 
     def solveReq(self, req, term):
-        '''Returns a solution to a requirement, returning the same solution each time for partial requirements
-        The solution is a fully expanded requirement that has been traced out to single subject Reqs.
+        '''Return a solution to a requirement, returning the same solution each time for partial Requirements.
+        The solution is a fully expanded requirement that has been traced out to single subject Requirements.
         '''
         req.testValidity()
         req = req.completeSquish()
@@ -147,14 +169,17 @@ class CoursePlan(object):
         return solution
 
     def setSolChoice(self, req, req_solution):
+        """Define the expanded, total Requirement that satisfies req in the Courseplan's subject_req_choices dictionary 
+        """
         self.subject_req_choices[req] = req_solution
 
 
     def getGoodSolution(self, req, term):
-        '''Returns a Requirement that represents one possible, complete solution of req, based on the subject requirements in term
+        '''Return a Requirement that represents one possible, complete solution of req, based on the subject requirements in term.
+        This function assumes that req in the final term will accept as a solution the solution of req listed in the given term.
         
-        Repeated calls of this function return either the same solution or a different solution
-        This function repeatedly searches for satisfactory reqs and picks the one that requires the fewest classes.
+        Repeated calls of this function return either the same solution or a different solution.
+        This function repeatedly searches for satisfactory reqs and picks the one that requires the fewest Terms to complete.
         '''
 
         print "Finding a good solution",
@@ -187,9 +212,10 @@ class CoursePlan(object):
 
 
     def buildASP(self, term):
-        '''Returns the semesters possible for this term
-        returns an iterator consisting of (plan, static score of plan) pairs
-        subjects are included iff: the subject is available in the term, the subject's requirements are met, and the subject is desired 
+        '''Return the semesters possible for this term, and their scores.
+        Returns an iterator consisting of (plan, static score of plan) pairs.
+        The semesters include all possible combinations of subjects, up to the courseplan's maximum subjects per semester
+        Subjects are included iff: the subject is available in the term, the subject's requirements are met, and the subject is desired 
         '''
 
         is_avail = lambda subj: subj in term.getSubjects() and term.getReq(subj).isSatisfied(self.getSubjectsTakenBeforeTerm(term))
@@ -199,15 +225,15 @@ class CoursePlan(object):
 
 
         combs = list(subject_combinations)
-        s_plans = [SemesterPlan(term, list(s)) for s in combs]
+        s_plans = [SemesterPlan(term, list(subjects)) for subjects in combs]
         return izip(s_plans, imap(self.staticScoreSemesterPlan, s_plans))
 
 
 
     def plotRemainingSemesters(self, starting_term, num_semesters=10):
-        '''Fills in self.term_info_dict
+        '''Fill in self.term_info_dict by matching each term with the best semester plan for that term
         
-        Returns nothing
+        Return nothing
         '''
 
         if num_semesters > 0:
@@ -218,7 +244,7 @@ class CoursePlan(object):
                 print "Catalog has run out of terms before reaching the desired number of semesters"
 
     def getTermOfSatisfaction(self, req=None):
-        '''Returns the first term after which all desired classes have been taken, or None if no term is found
+        '''Return the first term after which all desired classes have been taken, or None if no term is found
         If req is provided, then this function returns the first term that satisfies req, or None if no term is found
         '''
         if req is not None:
@@ -241,7 +267,7 @@ class CoursePlan(object):
         return None
 
     def getPlanForTerm(self, term, depth):
-        '''Returns a semester plan that is judged to be the best for the given term
+        '''Return a semester plan that is judged to be the best for the given term
         '''
         all_semester_plans = list(self.buildASP(term))
 
@@ -252,7 +278,7 @@ class CoursePlan(object):
             return SemesterPlan(term, [])
 
 
-
+        #if the semester plan is solvable, then it will have a score greater than 0
         for (sem_plan, score) in [x for x in all_semester_plans if x[1] > 0]:
             score = self.deepScoreSemesterPlan(sem_plan, depth, term)
 
@@ -263,12 +289,13 @@ class CoursePlan(object):
         except ValueError():
             print "Error finding highest-scoring semester. Returning a semester with no classes."
             return SemesterPlan(term, [])
-
+        
+        #return the score
         return best_sem_plan_tuple[0]
 
 
     def getDependents(self, term):
-        '''Returns a dictionary containing pairs of (subj, set(subjects that require subj))
+        '''Return a dictionary containing pairs of (subj, set(subjects that require subj))
         '''
         deps = dict()
         for subj in term.getSubjects():
@@ -280,6 +307,8 @@ class CoursePlan(object):
         return deps
 
     def scoreSubject(self, subj, term):
+        """Return a score that can be used to decide how important a Subject is to a CoursePlan
+        """
         if subj in self.subject_scores[term]:
             return self.subject_scores[term][subj]
         else:
@@ -324,14 +353,11 @@ class CoursePlan(object):
         return depth
 
 
-
-
-
-
-    def scoreSubjects(self, term):
-        pass
-
     def deepScoreSemesterPlan(self, sem_plan, depth, currentTerm):
+        """ Return a number that represents the heuristic value of a SemesterPlan
+         towards completing the desired set of subjects.
+        Considers future semesters
+        """
         static_score = self.staticScoreSemesterPlan(sem_plan)
 
         if depth <= 0:

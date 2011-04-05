@@ -7,13 +7,16 @@ Created on Aug 17, 2010
 
 class Meeting(object):
     '''
-    A meeting stores a start time, an end time, and a subject.  It is not very complex.
+    A meeting stores a start time, an end time, and a subject.  
+    Time is considered to be an integer representing whole minutes past midnight on Sunday
+    EG 00001 is 12:01 Monday morning
+    EG 00480 is 8:00 Monday morning
     '''
 
 
     def __init__(self, startTime=0, endTime=1):
         '''
-        Constructor
+        Initialize startTime and endTime
         '''
         self.startTime = startTime
         self.endTime = endTime
@@ -47,9 +50,6 @@ class Meeting(object):
     def containsTime(self, time):
         '''Returns True IFF the time is after start time and before end time
         '''
-        #time is considered to be an integer representing whole minutes past midnight on Sunday
-        #EG 00001 is 12:01 Monday morning
-        #EG 00480 is 8:00 Monday morning
         return time >= self.startTime and time <= self.endTime
 
     def isConflict(self, otherMeeting):
